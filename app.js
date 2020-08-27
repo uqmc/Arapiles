@@ -1,1 +1,1 @@
-print("Ping, pong")
+console.log("Ping, pong");
