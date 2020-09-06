@@ -1,0 +1,13 @@
+FROM node:11
+
+LABEL "repository"="https://github.com/uqmc/arapiles"
+LABEL "homepage"="https://github.com/uqmc/arapiles"
+
+WORKDIR /front
+RUN rm -rf ./node_modules/
+COPY src/front/package*.json ./
+
+COPY src/front/. .
+
+# Run frontend
+CMD [ "npm", "start" ]

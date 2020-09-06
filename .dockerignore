@@ -1,0 +1,10 @@
+# Ignore files when interfacing with Docker container
+
+.git
+node_modules/
+
+# IDE files
+
+.vs*
+.idea/
+__pycache__/

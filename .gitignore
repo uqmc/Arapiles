@@ -2,7 +2,12 @@
 
 .env
 
+# Libraries
+
+node_modules/
+
 # IDE files
 
-.vsc*
+.vs*
 .idea/
+__pycache__/

@@ -1,3 +1,3 @@
 # Arapiles
 
-UQMC Website Front-End
+UQMC Website

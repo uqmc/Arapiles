@@ -1,0 +1,23 @@
+=========================================================================
+==  NOTICE file for UQMC's Arapiles website project. To be retained    ==
+==  and updated upon changing this code, as per Apache-2.0.            ==
+=========================================================================
+
+UQMC Arapiles
+Copyright 2020 UQMC.
+
+This project includes software developed by UQMC
+(https://uqmc.org/).
+
+The Apache-2.0 license applies to all files in the UQMC Arapiles
+repository and any source distribution. This includes UQMC Arapiles’s
+source code, and tests, as well as any documentation.
+
+This software utilises third-party libraries developed under permissive
+open-source licenses.
+
+===================================================================================
+==  Upon modifying, and/or distributing this project in source                   ==
+==  or binary form, one must update this NOTICE file and preserve all copyright  ==
+==  and license notices for all files, modified and/or distributed               ==
+===================================================================================
