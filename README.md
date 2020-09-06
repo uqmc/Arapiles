@@ -1,3 +1,3 @@
 # Arapiles
 
-UQMC Website
+UQMC Arapiles Website
