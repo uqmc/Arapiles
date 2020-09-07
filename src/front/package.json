@@ -1,17 +1,17 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "uqmc-arapiles",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
-  "version": "0.1.0",
-  "license": "0BSD",
+  "description": "Front-end React/Gatsby module for UQMC Arapiles.",
+  "version": "0.0.1",
+  "license": "Apache-2.0",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "dev": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
+    "start": "npm run dev",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"TESTS\" && exit 1"
   },
   "dependencies": {
     "gatsby": "^2.24.50",
@@ -23,9 +23,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+    "url": "https://github.com/uqmc/arapiles"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/uqmc/arapiles/issues"
   }
 }
