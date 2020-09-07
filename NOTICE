@@ -10,8 +10,8 @@ This project includes software developed by University of
 Queensland Mountain Club Inc (https://uqmc.org/).
 
 The Apache-2.0 license applies to all files in the UQMC Arapiles
-repository and any source distribution. This includes UQMC Arapiles’s
-source code, and tests, as well as any documentation.
+repository and any source or binary distribution. This includes UQMC
+Arapiles’s source code and tests, as well as any documentation.
 
 This software utilises third-party libraries developed under permissive
 open-source licenses.
@@ -19,5 +19,5 @@ open-source licenses.
 ===================================================================================
 ==  Upon modifying, and/or distributing this project in source                   ==
 ==  or binary form, one must update this NOTICE file and preserve all copyright  ==
-==  and license notices for all files, modified and/or distributed               ==
+==  and license notices for all files, modified and/or distributed.              ==
 ===================================================================================
