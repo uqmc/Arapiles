@@ -5,19 +5,29 @@
 
 import os
 
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_restful import Api
 
 from api.ping import PingResource
 from utils import string_to_bool
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="front/public/")
 api = Api(app)
 
 debug_mode = string_to_bool(os.environ["PRODUCTION"])
 
+
 # TODO: Serve React application in prod mode.
 #  Else serve page describing that app is in dev mode.
+
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve_react(path):
+    if path != "" and os.path.exists(app.static_folder + "/" + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, "index.html")
+
 
 api.add_resource(PingResource, "/api/ping")
 
