@@ -13,8 +13,6 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    volumes:
-      - .:/web
 
   # Accessible at http://localhost:3001
   frontend:
@@ -22,7 +20,7 @@ services:
       context: .
       dockerfile: Dockerfile.dev.front
     ports:
-      - "3001:3001"
+      - "3001:8000"
     depends_on:
       - db
       - backend
