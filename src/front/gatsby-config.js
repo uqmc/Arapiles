@@ -1,10 +1,18 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
-
 module.exports = {
-  /* Your site config here */
-  plugins: [],
-}
+  plugins: [
+
+    // Markdown parser
+    `gatsby-transformer-remark`,
+
+    /* File system object for data sourcing
+       from files with GraphQL.
+    */
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `content`,
+        path: `${__dirname}/src/content`,
+      },
+    },
+  ]
+};
