@@ -6,3 +6,7 @@ path: /green
 # A Guide To Green Tape
 
 Green tape allows you to lead climb unsupervised during club activities.
+
+## Image:
+
+![Alt text here!!](../images/Astro.jpg)

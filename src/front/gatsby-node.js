@@ -1,3 +1,8 @@
+/* API file reference: https://www.gatsbyjs.com/docs/api-files-gatsby-node/
+   This file is configuration passed to the Gatsby library in order to provide
+   further functionality and customisation to this website.
+*/
+
 const path = require(`path`);
 
 exports.createPages = async ({ actions, graphql }) => {
