@@ -2,6 +2,7 @@
 # TODO: Upload to Docker Hub
 # TODO: Add doc strings
 # TODO: Add copyright notices to file headers
+# TODO: Add licensing for assets
 
 import os
 
