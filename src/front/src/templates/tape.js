@@ -1,18 +1,18 @@
 import React from "react"
 import { graphql } from "gatsby"
+import PrimaryLayout from "../layouts/primaryLayout";
 
 export default function Template({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
   return (
-    <div className="tape-page">
+    <PrimaryLayout>
       <h1>{frontmatter.title}</h1>
       <h2>{frontmatter.date}</h2>
       <div
-        className="content"
         dangerouslySetInnerHTML={{ __html: html }}
       />
-    </div>
+    </PrimaryLayout>
   )
 }
 

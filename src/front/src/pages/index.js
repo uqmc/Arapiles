@@ -1,33 +1,11 @@
 import React from "react";
-import {graphql, Link} from "gatsby";
+import PrimaryLayout from "../layouts/primaryLayout";
 
-export const query = graphql`
-    {
-      allMarkdownRemark {
-        edges {
-          node {
-            frontmatter {
-              path
-              title
-            }
-          }
-        }
-      }
-    }
-  `;
-
-const Home = ({ data }) => {
+const Home = () => {
   return(
-    <>
-      <div>Hello world!</div>
-      <ul>
-        { data.allMarkdownRemark.edges.map((edge) => {
-          return(
-            <li>{edge.node.frontmatter.title} <Link to={edge.node.frontmatter.path}>Click here</Link></li>
-          )
-        })}
-      </ul>
-    </>
+    <PrimaryLayout>
+      <h1>Main Page</h1>
+    </PrimaryLayout>
   );
 };
 
