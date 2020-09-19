@@ -29,6 +29,7 @@ services:
       - BACKEND_URI=http://localhost:3000
     volumes:
       - ./src/front:/front
+      - /front/node_modules  # mount node modules from built container
 
   # Database accessible at postgres://USER:PASSWORD@localhost/postgres
   db:
