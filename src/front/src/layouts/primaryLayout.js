@@ -34,6 +34,7 @@ const PrimaryLayout = ({ children }) =>  {
       </header>
 
       <main>
+        <div className="width-800px"></div>
         {children}
       </main>
     </div>
