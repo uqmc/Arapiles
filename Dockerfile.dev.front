@@ -6,7 +6,7 @@ LABEL "homepage"="https://github.com/uqmc/arapiles"
 WORKDIR /front
 COPY src/front/package*.json .
 RUN npm install
-COPY src/front/. .
+COPY src/front/. ./
 
 # Run frontend
 CMD [ "npm", "run", "dev" ]
