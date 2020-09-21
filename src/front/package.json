@@ -14,7 +14,9 @@
     "test": "echo \"TESTS\" && exit 1"
   },
   "dependencies": {
+    "antd": "^4.6.5",
     "gatsby": "^2.24.50",
+    "gatsby-plugin-antd": "^2.2.0",
     "gatsby-plugin-sharp": "^2.6.33",
     "gatsby-remark-images": "^3.3.29",
     "gatsby-remark-relative-images": "^2.0.2",

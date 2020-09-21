@@ -6,6 +6,10 @@
 module.exports = {
   plugins: [
 
+    /* Ant.Design UI library
+     */
+    'gatsby-plugin-antd',
+
     /* File system object for data sourcing
        from files with GraphQL.
        Markdown Content
