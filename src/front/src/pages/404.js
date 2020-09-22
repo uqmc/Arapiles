@@ -1,14 +1,15 @@
 import React from "react";
 import PrimaryLayout from "../layouts/primaryLayout";
 import { Button } from "antd";
+import { Link } from "gatsby";
 
-const Home = () => {
+const FAQ = () => {
   return(
     <PrimaryLayout>
-      <h1>Main Page</h1>
-      <Button type="primary">Test Button That Does Nothing</Button>
+      <h1>Page not found!</h1>
+      <Link to="/"><Button>Back To Home</Button></Link>
     </PrimaryLayout>
   );
 };
 
-export default Home;
+export default FAQ;

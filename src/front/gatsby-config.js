@@ -10,6 +10,11 @@ module.exports = {
      */
     'gatsby-plugin-antd',
 
+    /* Image processing
+    */
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+
     /* File system object for data sourcing
        from files with GraphQL.
        Markdown Content

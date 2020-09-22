@@ -2,29 +2,20 @@
     box-sizing: border-box;
 }
 
-body {
-    min-height: 100vh;
-    margin: 0;
-}
-
-/* Master container */
-
-#layout-master {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Inside 'Layout Master' */
-
 header {
-    background-color: lightgrey;
-    display: flex;
+    background-color: #FAFAFA;
 }
 
 #header-container {
-    max-width: 300em;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 2em;
+    padding-bottom: 2em;
+
+    display: flex; /* Below properties are flex properties */
+    justify-content: space-between; /* Brand to the left, nav on the right */
+    align-items: center; /* Vertical centering */
 }
 
 main {
@@ -32,15 +23,15 @@ main {
     margin-left: auto;
     margin-right: auto;
 
-    padding: 5em 10em 25em 5em;
-    background-color: aqua;
+    padding: 1em 0 3em 0;
 }
 
-.width-800px {
-    width: 800px;
-    height: 2px;
+.nav-items {
+    list-style: none;
+    margin-bottom: 0;
 }
 
-/* the resizer is a fixed width until the viewport is only as wide as the resizer,
-   at which point the content becomes 100vw
-*/
+.nav-item {
+    display: inline;
+    margin-left: 1em;
+}
