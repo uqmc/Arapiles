@@ -9,7 +9,7 @@ const Home = () => {
   return(
     <PrimaryLayout>
       <h1 className={styles.centered}>The University of Queensland Mountain Club</h1>
-      <p> className={styles.centered}UQMC is a bunch of physed young people that enjoy
+      <p className={styles.centered}>UQMC is made up of a bunch of psyched young people that enjoy
 adventuring in the outdoors. The club organises a bunch of climbing, hiking, camping and social trips.
 UQMC is a volunteer-run organisation which is affiliated with UQ sport. The best thing about the
 club is the friends you make; you will meet plenty of people who will help you learn to climb, be your
