@@ -10,7 +10,7 @@ const Covid = () => {
       <PageHeader
         title="COVID's Effect On Club Activities"
         onBack={() => window.history.back()}
-      ></PageHeader>
+      />
 
       <h1>Primary Take-Aways</h1>
       <ul>

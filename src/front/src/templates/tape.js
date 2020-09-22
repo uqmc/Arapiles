@@ -6,12 +6,13 @@ import {PageHeader} from "antd";
 export default function Template({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
+
   return (
     <PrimaryLayout>
       <PageHeader
         title={frontmatter.title}
         onBack={() => window.history.back()}
-      ></PageHeader>
+      />
 
       <div
         dangerouslySetInnerHTML={{ __html: html }}

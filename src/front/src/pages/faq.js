@@ -1,6 +1,6 @@
 import React from "react";
 import PrimaryLayout from "../layouts/primaryLayout";
-import {PageHeader} from "antd";
+import { PageHeader } from "antd";
 
 import styles from "./faq.module.css"
 
@@ -10,7 +10,7 @@ const FAQ = () => {
       <PageHeader
         title="FAQ"
         onBack={() => window.history.back()}
-      ></PageHeader>
+      />
 
       <h2 className={styles.question}>How does the club run?</h2>
       <p>The club is a volunteer-run organisation which is affiliated with UQ sport. It is essential that as a

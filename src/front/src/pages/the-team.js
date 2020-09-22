@@ -1,14 +1,16 @@
 import React from "react";
 import PrimaryLayout from "../layouts/primaryLayout";
-import {PageHeader} from "antd";
+import { PageHeader } from "antd";
+
 
 const TheTeam = () => {
-  return(
+
+  return (
     <PrimaryLayout>
       <PageHeader
         title="The Team"
         onBack={() => window.history.back()}
-      ></PageHeader>
+      />
 
       <p>Executives list and bios</p>
     </PrimaryLayout>
