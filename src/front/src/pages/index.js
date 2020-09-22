@@ -18,7 +18,7 @@ further and always be a weekend warrior.</p>
 
       <div className={styles.jumboButtons}>
         <Link to="/covid"><Button type="primary">COVID UPDATES</Button></Link>
-        <a href="https://members.uqmc.org/join"><Button type="primary">JOIN US</Button></a>
+        <a target="_blank" rel="noopener noreferrer" href="https://members.uqmc.org/join"><Button type="primary">JOIN US</Button></a>
         <Link to="/events"><Button type="primary">EVENTS AND SIGNUPS</Button></Link>
       </div>
 

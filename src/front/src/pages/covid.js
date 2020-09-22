@@ -32,8 +32,8 @@ to returning to our more social way of running once restriction ease further;</l
 following links:</p>
 
       <div className={styles.jumboButtons}>
-        <a href="https://docs.google.com/spreadsheets/d/1MrEBJgBpVEdZhpzYVv0vxQwCLz94XJrSuIkKoXKCFng/edit?usp=sharing"><Button type="primary">TUESDAY TOP-ROPING</Button></a>
-        <a href="https://docs.google.com/spreadsheets/d/1X9YJxznsl4489Syy-UyqpFx5n9fszGJPqryMjp15MqE/edit?usp=sharing"><Button type="primary">THURSDAY LEAD-CLIMBING</Button></a>
+        <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1MrEBJgBpVEdZhpzYVv0vxQwCLz94XJrSuIkKoXKCFng/edit?usp=sharing"><Button type="primary">TUESDAY TOP-ROPING</Button></a>
+        <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1X9YJxznsl4489Syy-UyqpFx5n9fszGJPqryMjp15MqE/edit?usp=sharing"><Button type="primary">THURSDAY LEAD-CLIMBING</Button></a>
       </div>
     </PrimaryLayout>
   );

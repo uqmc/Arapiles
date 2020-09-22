@@ -77,7 +77,7 @@ const PrimaryLayout = ({ children }) =>  {
                 </Link>
               </li>
               <li className="nav-item">
-                <a href="https://members.uqmc.org/join">
+                <a target="_blank" rel="noopener noreferrer" href="https://members.uqmc.org/join">
                   <Button>Join Us</Button>
                 </a>
               </li>
