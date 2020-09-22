@@ -76,9 +76,9 @@ const PrimaryLayout = ({ children }) =>  {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/join">
+              <a href="https://members.uqmc.org/join">
                 <Button>Join Us</Button>
-              </Link>
+              </a>
             </li>
           </ul>
         </div>

@@ -1,13 +1,18 @@
 import React from "react"
 import { graphql } from "gatsby"
 import PrimaryLayout from "../layouts/primaryLayout";
+import {PageHeader} from "antd";
 
 export default function Template({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
   return (
     <PrimaryLayout>
-      <h1>{frontmatter.title}</h1>
+      <PageHeader
+        title={frontmatter.title}
+        onBack={() => window.history.back()}
+      ></PageHeader>
+
       <div
         dangerouslySetInnerHTML={{ __html: html }}
       />
