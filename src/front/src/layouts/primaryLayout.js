@@ -3,7 +3,7 @@ import {graphql, useStaticQuery, Link} from "gatsby";
 import Img from "gatsby-image"
 
 import "./primaryLayout.css"
-import {Button, Dropdown, Menu} from "antd";
+import {Button, Dropdown, Menu, Space} from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
 const PrimaryLayout = ({ children }) =>  {
@@ -64,22 +64,24 @@ const PrimaryLayout = ({ children }) =>  {
         <div id="header-container">
           <Link to="/"><Img alt="UQMC Logo" fixed={data.file.childImageSharp.fixed} /></Link>
           <ul className="nav-items">
-            <Dropdown overlay={aboutUsDropDownItems} className="nav-item">
-              <Button>About Us <DownOutlined/></Button>
-            </Dropdown>
-            <Dropdown overlay={tapesDropDownItems} className="nav-item">
-              <Button>Tapes <DownOutlined /></Button>
-            </Dropdown>
-            <li className="nav-item">
-              <Link to="/events">
-                <Button>Events</Button>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a href="https://members.uqmc.org/join">
-                <Button>Join Us</Button>
-              </a>
-            </li>
+            <Space size="middle">
+              <Dropdown overlay={aboutUsDropDownItems} className="nav-item">
+                <Button>About Us <DownOutlined/></Button>
+              </Dropdown>
+              <Dropdown overlay={tapesDropDownItems} className="nav-item">
+                <Button>Tapes <DownOutlined /></Button>
+              </Dropdown>
+              <li className="nav-item">
+                <Link to="/events">
+                  <Button>Events</Button>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a href="https://members.uqmc.org/join">
+                  <Button>Join Us</Button>
+                </a>
+              </li>
+            </Space>
           </ul>
         </div>
       </header>
