@@ -1,6 +1,6 @@
 import React from "react";
 import PrimaryLayout from "../layouts/primaryLayout";
-import { Button, PageHeader } from "antd";
+import {Button, Divider, PageHeader} from "antd";
 
 import styles from "./covid.module.css";
 
@@ -12,7 +12,7 @@ const Covid = () => {
         onBack={() => window.history.back()}
       />
 
-      <h1>Primary Take-Aways</h1>
+      <Divider orientation="left"><h1>Primary Take-Aways</h1></Divider>
       <ul>
         <li>Queensland is currently in stage 3 restrictions, and the club is following a COVID industry plan to
 operate;</li>
@@ -27,7 +27,7 @@ to returning to our more social way of running once restriction ease further;</l
         <li>Despite this, we encourage you to use the club network to make friends and go on your adventures!</li>
       </ul>
 
-      <h1>Joining Club Activities In Stage 3</h1>
+      <Divider orientation="left"><h1>Joining Club Activities In Stage 3</h1></Divider>
       <p>Under stage 3 restriction, we have to have group size limits. So please sign up to activities using the
 following links:</p>
 

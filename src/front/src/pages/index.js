@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import PrimaryLayout from "../layouts/primaryLayout";
 
 import styles from "./index.module.css";
-import { Button } from "antd";
+import {Button, Divider} from "antd";
 
 const Home = () => {
   return(
@@ -22,7 +22,7 @@ further and always be a weekend warrior.</p>
         <Link to="/events"><Button type="primary">EVENTS AND SIGNUPS</Button></Link>
       </div>
 
-      <h1 className={styles.centered}>Free Trial</h1>
+      <Divider><h1 className={styles.centered}>Free Trial</h1></Divider>
       <p className={styles.centered}>
         We understand not everyone knows if they can commit to a semester or year of membership.<br />
         Sign up and get a free two weeks! Swing by Kangaroo Point and get addicted to the stoke.
