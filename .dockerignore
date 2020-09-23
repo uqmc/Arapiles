@@ -1,6 +1,7 @@
 # Ignore files when interfacing with Docker container
 
 .git
+STRAPI_APP_CONTENT/
 **/node_modules/
 
 # IDE files

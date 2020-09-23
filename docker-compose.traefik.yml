@@ -14,24 +14,51 @@ services:
      - backend
     depends_on:
      - db
+     - cms
     labels:
      - "traefik.enable=true"
-     - "traefik.http.routers.homesite-web.rule=Host(`uqmc.org`) || Host(`www.uqmc.org`)"
-     - "traefik.http.routers.homesite-web.entrypoints=web"
-     - "traefik.http.routers.homesite-web.middlewares=redirect@file"
-     - "traefik.http.routers.homesite-secured.rule=Host(`uqmc.org`) || Host(`www.uqmc.org`)"
-     - "traefik.http.routers.homesite-secured.entrypoints=web-secured"
-     - "traefik.http.routers.homesite-secured.tls.certresolver=mytlschallenge"
-     - "traefik.http.services.homesite.loadbalancer.server.port=3000"
+     - "traefik.http.routers.arapiles-web.rule=Host(`uqmc.org`) || Host(`www.uqmc.org`)"
+     - "traefik.http.routers.arapiles-web.entrypoints=web"
+     - "traefik.http.routers.arapiles-web.middlewares=redirect@file"
+     - "traefik.http.routers.arapiles-secured.rule=Host(`uqmc.org`) || Host(`www.uqmc.org`)"
+     - "traefik.http.routers.arapiles-secured.entrypoints=web-secured"
+     - "traefik.http.routers.arapiles-secured.tls.certresolver=mytlschallenge"
+     - "traefik.http.services.arapiles.loadbalancer.server.port=3000"
+
+  # Content management system
+  cms:
+    image: strapi/strapi
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      DATABASE_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - ./STRAPI_APP_CONTENT:/srv/app
+    depends_on:
+      - db
+    networks:
+     - web
+     - backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.arapiles-cms-web.rule=Host(`cms.uqmc.org`))"
+      - "traefik.http.routers.arapiles-cms-web.entrypoints=web"
+      - "traefik.http.routers.arapiles-cms-web.middlewares=redirect@file"
+      - "traefik.http.routers.arapiles-cms-secured.rule=Host(`cms.uqmc.org`))"
+      - "traefik.http.routers.arapiles-cms-secured.entrypoints=web-secured"
+      - "traefik.http.routers.arapiles-cms-secured.tls.certresolver=mytlschallenge"
+      - "traefik.http.services.arapiles-cms.loadbalancer.server.port=1337"
 
   # Database
   db:
-    image: postgres
+    image: mongo
+    restart: unless-stopped
     env_file: .env
     networks:
-     - backend
+      - backend
     volumes:
-     - db-data:/var/lib/postgresql/data
+      - db-data:/data/db
 
   # TODO: Add Docker Volume Backup
 
