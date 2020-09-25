@@ -19,7 +19,7 @@ module.exports = {
     * 1) https://github.com/strapi/gatsby-source-strapi
     * TODO: Update details for use
     */
-    {
+    /*{
       resolve: `gatsby-source-strapi`,
       options: {
         apiURL: `http://localhost:1337`,
@@ -33,7 +33,7 @@ module.exports = {
           password: "",
         },
       },
-    },
+    },*/
 
     /* File system object for data sourcing
        from files with GraphQL.
