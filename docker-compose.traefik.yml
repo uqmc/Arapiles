@@ -45,10 +45,10 @@ services:
       - cms
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.cms-web.rule=Host(`exec.uqmc.org`)"
+      - "traefik.http.routers.cms-web.rule=Host(`cms.uqmc.org`)"
       - "traefik.http.routers.cms-web.entrypoints=web"
       - "traefik.http.routers.cms-web.middlewares=redirect@file"
-      - "traefik.http.routers.cms-secured.rule=Host(`exec.uqmc.org`)"
+      - "traefik.http.routers.cms-secured.rule=Host(`cms.uqmc.org`)"
       - "traefik.http.routers.cms-secured.entrypoints=web-secured"
       - "traefik.http.routers.cms-secured.tls.certresolver=mytlschallenge"
       - "traefik.http.services.cms.loadbalancer.server.port=80"
