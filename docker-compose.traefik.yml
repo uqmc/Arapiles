@@ -30,9 +30,6 @@ services:
     image: strapi/strapi
     restart: unless-stopped
     env_file: .env
-    environment:
-     - DATABASE_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-     - DATABASE_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     depends_on:
       - db
     networks:
