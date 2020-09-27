@@ -45,14 +45,13 @@ services:
       - cms
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.arapiles-cms-web.rule=Host(`cms.uqmc.org`))"
-      - "traefik.http.routers.arapiles-cms-web.entrypoints=web"
-      - "traefik.http.routers.arapiles-cms-web.middlewares=redirect@file"
-      - "traefik.http.routers.arapiles-cms-secured.rule=Host(`cms.uqmc.org`))"
-      - "traefik.http.routers.arapiles-cms-secured.entrypoints=web-secured"
-      - "traefik.http.routers.arapiles-cms-secured.tls.certresolver=mytlschallenge"
-      - "traefik.http.routers.arapiles-cms-secured.middlewares=gzip"
-      - "traefik.http.services.arapiles-cms.loadbalancer.server.port=80"
+      - "traefik.http.routers.homesite-web.rule=Host(`cms.uqmc.org`)"
+      - "traefik.http.routers.homesite-web.entrypoints=web"
+      - "traefik.http.routers.homesite-web.middlewares=redirect@file"
+      - "traefik.http.routers.homesite-secured.rule=Host(`cms.uqmc.org`)"
+      - "traefik.http.routers.homesite-secured.entrypoints=web-secured"
+      - "traefik.http.routers.homesite-secured.tls.certresolver=mytlschallenge"
+      - "traefik.http.services.homesite.loadbalancer.server.port=80"
 
   # Content management system
   cms:
