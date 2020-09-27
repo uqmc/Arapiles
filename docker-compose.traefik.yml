@@ -25,24 +25,19 @@ services:
      - "traefik.http.routers.arapiles-secured.tls.certresolver=mytlschallenge"
      - "traefik.http.services.arapiles.loadbalancer.server.port=3000"
 
-  # Since Traefik, as an edge-router, does not god-damn work with Strapi for
-  #  some entirely unknown reason we're gonna just use nginx as a proxy for
-  #  Strapi's static file service. If someone could, one day, figure out why
-  #  Traefik didn't fucking work in the first place after the love and devotion
-  #  shown to trying to debug this mess, that would be swell, hey?
-  #
-  # The nginx.conf given in the repo will serve http://cms:1337/ to all entry-
-  #  points as the default server. This is because Traefik will only redirect
-  #  traffic from cms.uqmc.org to Nginx in the first place.
-  nginx:
-    image: nginx
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    networks:
-      - web
-      - backend
+  # Content management system
+  cms:
+    image: strapi/strapi
+    restart: unless-stopped
+    env_file: .env
+    environment:
+     - DATABASE_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+     - DATABASE_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     depends_on:
-      - cms
+      - db
+    networks:
+     - backend
+     - web
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.cms-web.rule=Host(`cms.uqmc.org`)"
@@ -51,22 +46,7 @@ services:
       - "traefik.http.routers.cms-secured.rule=Host(`cms.uqmc.org`)"
       - "traefik.http.routers.cms-secured.entrypoints=web-secured"
       - "traefik.http.routers.cms-secured.tls.certresolver=mytlschallenge"
-      - "traefik.http.services.cms.loadbalancer.server.port=80"
-
-  # Content management system
-  cms:
-    image: strapi/strapi
-    restart: unless-stopped
-    env_file: .env
-    environment:
-      DATABASE_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      DATABASE_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-    volumes:
-      - ./STRAPI_APP_CONTENT:/srv/app
-    depends_on:
-      - db
-    networks:
-     - backend
+      - "traefik.http.services.cms.loadbalancer.server.port=1337"
 
   # Database
   db:
