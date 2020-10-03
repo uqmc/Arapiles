@@ -2,18 +2,14 @@
 # TODO: Upload to Docker Hub
 # TODO: Add doc strings
 # TODO: Add copyright notices to file headers
-# TODO: Add licensing for assets
 
 import os
 
 from flask import Flask, send_from_directory
-from flask_restful import Api
 
-from api.ping import PingResource
 from utils import string_to_bool
 
 app = Flask(__name__, static_folder="front/public")
-api = Api(app)
 
 debug_mode = string_to_bool(os.environ["PRODUCTION"])
 
@@ -36,8 +32,6 @@ def static_proxy(path):
         file_name += "/index.html"
     return send_from_directory(dir_name, file_name)
 
-
-api.add_resource(PingResource, "/api/ping")
 
 if __name__ == "__main__":
     app.run(
