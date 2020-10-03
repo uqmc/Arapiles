@@ -17,7 +17,6 @@ module.exports = {
 
     /* Strapi API source for graphql
     * 1) https://github.com/strapi/gatsby-source-strapi
-    * TODO: Update details for use
     */
     /*{
       resolve: `gatsby-source-strapi`,
@@ -79,7 +78,7 @@ module.exports = {
                 {
                   resolve: `gatsby-remark-images`,
                   options: {
-                    maxWidth: 1024, // TODO: SET THIS TO WIDTH OF PAGE CONTENT CONTAINER
+                    maxWidth: 1024,
                   },
                 }
             ],

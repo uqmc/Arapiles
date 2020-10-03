@@ -55,8 +55,6 @@ services:
     volumes:
       - db-data:/data/db
 
-  # TODO: Add Docker Volume Backup
-
 volumes:
   # Database persistance
   db-data:

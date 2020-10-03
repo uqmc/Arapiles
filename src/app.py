@@ -1,7 +1,8 @@
-# TODO: Add unit testing
-# TODO: Upload to Docker Hub
-# TODO: Add doc strings
-# TODO: Add copyright notices to file headers
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+""" Main project routine
+"""
 
 import os
 
@@ -12,10 +13,6 @@ from utils import string_to_bool
 app = Flask(__name__, static_folder="front/public")
 
 debug_mode = string_to_bool(os.environ["PRODUCTION"])
-
-
-# TODO: Serve React application in prod mode.
-#  Else serve page describing that app is in dev mode.
 
 @app.route("/")
 def serve():
