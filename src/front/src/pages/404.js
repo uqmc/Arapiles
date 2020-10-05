@@ -3,7 +3,7 @@ import PrimaryLayout from "../layouts/primaryLayout";
 import { Button } from "antd";
 import { Link } from "gatsby";
 
-const FAQ = () => {
+const FOF = () => {
   return(
     <PrimaryLayout>
       <h1>Page not found!</h1>
@@ -12,4 +12,4 @@ const FAQ = () => {
   );
 };
 
-export default FAQ;
+export default FOF;
