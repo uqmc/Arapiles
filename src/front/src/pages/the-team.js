@@ -1,6 +1,6 @@
 import React from "react";
 import PrimaryLayout from "../layouts/primaryLayout";
-import {Card, Col, PageHeader, Row, Space} from "antd";
+import {Card, Col, PageHeader, Row} from "antd";
 
 import styles from "./the-team.module.css";
 
