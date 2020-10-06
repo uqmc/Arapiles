@@ -25,5 +25,9 @@ COPY . .
 
 COPY --from=node_build_step /node_build/public /web/src/front/public
 
+# Add docker-compose-wait to ensure frontend starts AFTER CMS
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
+RUN chmod +x /wait
+
 # Application entrypoint
-CMD [ "python3", "./src/app.py" ]
+CMD /wait && python3 ./src/app.py

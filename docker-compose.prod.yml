@@ -14,6 +14,8 @@ services:
      - cms
     ports:
      - "3000:3000"
+    environment:
+      WAIT_HOSTS: cms:1337 # Wait for the CMS to start before launching frontend
 
   # Content management system
   cms:

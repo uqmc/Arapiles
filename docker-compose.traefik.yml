@@ -24,6 +24,8 @@ services:
      - "traefik.http.routers.arapiles-secured.entrypoints=web-secured"
      - "traefik.http.routers.arapiles-secured.tls.certresolver=mytlschallenge"
      - "traefik.http.services.arapiles.loadbalancer.server.port=3000"
+    environment:
+      WAIT_HOSTS: cms:1337 # Wait for the CMS to start before launching frontend
 
   # Content management system
   cms:
