@@ -24,8 +24,7 @@ module.exports = {
       options: {
         apiURL: process.env.GATSBY_BACKEND_CMS_URI,
         queryLimit: 1000, // Default to 100
-        //contentTypes: [`exec`, `image`, `post`, `user`, `tape`, `faq`],
-        contentTypes: [`image`, `event`],
+        contentTypes: [`exec`, `image`, `post`, `user`, `tape`, `faq`, `event`],
         singleTypes: [],
         loginData: {
           identifier: "",
