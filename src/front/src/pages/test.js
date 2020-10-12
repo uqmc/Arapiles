@@ -1,41 +1,46 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {Spin} from "antd";
+import axios from "axios"
 import PrimaryLayout from "../layouts/primaryLayout";
-import {graphql, useStaticQuery} from "gatsby";
+import LoadingOutlined from "@ant-design/icons/lib/icons/LoadingOutlined";
+
+const Spinner = <LoadingOutlined className="page-spinner" spin />;
 
 const Test = () => {
-  const data = useStaticQuery(graphql`
-    {
-      allStrapiImage {
-        edges {
-          node {
-            Title
-            Picture {
-              createdAt
-              url
-            }
-          }
-        }
-      }
-    }
-  `);
+  const [data, setData] = useState(null);
 
-  return(
-    <PrimaryLayout>
-      {
-        data.allStrapiImage.edges.map(
-          (edge) => {
+  async function getImageData() {
+    const res = await axios.get("http://localhost:1337/images/");
+    setData(res["data"]);
+  }
+
+  useEffect(() => {
+    getImageData();
+  }, []);
+
+  if(!data) {
+    return(
+      <PrimaryLayout>
+        <Spin indicator={Spinner} />
+      </PrimaryLayout>
+    )
+  } else {
+    return(
+      <PrimaryLayout>
+        {
+          data.map((image) => {
             return (
               <>
-                <h1>{edge.node.Title}</h1>
-                <img alt={edge.node.Title} src={process.env.GATSBY_FRONTEND_CMS_URI + edge.node.Picture[0].url} />
-                <p>{edge.node.Picture[0].createdAt}</p>
+                <h1>{image.Title}</h1>
+                <img alt={image.Title} src={process.env.GATSBY_FRONTEND_CMS_URI + image.Picture[0].formats.thumbnail.url}/>
+                <p>{image.Picture[0].createdAt}</p>
               </>
             )
-          }
-        )
-      }
-    </PrimaryLayout>
-  );
+          })
+        }
+      </PrimaryLayout>
+    )
+  }
 };
 
 export default Test;

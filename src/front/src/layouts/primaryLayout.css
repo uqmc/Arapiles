@@ -33,3 +33,13 @@ main {
 .nav-item {
     display: inline;
 }
+
+.ant-spin {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 25vh !important;
+}
+
+.page-spinner {
+    font-size: 50px !important;
+}
