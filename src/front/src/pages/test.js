@@ -10,7 +10,7 @@ const Test = () => {
   const [data, setData] = useState(null);
 
   async function getImageData() {
-    const res = await axios.get("http://localhost:1337/images/");
+    const res = await axios.get("https://cms.uqmc.org/images/");
     setData(res["data"]);
   }
 
