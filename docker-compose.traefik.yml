@@ -17,10 +17,10 @@ services:
      - cms
     labels:
      - "traefik.enable=true"
-     - "traefik.http.routers.arapiles-web.rule=Host(`uqmc.org`) || Host(`www.uqmc.org`)"
+     - "traefik.http.routers.arapiles-web.rule=Host(`staging.uqmc.org`)"
      - "traefik.http.routers.arapiles-web.entrypoints=web"
      - "traefik.http.routers.arapiles-web.middlewares=redirect@file"
-     - "traefik.http.routers.arapiles-secured.rule=Host(`uqmc.org`) || Host(`www.uqmc.org`)"
+     - "traefik.http.routers.arapiles-secured.rule=Host(`staging.uqmc.org`)"
      - "traefik.http.routers.arapiles-secured.entrypoints=web-secured"
      - "traefik.http.routers.arapiles-secured.tls.certresolver=mytlschallenge"
      - "traefik.http.services.arapiles.loadbalancer.server.port=3000"
