@@ -32,8 +32,8 @@ const Test = () => {
             return (
               <>
                 <h1>{image.title}</h1>
-                <img alt={image.Title} src={process.env.GATSBY_FRONTEND_CMS_URI + image.picture[0].formats.thumbnail.url}/>
-                <p>{image.picture[0].createdAt}</p>
+                <img alt={image.Title} src={process.env.GATSBY_FRONTEND_CMS_URI + image.picture.formats.thumbnail.url}/>
+                <p>Created at: {image.picture.createdAt}</p>
               </>
             )
           })
