@@ -31,9 +31,9 @@ const Test = () => {
           data.map((image) => {
             return (
               <>
-                <h1>{image.Title}</h1>
-                <img alt={image.Title} src={process.env.GATSBY_FRONTEND_CMS_URI + image.Picture[0].formats.thumbnail.url}/>
-                <p>{image.Picture[0].createdAt}</p>
+                <h1>{image.title}</h1>
+                <img alt={image.Title} src={process.env.GATSBY_FRONTEND_CMS_URI + image.picture[0].formats.thumbnail.url}/>
+                <p>{image.picture[0].createdAt}</p>
               </>
             )
           })
