@@ -4,7 +4,39 @@ import {Divider, PageHeader} from "antd";
 
 import styles from "./faq.module.css"
 
+const Spinner = <LoadingOutlined className = "page-spinner" spin />;
+
 const FAQ = () => {
+  const [data, setData] = useState(null);
+
+  async function getFaqData() {
+    const res = await axios.get("https://cms.uqmc.org/faqs/");
+    setData(res["data"]);
+  }
+
+  useEffect(() => {
+    getFaqData();
+  }, []);
+  if (!data) {
+
+  return (
+    <PrimaryLayout><Spin indicator = {Spinner}/></PrimaryLayout>
+  );
+} else {
+  return(
+    <PrimaryLayout> 
+      {
+        data.map((faq) => { return(
+<>
+<h1>{faq.question}</h1>
+<p>{faq.answer}</p>
+</>
+)
+        })
+      }
+    </PrimaryLayout>
+  )
+}
   return(
     <PrimaryLayout>
       <PageHeader
