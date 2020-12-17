@@ -1,6 +1,9 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import PrimaryLayout from "../layouts/primaryLayout";
 import {Divider, PageHeader} from "antd";
+import {Spin} from "antd";
+import axios from "axios"
+import LoadingOutlined from "@ant-design/icons/lib/icons/LoadingOutlined";
 
 import styles from "./faq.module.css"
 
@@ -10,7 +13,7 @@ const FAQ = () => {
   const [data, setData] = useState(null);
 
   async function getFaqData() {
-    const res = await axios.get("https://cms.uqmc.org/faqs/");
+    const res = await axios.get(process.env.GATSBY_CMS_HOST  + "/faqs/");
     setData(res["data"]);
   }
 
@@ -26,12 +29,13 @@ const FAQ = () => {
   return(
     <PrimaryLayout> 
       {
-        data.map((faq) => { return(
-<>
-<h1>{faq.question}</h1>
-<p>{faq.answer}</p>
-</>
-)
+        data.map((faq) => {
+          return(
+            <>
+              <h1>{faq.question}</h1>
+              <p>{faq.answer}</p>
+            </>
+          )
         })
       }
     </PrimaryLayout>
