@@ -9,16 +9,6 @@ import { DownOutlined } from "@ant-design/icons";
 const PrimaryLayout = ({ children }) =>  {
   const data = useStaticQuery(graphql`
     {
-      allMarkdownRemark {
-        edges {
-          node {
-            frontmatter {
-              path
-              title
-            }
-          }
-        }
-      },
       file(relativePath: { eq: "brand.png" }) {
         childImageSharp {
           fixed(width: 179, height: 50) {
@@ -31,15 +21,9 @@ const PrimaryLayout = ({ children }) =>  {
 
   const tapesDropDownItems = (
     <Menu>
-      { data.allMarkdownRemark.edges.map((edge) => {
-        return(
-          <Menu.Item key={edge.node.frontmatter.title}>
-            <Link to={edge.node.frontmatter.path}>
-              {edge.node.frontmatter.title}
-            </Link>
-          </Menu.Item>
-        )
-      })}
+      <Menu.Item key="Yellow Tape">
+        <Link to="/tapes/yellow">Yellow (Top-Rope)</Link>
+      </Menu.Item>
     </Menu>
   );
 
@@ -69,7 +53,7 @@ const PrimaryLayout = ({ children }) =>  {
                 <Button>About Us <DownOutlined/></Button>
               </Dropdown>
               <Dropdown overlay={tapesDropDownItems} className="nav-item">
-                <Button>Tapes <DownOutlined /></Button>
+                <Button>Tape Guides <DownOutlined /></Button>
               </Dropdown>
               <li className="nav-item">
                 <Link to="/events">
