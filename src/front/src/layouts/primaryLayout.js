@@ -24,6 +24,24 @@ const PrimaryLayout = ({ children }) =>  {
       <Menu.Item key="Yellow Tape">
         <Link to="/tapes/yellow">Yellow (Top-Rope)</Link>
       </Menu.Item>
+      <Menu.Item key="Blue Tape">
+        <Link to="/tapes/blue">Blue (Top-Rope Setup)</Link>
+      </Menu.Item>
+      <Menu.Item key="Green Tape">
+        <Link to="/tapes/green">Green (Lead Climbing)</Link>
+      </Menu.Item>
+      <Menu.Item key="Red Tape">
+        <Link to="/tapes/red">Red (Advanced Lead Climbing)</Link>
+      </Menu.Item>
+      <Menu.Item key="Black Tape">
+        <Link to="/tapes/black">Black (Multi-Pitching)</Link>
+      </Menu.Item>
+      <Menu.Item key="Orange Tape">
+        <Link to="/tapes/orange">Orange (Bouldering)</Link>
+      </Menu.Item>
+      <Menu.Item key="White Tape">
+        <Link to="/tapes/white">White (Trad Climbing)</Link>
+      </Menu.Item>
     </Menu>
   );
 

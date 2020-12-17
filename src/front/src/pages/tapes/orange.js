@@ -6,11 +6,11 @@ import marked from "marked";
 import Spinner from "../../components/Spinner";
 import PrimaryLayout from "../../layouts/primaryLayout";
 
-const YellowTapePage = () => {
+const OrangeTapePage = () => {
     const [data, setData] = useState(null);
 
     async function getContentData() {
-      const res = await axios.get(process.env.GATSBY_CMS_HOST + "/yellow-tape/");
+      const res = await axios.get(process.env.GATSBY_CMS_HOST + "/orange-tape/");
       setData(res["data"]);
     }
   
@@ -31,7 +31,7 @@ const YellowTapePage = () => {
         return(
             <PrimaryLayout>
                 <PageHeader
-                    title="Yellow Tape"
+                    title="Orange Tape"
                     onBack={() => window.history.back()}
                 />
 
@@ -43,4 +43,4 @@ const YellowTapePage = () => {
     }
 }
 
-export default YellowTapePage;
+export default OrangeTapePage;
