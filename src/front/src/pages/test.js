@@ -10,7 +10,7 @@ const Test = () => {
   const [data, setData] = useState(null);
 
   async function getImageData() {
-    const res = await axios.get("https://cms.uqmc.org/images/");
+    const res = await axios.get(process.env.GATSBY_CMS_HOST + "/images/");
     setData(res["data"]);
   }
 
@@ -32,7 +32,7 @@ const Test = () => {
             return (
               <>
                 <h1>{image.title}</h1>
-                <img alt={image.Title} src={"https://cms.uqmc.org" + image.picture.formats.thumbnail.url}/>
+                <img alt={image.Title} src={process.env.GATSBY_CMS_HOST + image.picture.formats.thumbnail.url}/>
                 <p>Created at: {image.picture.createdAt}</p>
               </>
             )
