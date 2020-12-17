@@ -1,10 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {Spin} from "antd";
 import axios from "axios"
 import PrimaryLayout from "../layouts/primaryLayout";
-import LoadingOutlined from "@ant-design/icons/lib/icons/LoadingOutlined";
-
-const Spinner = <LoadingOutlined className="page-spinner" spin />;
+import Spinner from "../components/Spinner";
 
 const Test = () => {
   const [data, setData] = useState(null);
@@ -20,9 +17,7 @@ const Test = () => {
 
   if(!data) {
     return(
-      <PrimaryLayout>
-        <Spin indicator={Spinner} />
-      </PrimaryLayout>
+      <PrimaryLayout><Spinner /></PrimaryLayout>
     )
   } else {
     return(
