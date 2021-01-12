@@ -8,13 +8,6 @@ const Home = () => {
   // I wanna stay in the Jungle.
 
   return(
-    /*
-    Links to:
-      About Us -> About us page
-      Skill guides -> Skill book page
-      Events button -> fb event calendar
-      Join Us button -> members portal
-    */
     <>
       <nav className="navbar">
         <div className="nav-buttons">
@@ -52,7 +45,7 @@ const Home = () => {
       <div className="section bg-two">
         <div className="section-content">
           <h2>2. Getting started</h2>
-          <p>To start, sign up to our membership portal and start your two week free trial. Join our Facebook page for live updates and our event calendar. Then you can rock up to any event we have planned.</p>
+          <p>To start, sign up to our <a href="https://members.uqmc.org/">membership portal</a> and start your two week free trial. Join our Facebook page for live updates and our event calendar. Then you can rock up to any event we have planned.</p>
           <h3>Kangaroo Point nights</h3>
           <p>For COVID-safe reasons, you must first register yourself on the Google Sheet which has been linked on the night’s Facebook event page. Our KP nights are regular - on Tuesdays and Thursdays from 6pm to 8:30pm. To the right is a map of KP with where you can find us on your first night. Look out for friendly faces in UQMC Exec shirts who will tell you more.</p>
           <h3>More events</h3>
