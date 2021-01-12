@@ -5,6 +5,9 @@
 
 module.exports = {
   plugins: [
+    /* SCSS transpiler and integration
+    */
+    `gatsby-plugin-sass`,
 
     /* Ant.Design UI library
      */
