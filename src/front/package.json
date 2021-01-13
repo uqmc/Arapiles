@@ -9,7 +9,7 @@
     "dev": "gatsby develop --host=0.0.0.0",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run dev",
-    "serve": "gatsby serve",
+    "serve": "gatsby serve --host=0.0.0.0",
     "clean": "gatsby clean",
     "test": "echo \"TESTS\" && exit 1"
   },
