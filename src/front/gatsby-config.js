@@ -11,7 +11,7 @@ module.exports = {
 
     /* Ant.Design UI library
      */
-    'gatsby-plugin-antd',
+    //'gatsby-plugin-antd',
 
     /* Image processing
     */
