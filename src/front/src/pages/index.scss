@@ -16,7 +16,7 @@
     }
 
     --angle: -11deg;
-    /*-----------------
+    /* -----------------
     Magic Number:
 
     the 0.09719 is calculated by this formula:
@@ -25,7 +25,7 @@
 
     The magic number is used in generating the
     padding for section content.
-    ------------------*/
+    ------------------ */
     --magic-number: 0.11;
     --skew-padding: calc(var(--width) * var(--magic-number));
 }
@@ -91,7 +91,7 @@ p {
         top: 0;
         right: 0;
         bottom: 0;
-        transform: skewy(var(--angle));
+        transform: skewY(var(--angle));
         transform-origin: 50% 0;
         outline: 1px solid transparent;
         backface-visibility: hidden;
@@ -185,6 +185,6 @@ p {
 .nav-buttons {
     display: flex;
     justify-content: space-between;
-    max-width: 550px; /* Affects between buttons */
+    max-width: 550px; /* Affects distance between buttons */
     margin: 2em auto; /* Center horizontally */
 }
