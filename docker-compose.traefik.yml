@@ -25,7 +25,7 @@ services:
      - "traefik.http.routers.arapiles-secured.tls.certresolver=mytlschallenge"
      - "traefik.http.services.arapiles.loadbalancer.server.port=9000"
     environment:
-      WAIT_HOSTS: cms:1337 # Wait for the CMS to start before launching frontend
+      WAIT_HOSTS: cms:1337 # Utilise compose-wait (defined in Dockerfile) to wait for TCP connections to be accepted by the CMS on 1337 before attempting to start frontend.
 
   # Content management system
   cms:
