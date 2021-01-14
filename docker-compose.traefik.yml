@@ -6,7 +6,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.prod.new
+      dockerfile: Dockerfile.prod
     restart: unless-stopped
     env_file: .env
     networks:

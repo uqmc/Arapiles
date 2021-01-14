@@ -1,33 +1,22 @@
 # Base image to build React app bundle
-FROM node:11 AS node_build_step
+FROM node:11
 
 LABEL "repository"="https://github.com/uqmc/arapiles"
 LABEL "homepage"="https://github.com/uqmc/arapiles"
 
-WORKDIR /node_build
+WORKDIR /app
 COPY src/front/package*.json ./
 
 # Building react app
 RUN npm install
 
 COPY src/front/. .
+RUN npm run clean
 RUN npm run build
-
-# Base image for running python backend
-FROM python:3.8
-
-WORKDIR /web
-COPY requirements.txt .
-
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-
-COPY --from=node_build_step /node_build/public /web/src/front/public
 
 # Add docker-compose-wait to ensure frontend starts AFTER CMS
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
 RUN chmod +x /wait
 
 # Application entrypoint
-CMD /wait && python3 ./src/app.py
+CMD /wait && npm run serve
