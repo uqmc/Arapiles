@@ -14,8 +14,8 @@ services:
     depends_on:
       - cms
     volumes:
-      - ./src/front:/front
-      - /front/node_modules  # Mount node modules from built container
+      - ./src:/app
+      - ./src/node_modules  # Mount node modules from built container
     environment:
       WAIT_HOSTS: cms:1337 # Wait for the CMS to start before launching frontend
 

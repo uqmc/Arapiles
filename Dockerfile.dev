@@ -3,10 +3,10 @@ FROM node:11
 LABEL "repository"="https://github.com/uqmc/arapiles"
 LABEL "homepage"="https://github.com/uqmc/arapiles"
 
-WORKDIR /front
-COPY src/front/package*.json ./
+WORKDIR /app
+COPY src/package*.json ./
 RUN npm install
-COPY src/front/. .
+COPY src/. .
 
 # Add docker-compose-wait to ensure frontend starts AFTER CMS
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait

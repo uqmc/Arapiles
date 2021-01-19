@@ -5,12 +5,12 @@ LABEL "repository"="https://github.com/uqmc/arapiles"
 LABEL "homepage"="https://github.com/uqmc/arapiles"
 
 WORKDIR /app
-COPY src/front/package*.json ./
+COPY src/package*.json ./
 
 # Building react app
 RUN npm install
 
-COPY src/front/. .
+COPY src/. .
 RUN npm run clean
 RUN npm run build
 

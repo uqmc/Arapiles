@@ -8,7 +8,6 @@ STRAPI_APP_CONTENT/
 
 .vs*
 .idea/
-__pycache__/
 
 node_modules/
 jspm_packages/
