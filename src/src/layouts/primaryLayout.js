@@ -3,10 +3,11 @@ import {graphql, useStaticQuery, Link} from "gatsby";
 import Img from "gatsby-image"
 
 import "./primaryLayout.css"
-import {Button, Dropdown, Menu, Space} from "antd";
-import { DownOutlined } from "@ant-design/icons";
+//import {Button, Dropdown, Menu, Space} from "antd";
+//import { DownOutlined } from "@ant-design/icons";
 
 const PrimaryLayout = ({ children }) =>  {
+  /*
   const data = useStaticQuery(graphql`
     {
       file(relativePath: { eq: "brand.png" }) {
@@ -58,10 +59,13 @@ const PrimaryLayout = ({ children }) =>  {
         </Link>
       </Menu.Item>
     </Menu>
-  );
+  );*/
 
   return (
     <div className="App">
+      {children}
+    </div>
+    /*<div className="App">
       <header>
         <div id="header-container">
           <Link to="/"><Img alt="UQMC Logo" fixed={data.file.childImageSharp.fixed} /></Link>
@@ -91,7 +95,7 @@ const PrimaryLayout = ({ children }) =>  {
       <main>
         {children}
       </main>
-    </div>
+    </div>*/
   )
 };
 

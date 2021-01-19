@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import PrimaryLayout from "../layouts/primaryLayout";
-import {Divider, PageHeader} from "antd";
+//import {Divider, PageHeader} from "antd";
 import axios from "axios"
 
 import styles from "./faq.module.css"
@@ -29,11 +29,13 @@ const FAQ = () => {
 
   if (!data) {
     return (
-      <PrimaryLayout><Spinner /></PrimaryLayout>
+      <></>
+      //<PrimaryLayout><Spinner /></PrimaryLayout>
     );
   } else {
     return(
-      <PrimaryLayout> 
+      <></>
+      /*<PrimaryLayout> 
         <PageHeader
           title="FAQ"
           onBack={() => window.history.back()}
@@ -49,7 +51,7 @@ const FAQ = () => {
             )
           })
         }
-      </PrimaryLayout>
+      </PrimaryLayout>*/
     )
   }
 };

@@ -9,10 +9,6 @@ module.exports = {
     */
     `gatsby-plugin-sass`,
 
-    /* Ant.Design UI library
-     */
-    //'gatsby-plugin-antd',
-
     /* Image processing
     */
     `gatsby-transformer-sharp`,

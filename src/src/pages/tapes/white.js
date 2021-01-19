@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios"
-import {PageHeader} from "antd";
+//import {PageHeader} from "antd";
 import marked from "marked";
 
 import Spinner from "../../components/Spinner";
@@ -25,11 +25,13 @@ const WhiteTapePage = () => {
 
     if(!htmlContent) {
         return(
-          <PrimaryLayout><Spinner /></PrimaryLayout>
+            <></>
+            //<PrimaryLayout><Spinner /></PrimaryLayout>
         )
     } else {
         return(
-            <PrimaryLayout>
+            <></>
+            /*<PrimaryLayout>
                 <PageHeader
                     title="White Tape"
                     onBack={() => window.history.back()}
@@ -38,7 +40,7 @@ const WhiteTapePage = () => {
                 <div
                     dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />
-            </PrimaryLayout>
+            </PrimaryLayout>*/
         );
     }
 }

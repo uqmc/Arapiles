@@ -1,12 +1,13 @@
 import React from "react";
 import PrimaryLayout from "../layouts/primaryLayout";
-import {Button, Divider, PageHeader} from "antd";
+//import {Button, Divider, PageHeader} from "antd";
 
 import styles from "./covid.module.css";
 
 const Covid = () => {
   return(
-    <PrimaryLayout>
+    <></>
+    /*<PrimaryLayout>
       <PageHeader
         title="COVID's Effect On Club Activities"
         onBack={() => window.history.back()}
@@ -35,7 +36,7 @@ following links:</p>
         <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1MrEBJgBpVEdZhpzYVv0vxQwCLz94XJrSuIkKoXKCFng/edit?usp=sharing"><Button type="primary">TUESDAY TOP-ROPING</Button></a>
         <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1X9YJxznsl4489Syy-UyqpFx5n9fszGJPqryMjp15MqE/edit?usp=sharing"><Button type="primary">THURSDAY LEAD-CLIMBING</Button></a>
       </div>
-    </PrimaryLayout>
+    </PrimaryLayout>*/
   );
 };
 
