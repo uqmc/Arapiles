@@ -2,9 +2,7 @@ import React from "react"
 import {graphql, useStaticQuery, Link} from "gatsby";
 import Img from "gatsby-image"
 
-import "./primaryLayout.css"
-//import {Button, Dropdown, Menu, Space} from "antd";
-//import { DownOutlined } from "@ant-design/icons";
+import "./primaryLayout.scss";
 
 const PrimaryLayout = ({ children }) =>  {
   /*
@@ -18,52 +16,35 @@ const PrimaryLayout = ({ children }) =>  {
         }
       }
     }
-  `);
-
-  const tapesDropDownItems = (
-    <Menu>
-      <Menu.Item key="Yellow Tape">
-        <Link to="/tapes/yellow">Yellow (Top-Rope)</Link>
-      </Menu.Item>
-      <Menu.Item key="Blue Tape">
-        <Link to="/tapes/blue">Blue (Top-Rope Setup)</Link>
-      </Menu.Item>
-      <Menu.Item key="Green Tape">
-        <Link to="/tapes/green">Green (Lead Climbing)</Link>
-      </Menu.Item>
-      <Menu.Item key="Red Tape">
-        <Link to="/tapes/red">Red (Advanced Lead Climbing)</Link>
-      </Menu.Item>
-      <Menu.Item key="Black Tape">
-        <Link to="/tapes/black">Black (Multi-Pitching)</Link>
-      </Menu.Item>
-      <Menu.Item key="Orange Tape">
-        <Link to="/tapes/orange">Orange (Bouldering)</Link>
-      </Menu.Item>
-      <Menu.Item key="White Tape">
-        <Link to="/tapes/white">White (Trad Climbing)</Link>
-      </Menu.Item>
-    </Menu>
-  );
-
-  const aboutUsDropDownItems = (
-    <Menu>
-      <Menu.Item key="faq">
-        <Link to="/faq">
-          FAQ
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="faq">
-        <Link to="/the-team">
-          The Team
-        </Link>
-      </Menu.Item>
-    </Menu>
-  );*/
+  `);*/
 
   return (
     <div className="App">
-      {children}
+      <div className="side-nav">
+        <header>UQMC</header>
+        <ul>
+          <li><Link to="/home">Home</Link></li>
+          <li><Link to="/the-team">The Team</Link></li>
+          <li><Link to="/faq">FAQ</Link></li>
+          <li>Skills Book</li>
+          <ul>
+            <li><Link to="/skills-book">Start Here</Link></li>
+            <li><Link to="/skills-book/yellow">Yellow</Link></li>
+            <li><Link to="/skills-book/blue">Blue</Link></li>
+            <li><Link to="/skills-book/green">Green</Link></li>
+            <li><Link to="/skills-book/red">Red</Link></li>
+            <li><Link to="/skills-book/orange">Orange</Link></li>
+            <li><Link to="/skills-book/black">Black</Link></li>
+            <li><Link to="/skills-book/white">White</Link></li>
+          </ul>
+          <li><Link to="/blog">Blog</Link></li>
+          <li><Link to="/">Landing Page</Link></li>
+        </ul>
+      </div>
+
+      <main>
+        {children}
+      </main>
     </div>
     /*<div className="App">
       <header>

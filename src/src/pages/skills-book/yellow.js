@@ -1,16 +1,14 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios"
-//import {PageHeader} from "antd";
 import marked from "marked";
 
-import Spinner from "../../components/Spinner";
 import PrimaryLayout from "../../layouts/primaryLayout";
 
-const GreenTapePage = () => {
+const YellowTapePage = () => {
     const [data, setData] = useState(null);
 
     async function getContentData() {
-      const res = await axios.get(process.env.GATSBY_CMS_HOST + "/green-tape/");
+      const res = await axios.get(process.env.GATSBY_CMS_HOST + "/yellow-tape/");
       setData(res["data"]);
     }
   
@@ -25,24 +23,18 @@ const GreenTapePage = () => {
 
     if(!htmlContent) {
         return(
-          <></>
-          //<PrimaryLayout><Spinner /></PrimaryLayout>
+            <PrimaryLayout>Loading...</PrimaryLayout>
         )
     } else {
         return(
-            <></>
-            /*<PrimaryLayout>
-                <PageHeader
-                    title="Green Tape"
-                    onBack={() => window.history.back()}
-                />
-
+            <PrimaryLayout>
+                <h1>Yellow tape</h1>
                 <div
                     dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />
-            </PrimaryLayout>*/
+            </PrimaryLayout>
         );
     }
 }
 
-export default GreenTapePage;
+export default YellowTapePage;

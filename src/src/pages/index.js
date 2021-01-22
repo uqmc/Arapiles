@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 
 import "./index.scss";
 import "./tooltip.scss";
@@ -12,9 +13,9 @@ const Home = () => {
     <>
       <nav className="navbar">
         <div className="nav-buttons">
-          <button class="btn draw-border">About Us</button>
-          <button class="btn draw-border">Skills Book</button>
-          <button class="btn draw-border">Join Us</button>
+          <Link to="/home"><button class="btn draw-border">Home</button></Link>
+          <Link to="/skills-book"><button class="btn draw-border">Skills Book</button></Link>
+          <Link to="#"><button class="btn draw-border">Login / Signup</button></Link>
         </div>
       </nav>
 

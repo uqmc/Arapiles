@@ -1,16 +1,14 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios"
-//import {PageHeader} from "antd";
 import marked from "marked";
 
-import Spinner from "../../components/Spinner";
 import PrimaryLayout from "../../layouts/primaryLayout";
 
-const OrangeTapePage = () => {
+const RedTapePage = () => {
     const [data, setData] = useState(null);
 
     async function getContentData() {
-      const res = await axios.get(process.env.GATSBY_CMS_HOST + "/orange-tape/");
+      const res = await axios.get(process.env.GATSBY_CMS_HOST + "/red-tape/");
       setData(res["data"]);
     }
   
@@ -25,24 +23,18 @@ const OrangeTapePage = () => {
 
     if(!htmlContent) {
         return(
-          <></>
-          //<PrimaryLayout><Spinner /></PrimaryLayout>
+            <PrimaryLayout>Loading...</PrimaryLayout>
         )
     } else {
         return(
-            <></>
-            /*<PrimaryLayout>
-                <PageHeader
-                    title="Orange Tape"
-                    onBack={() => window.history.back()}
-                />
-
+            <PrimaryLayout>
+                <h1>Red tape</h1>
                 <div
                     dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />
-            </PrimaryLayout>*/
+            </PrimaryLayout>
         );
     }
 }
 
-export default OrangeTapePage;
+export default RedTapePage;
