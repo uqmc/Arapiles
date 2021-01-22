@@ -37,6 +37,8 @@ services:
     networks:
      - backend
      - web
+    volumes:
+      - ./STRAPI_APP_CONTENT:/srv/app
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.cms-web.rule=Host(`cms.uqmc.org`)"
