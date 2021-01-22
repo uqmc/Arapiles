@@ -1,6 +1,6 @@
 import React from "react"
-import {graphql, useStaticQuery, Link} from "gatsby";
-import Img from "gatsby-image"
+import { Link } from "gatsby";
+//import Img from "gatsby-image"
 
 import "./primaryLayout.scss";
 
