@@ -1,20 +1,24 @@
-import React from 'react'
+import React from "react"
 
 //navigate used to redirect
-import { navigate } from 'gatsby'
+import { Link, navigate } from "gatsby"
 
 //Authentication services for logging in
-import { authenticationService } from '../services/authentication.js'
+import { authenticationService } from "../services/authentication.js"
 
 //Basic Login componnent
 //For now just used for testing purposes.
 //Based off of: https://www.gatsbyjs.com/tutorial/authentication-tutorial/
 class Login extends React.Component {
 
-    //Component State containing provided identifier (username or email) and password
-    state = {
-        identifier: '',
-        password: '',
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            identifier: "",
+            password: "",
+            error: ""
+        }
     }
 
     //Function to update state when either field is changed
@@ -30,16 +34,14 @@ class Login extends React.Component {
         event.preventDefault();
 
         //Attempt to log in with identifier and password provided
-        const success = await authenticationService.login(this.state['identifier'], this.state['password']);
+        const success = await authenticationService.login(this.state["identifier"], this.state["password"]);
 
         //Check if login was successful
         if (!success) {
-            //TODO: Activate alter on login page
-            console.log('Failed to login');
+            this.setState({error: "Invalid Username or Password."});
         } else {
             //TODO: redirect to user profile
-            console.log('Login!');
-            navigate('/');
+            navigate("/");
         }
     }
 
@@ -50,24 +52,19 @@ class Login extends React.Component {
         return (
             <>
                 <h1>Login</h1>
+                <span style={{color: "red"}}>{this.state["error"]}</span>
                 <form
-                    method='post'
+                    method="post"
                     onSubmit={event => {
                         this.handleSubmit(event)
                     }}
                 >
-                    <label>
-                        Username/Email
-                        <input type='text' name='identifier' onChange={this.handleUpdate} />
-                    </label>
+                    <input type="text" name="identifier" placeholder="Username/Email" onChange={this.handleUpdate} />
                     <br />
-                    <label>
-                        Password
-                        <input type='password' name='password' onChange={this.handleUpdate} />
-                    </label>
+                    <input type="password" name="password" placeholder="Password" onChange={this.handleUpdate} />
                     <br />
-                    <input type="submit" value = "Log In" />
-                    
+                    <input class="btn draw-border" type="submit" value = "Login" />
+                    <Link to="/signup"><button class="btn draw-border">Sign Up</button></Link>               
                 </form>
             </>
         )
