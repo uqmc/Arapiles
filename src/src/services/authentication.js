@@ -2,17 +2,27 @@
 import axios from 'axios';
 
 //Current user, retrieved from local storage.
-let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+let currentUser = null;
+try {
+    currentUser = JSON.parse(localStorage.getItem('currentUser'));
+} catch (e) {
+}
+
 
 //Function to make and process login request
 async function login(identifier, password) {
-    const res = await axios.post(process.env.GATSBY_CMS_HOST  + '/auth/local/', {
+    const res = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/local/', {
         identifier: identifier,
-        password: password,
+        password: password
     }).catch(function (error) {
         //TODO: Handle and return error response
         return false;
     });
+
+    //If repsonse was not successful, return false.
+    if (!res) {
+        return false;
+    }
 
     //Users data
     const user = res.data;
@@ -23,6 +33,7 @@ async function login(identifier, password) {
     //Set current user to new user data
     currentUser = user;
 
+    //Return successful login
     return true;
 }
 
@@ -38,6 +49,24 @@ function logout() {
 //Function to chek if user is logged in
 function isLoggedIn() {
     return currentUser != null;
+}
+
+//Function to register a user
+async function register(username, email, password) {
+    const res = await axios.post(process.env.GATSBY_CMS_HOST + 'auth/local/register', {
+        username: username,
+        email: email,
+        password: password
+    }).catch(function (error) {
+        //TOOD: Error proccesing
+        return false;
+    });
+
+    if (!res) {
+        return false;
+    }
+
+    return true;
 }
 
 //Export services
