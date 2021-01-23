@@ -31,8 +31,13 @@ async function login(identifier, password) {
 
         return true;
     }).catch(error => {
-        //TODO: Handle and return error response
-        return false;
+        if (error.response) { 
+            //Return error message
+            //TODO: Replace this with custom messages?
+            return error.response.data.message[0].messages[0].message;
+        } else {
+            return false;
+        }
     });
 
     //Return success status
@@ -61,9 +66,13 @@ async function register(username, email, password) {
 
         return true;
     }).catch(error => {
-        //TOOD: Error proccesing
-        return false;
+        if (error.response) { 
+            return error.response.data.message[0].messages[0].message;
+        } else {
+            return false;
+        }
     });
+
 
     return success;
 }
