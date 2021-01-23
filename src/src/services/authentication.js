@@ -8,42 +8,40 @@ try {
 } catch (e) {
 }
 
+function setCurrentUser(user) {
+    //Update local storage with new current user data
+    if (user !== null) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+    } else {
+        localStorage.removeItem('currentUser');
+    }
+
+    //Set current user to new user data
+    currentUser = user;
+}
 
 //Function to make and process login request
 async function login(identifier, password) {
-    const res = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/local/', {
+    const success = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/local/', {
         identifier: identifier,
-        password: password
-    }).catch(function (error) {
+        password: password,
+    }).then(response => {
+        //Extract and set current user data from response
+        setCurrentUser(response.data);
+
+        return true;
+    }).catch(error => {
         //TODO: Handle and return error response
         return false;
     });
 
-    //If repsonse was not successful, return false.
-    if (!res) {
-        return false;
-    }
-
-    //Users data
-    const user = res.data;
-
-    //Update local storage with new current user data
-    localStorage.setItem('currentUser', JSON.stringify(user));
-
-    //Set current user to new user data
-    currentUser = user;
-
-    //Return successful login
-    return true;
+    //Return success status
+    return success;
 }
 
 //Function to logout
 function logout() {
-    //Remove current user data from local storrage
-    localStorage.removeItem('currentUser');
-
-    //Unset current user data
-    currentUser = null;
+    setCurrentUser(null);
 }
 
 //Function to chek if user is logged in
@@ -53,20 +51,21 @@ function isLoggedIn() {
 
 //Function to register a user
 async function register(username, email, password) {
-    const res = await axios.post(process.env.GATSBY_CMS_HOST + 'auth/local/register', {
+    const success = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/local/register', {
         username: username,
         email: email,
         password: password
-    }).catch(function (error) {
+    }).then(response => {
+        //Extract and set current user data from response
+        setCurrentUser(response.data);
+
+        return true;
+    }).catch(error => {
         //TOOD: Error proccesing
         return false;
     });
 
-    if (!res) {
-        return false;
-    }
-
-    return true;
+    return success;
 }
 
 //Export services
@@ -74,5 +73,6 @@ export const authenticationService = {
     login,
     logout,
     isLoggedIn,
+    register,
     currentUser
 };
