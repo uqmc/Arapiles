@@ -21,6 +21,10 @@ class Login extends React.Component {
         }
     }
 
+    setError = (error) => {
+        this.setState({error: error});
+    }
+
     //Function to update state when either field is changed
     handleUpdate = (event) => {
         this.setState({
@@ -37,11 +41,11 @@ class Login extends React.Component {
         const success = await authenticationService.login(this.state["identifier"], this.state["password"]);
 
         //Check if login was successful
-        if (!success) {
-            this.setState({error: "Invalid Username or Password."});
-        } else {
+        if (success === true) {
             //TODO: redirect to user profile
             navigate("/");
+        } else {
+            this.setError(success);
         }
     }
 
@@ -63,8 +67,8 @@ class Login extends React.Component {
                     <br />
                     <input type="password" name="password" placeholder="Password" onChange={this.handleUpdate} />
                     <br />
-                    <input class="btn draw-border" type="submit" value = "Login" />
-                    <Link to="/signup"><button class="btn draw-border">Sign Up</button></Link>               
+                    <input className="btn draw-border" type="submit" value = "Login" />
+                    <Link to="/signup"><button className="btn draw-border">Sign Up</button></Link>               
                 </form>
             </>
         )
