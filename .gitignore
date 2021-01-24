@@ -17,6 +17,7 @@ jspm_packages/
 .idea/
 __pycache__/
 .DS_Store
+*.sublime*
 
 # Runtime data
 
