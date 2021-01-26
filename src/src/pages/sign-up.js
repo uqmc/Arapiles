@@ -3,7 +3,7 @@ import React from "react";
 import PrimaryLayout from "../layouts/primaryLayout";
 import SignUp from "../components/SignUp";
 
-//Basic Reset Password page
+//Basic Sign Up page
 const SIGN_UP = () => {
     return (
         <PrimaryLayout>

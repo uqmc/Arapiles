@@ -3,7 +3,7 @@ import React from "react";
 import PrimaryLayout from "../layouts/primaryLayout";
 import Login from "../components/Login";
 
-//Test Login page using Login component
+//Simple Login page
 const LOGIN = () => {
     return (
         <PrimaryLayout>

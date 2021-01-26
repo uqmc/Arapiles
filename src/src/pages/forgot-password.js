@@ -3,7 +3,7 @@ import React from "react";
 import PrimaryLayout from "../layouts/primaryLayout";
 import ForgotPassword from "../components/ForgotPassword";
 
-//Basic Reset Password page
+//Basic Forgot Password page
 const FORGOT_PASSWORD = () => {
     return (
         <PrimaryLayout>
