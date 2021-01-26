@@ -1,10 +1,9 @@
 import React from "react"
 
-//Authentication services for logging in
+//Authentication services, used to send forgot password request 
 import { authenticationService } from "../services/authentication.js"
 
-//Basic Forgot password componnent
-//For now just used for testing purposes.
+//Basic Forgot password component
 class ForgotPassword extends React.Component {
 
     constructor(props) {
@@ -12,12 +11,17 @@ class ForgotPassword extends React.Component {
 
         this.state = {
             email: "",
-            error: ""
+            error: "",
+            success: false
         }
     }
 
+    //Function to set the error message in the form
     setError = (error) => {
-        this.setState({error: error});
+        this.setState({
+            error: error,
+            success: false
+        });
     }
 
     //Function to update state when either field is changed
@@ -27,29 +31,28 @@ class ForgotPassword extends React.Component {
       })
     }
 
-    //Function to handle login form submission
+    //Function to handle forgot password form submission
     handleSubmit = async (event) => {
         //Prevent default form behavior
         event.preventDefault();
 
-        //Attempt to log in with identifier and password provided
-        const success = await authenticationService.forgotPassword(this.state["email"]);
+        //Attempt to send reset password email
+        const response = await authenticationService.forgotPassword(this.state["email"]);
 
-        //Check if login was successful
-        if (success === true) {
-            //navigate("/");
+        //Check if request was successful
+        if (response === true) {
+            this.setState({success: true});
         } else {
-            this.setError(success);
+            this.setError(response);
         }
     }
 
-    //Basic Component Renderer
-    //TODO: Migrate to components
-    //Potentially use Formik
+    //Simple Form with email and submit button
     render() {
         return (
             <>
                 <h1>Forgot Password</h1>
+                {this.state.success && <span style={{color: "green"}}>Please check your email for link to reset your password.</span>}
                 <span style={{color: "red"}}>{this.state["error"]}</span>
                 <form
                     method="post"
