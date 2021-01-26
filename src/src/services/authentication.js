@@ -113,7 +113,7 @@ async function forgotPassword(email) {
 
 //Function to reset password from forgot password email.
 async function resetPassword(privateCode, password, passwordConfirmation) {
-    const success = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/reset-password' {
+    const success = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/reset-password', {
         privateCode: privateCode,
         password: password,
         passwordConfirmation: passwordConfirmation
@@ -133,6 +133,7 @@ export const authenticationService = {
     isLoggedIn,
     register,
     resendEmail,
+    forgotPassword,
     resetPassword,
     currentUser
 };
