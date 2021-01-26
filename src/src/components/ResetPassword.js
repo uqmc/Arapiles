@@ -1,10 +1,9 @@
 import React from "react"
 
-//Authentication services for logging in
+//Authentication services, used to send reset password request
 import { authenticationService } from "../services/authentication.js"
 
-//Basic Forgot password componnent
-//For now just used for testing purposes.
+//Basic Reset password component
 class ResetPassword extends React.Component {
 
     constructor(props) {
@@ -17,6 +16,7 @@ class ResetPassword extends React.Component {
         }
     }
 
+    //Function to set form error message
     setError = (error) => {
         this.setState({error: error});
     }
@@ -28,12 +28,12 @@ class ResetPassword extends React.Component {
       })
     }
 
-    //Function to handle login form submission
+    //Function to handle reset password form submission
     handleSubmit = async (event) => {
         //Prevent default form behavior
         event.preventDefault();
 
-        //Attempt to log in with identifier and password provided
+        //Attempt to reset password 
         const success = await authenticationService.resetPassword(this.props.privateCode, this.state["password"], this.state["passwordConfirmation"]);
 
         //Check if login was successful
@@ -44,9 +44,7 @@ class ResetPassword extends React.Component {
         }
     }
 
-    //Basic Component Renderer
-    //TODO: Migrate to components
-    //Potentially use Formik
+    //Simple Form with passwords and submit button
     render() {
         return (
             <>

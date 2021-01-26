@@ -1,13 +1,12 @@
 import React from "react"
 
 //navigate used to redirect
-import { Link, navigate } from "gatsby"
+import { navigate } from "gatsby"
 
 //Authentication services for logging in
 import { authenticationService } from "../services/authentication.js"
 
 //Basic Sign Up component
-//For now just used for testing purposes.
 class SignUp extends React.Component {
 
     constructor(props) {
@@ -21,6 +20,7 @@ class SignUp extends React.Component {
         }
     }
 
+    //Function used to set form error
     setError = (error) => {
         this.setState({error: error});
     }
@@ -37,21 +37,18 @@ class SignUp extends React.Component {
         //Prevent default form behavior
         event.preventDefault();
 
-        //Attempt to log in with identifier and password provided
-        const success = await authenticationService.register(this.state["username"], this.state["email"], this.state["password"]);
+        //Attempt to register a new user
+        const response = await authenticationService.register(this.state["username"], this.state["email"], this.state["password"]);
 
-        //Check if login was successful
-        if (success === true) {
-            //TODO: redirect to user profile
-            //navigate("/");
+        //Check register request was successful 
+        if (response === true) {
+            //TODO: Redirect to check email page or display check email message.
         } else {
-            this.setError(success);
+            this.setError(response);
         }
     }
 
-    //Basic Component Renderer
-    //TODO: Migrate to components
-    //Potentially use Formik
+    //Simple Sign Up form
     render() {
         return (
             <>
