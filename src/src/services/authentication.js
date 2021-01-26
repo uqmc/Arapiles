@@ -1,19 +1,19 @@
 //Based on: https://github.com/cornflourblue/react-jwt-authentication-example/blob/master/src/_services/authentication.service.js
-import axios from 'axios';
+import axios from "axios";
 
 //Current user, retrieved from local storage.
 let currentUser = null;
 try {
-    currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    currentUser = JSON.parse(localStorage.getItem("currentUser"));
 } catch (e) {
 }
 
 function setCurrentUser(user) {
     //Update local storage with new current user data
     if (user !== null) {
-        localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem("currentUser", JSON.stringify(user));
     } else {
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem("currentUser");
     }
 
     //Set current user to new user data
@@ -24,7 +24,7 @@ function setCurrentUser(user) {
 
 //Function to make and process login request
 async function login(identifier, password) {
-    const success = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/local/', {
+    const success = await axios.post(process.env.GATSBY_CMS_HOST + "/auth/local/", {
         identifier: identifier,
         password: password,
     }).then(response => {
@@ -58,7 +58,7 @@ function isLoggedIn() {
 
 //Function to register a user
 async function register(username, email, password) {
-    const success = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/local/register', {
+    const success = await axios.post(process.env.GATSBY_CMS_HOST + "/auth/local/register", {
         username: username,
         email: email,
         password: password
@@ -80,7 +80,7 @@ async function register(username, email, password) {
 
 //Function to resend Confirmation Email
 async function resendEmail(email) {
-    const success = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/send-email-confirmation', {
+    const success = await axios.post(process.env.GATSBY_CMS_HOST + "/auth/send-email-confirmation", {
         email: email
     }).then(response => {
         console.log(response);
@@ -98,7 +98,7 @@ async function resendEmail(email) {
 
 //Function to send password reset email
 async function forgotPassword(email) {
-    const success = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/forgot-password', {
+    const success = await axios.post(process.env.GATSBY_CMS_HOST + "/auth/forgot-password", {
         email: email
     }).then(response => {
         return true;
@@ -114,7 +114,7 @@ async function forgotPassword(email) {
 
 //Function to reset password from forgot password email.
 async function resetPassword(privateCode, password, passwordConfirmation) {
-    const success = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/reset-password', {
+    const success = await axios.post(process.env.GATSBY_CMS_HOST + "/auth/reset-password", {
         privateCode: privateCode,
         password: password,
         passwordConfirmation: passwordConfirmation
