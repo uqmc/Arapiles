@@ -1,11 +1,13 @@
 import React from "react";
 
 import PrimaryLayout from "../layouts/primaryLayout";
+import ForgotPassword from "../components/ForgotPassword";
 
 //Basic Reset Password page
 const FORGOT_PASSWORD = () => {
     return (
         <PrimaryLayout>
+        	<ForgotPassword />
         </PrimaryLayout>
     );
 };
