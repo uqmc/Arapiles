@@ -19,6 +19,10 @@ module.exports = {
        Image content
        1) https://www.gatsbyjs.com/plugins/gatsby-source-filesystem/
     */
+
+    /* Get and Set Query Param
+    */
+    `gatsby-plugin-use-query-params`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
