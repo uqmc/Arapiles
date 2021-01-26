@@ -68,7 +68,7 @@ class Login extends React.Component {
                     <input type="password" name="password" placeholder="Password" onChange={this.handleUpdate} />
                     <br />
                     <input className="btn draw-border" type="submit" value = "Login" />
-                    <Link to="/signup"><button className="btn draw-border">Sign Up</button></Link>               
+                    <Link to="/sign-up"><button className="btn draw-border">Sign Up</button></Link>               
                 </form>
             </>
         )
