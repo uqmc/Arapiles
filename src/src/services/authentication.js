@@ -69,10 +69,9 @@ async function register(username, email, password) {
         return true;
     }).catch(error => {
         if (error.response) { 
-            return error.response.data.message[0].messages[0].message;
-        } else {
-            return false;
-        }
+            console.log(error.response)
+        } 
+        return false;
     });
 
 
@@ -88,11 +87,10 @@ async function resendEmail(email) {
 
         return true;
     }).catch(error => {
-        if (error.response) {
-            return error.response.data.message[0].messages[0].message;
-        } else {
-            return false;
-        }
+        if (error.response) { 
+            console.log(error.response)
+        } 
+        return false;
     })
 
     return success;
@@ -105,6 +103,9 @@ async function forgotPassword(email) {
     }).then(response => {
         return true;
     }).catch(error => {
+        if (error.response) { 
+            console.log(error.response)
+        } 
         return false;
     });
 
@@ -120,6 +121,9 @@ async function resetPassword(privateCode, password, passwordConfirmation) {
     }).then(response => {
         return true;
     }).catch(error => {
+        if (error.response) { 
+            console.log(error.response)
+        } 
         return false;
     });
 
