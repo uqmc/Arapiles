@@ -20,6 +20,8 @@ function setCurrentUser(user) {
     currentUser = user;
 }
 
+//TODO: Better response and error processing
+
 //Function to make and process login request
 async function login(identifier, password) {
     const success = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/local/', {
@@ -77,11 +79,60 @@ async function register(username, email, password) {
     return success;
 }
 
+//Function to resend Confirmation Email
+async function resendEmail(email) {
+    const success = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/send-email-confirmation', {
+        email: email
+    }).then(response => {
+        console.log(response);
+
+        return true;
+    }).catch(error => {
+        if (error.response) {
+            return error.response.data.message[0].messages[0].message;
+        } else {
+            return false;
+        }
+    })
+
+    return success;
+}
+
+//Function to send password reset email
+async function forgotPassword(email) {
+    const success = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/forgot-password', {
+        email: email
+    }).then(response => {
+        return true;
+    }).catch(error => {
+        return false;
+    });
+
+    return success;
+}
+
+//Function to reset password from forgot password email.
+async function resetPassword(privateCode, password, passwordConfirmation) {
+    const success = await axios.post(process.env.GATSBY_CMS_HOST + '/auth/reset-password' {
+        privateCode: privateCode,
+        password: password,
+        passwordConfirmation: passwordConfirmation
+    }).then(response => {
+        return true;
+    }).catch(error => {
+        return false;
+    });
+
+    return success;
+}
+
 //Export services
 export const authenticationService = {
     login,
     logout,
     isLoggedIn,
     register,
+    resendEmail,
+    resetPassword,
     currentUser
 };
