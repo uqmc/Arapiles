@@ -16,10 +16,7 @@ const OrangeTapePage = () => {
         getContentData();
     }, []);
 
-    let htmlContent;
-    if(data) {
-        htmlContent = marked(data.content);
-    }
+    const htmlContent = data ? marked(data.content) : undefined;
 
     if(!htmlContent) {
         return(
