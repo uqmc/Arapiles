@@ -20,6 +20,12 @@ function setCurrentUser(user) {
     currentUser = user;
 }
 
+function getAuthHeader() {
+    return currentUser?.jwt
+    ? { Authorization: `Bearer ${currentUser.jwt}`}
+    : {};
+}
+
 //TODO: Better response and error processing
 
 //Function to make and process login request
@@ -139,5 +145,6 @@ export const authenticationService = {
     resendEmail,
     forgotPassword,
     resetPassword,
-    currentUser
+    currentUser,
+    getAuthHeader
 };
