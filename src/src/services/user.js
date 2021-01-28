@@ -14,6 +14,16 @@ async function me() {
     return response;
 }
 
+async function find(id) {
+    const repsonse = await axios.get(process.env.GATSBY_CMS_HOST + `/users/${id}`, {
+        headers: authenticationService.getAuthHeader()
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        return false;
+    });
+}
+
 async function update(id, data) {
     const response = await axios.put(process.env.GATSBY_CMS_HOST + `/users/${id}`, data, {
         headers: authenticationService.getAuthHeader()
@@ -28,5 +38,6 @@ async function update(id, data) {
 
 export const userService = {
     me,
+    find,
     update
 };
