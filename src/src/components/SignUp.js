@@ -2,6 +2,10 @@ import React from "react"
 
 import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
+import { Button, LinearProgress } from '@material-ui/core';
+import { DatePicker } from 'formik-material-ui-pickers';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 //navigate used to redirect
 import { navigate } from "gatsby"
@@ -18,6 +22,12 @@ class SignUp extends React.Component {
         {label: "Not Stated", value: "Not_Stated"}
     ]; 
 
+    phoneTypes = [
+        {label: "Mobile", value: "Mobile"},
+        {label: "Home", value: "Home"},
+        {label: "Work", value: "Work"}
+    ];
+
     studentStatuses = [
         {label: "Not UQ", value: "Not_UQ"},
         {label: "Domestic", value: "Domestic"},
@@ -29,10 +39,15 @@ class SignUp extends React.Component {
     constructor(props) {
         super(props);
 
-
         this.state = {
             error: ""
         }
+    }
+
+    mapOptions = (options) => {
+        return options.map(option => {
+            return <option value={option.value}>{option.label}</option>
+        })
     }
 
     //Function used to set form error
@@ -66,8 +81,8 @@ class SignUp extends React.Component {
     //Function to handle login form submission
     handleSubmit = async (data) => {
         //Attempt to register a new user
-        //TODO: Validation 
-
+        console.log(data);
+        return;
         //TODO: Add user details when registering
         const response = await authenticationService.register(data["username"], data["email"], data["password"]);
 
@@ -82,9 +97,11 @@ class SignUp extends React.Component {
     //Simple Sign Up form
     render() {
         return (
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Formik
                 initialValues={{
-                    nameFirst: ""
+                    nameFirst: "",
+                    dateOfBirth: new Date()
                 }}
                 validationSchema={this.validationSchema}
                 onSubmit={this.handleSubmit}
@@ -104,11 +121,7 @@ class SignUp extends React.Component {
                     <label htmlFor="gender">Gender</label>
                     <Field name="gender" as="select">
                         <option defaultValue>Please Select...</option>
-                        {
-                            this.genders.map(gender => {
-                                return <option value={gender.value}>{gender.label}</option>
-                            })
-                        }
+                        { this.mapOptions(this.genders) }
                     </Field>
                     <ErrorMessage name="gender" />
                     <br />
@@ -128,7 +141,29 @@ class SignUp extends React.Component {
                     <ErrorMessage name="password" />
                     <br />
 
-                    {/*TODO: Phone Input, Date picker and Address field*/}
+                    {/*TODO: Change to PhoneInput*/}
+                    <label htmlFor="phoneNumber">Phone Number</label>
+                    <Field name="phoneNumber" />
+                    <ErrorMessage name="phoneNumber" />
+
+                    <label htmlFor="phoneType">Type</label>
+                    <Field name="phoneType" as="select">                        
+                        <option defaultValue>Please Select...</option>
+                        { this.mapOptions(this.phoneTypes) }
+                    </Field>
+                    <ErrorMessage name="phoneType" />
+                    <br />
+
+                    <label htmlFor="dateOfBirth">Date of Birth</label>
+                    <Field name="dateOfBirth" component={DatePicker} />
+                    <ErrorMessage name="dateOfBirth" />
+                    <br />
+
+                    {/* TODO: Look into google places API */}
+                    <label htmlFor="address">Address</label>
+                    <Field name="address" />
+                    <ErrorMessage name="address" />
+                    <br />
 
                     <label htmlFor="postcode">Postcode</label>
                     <Field name="postcode" />
@@ -138,11 +173,7 @@ class SignUp extends React.Component {
                     <label htmlFor="studentStatus">Student Status</label>
                     <Field name="studentStatus" as="select">
                         <option defaultValue>Please Select...</option>
-                        {
-                            this.studentStatuses.map(studentStatus => {
-                                return <option value={studentStatus.value}>{studentStatus.label}</option>
-                            })
-                        }
+                        { this.mapOptions(this.studentStatuses) }
                     </Field>
                     <ErrorMessage name="studentStatus" />
                     <br />
@@ -158,15 +189,49 @@ class SignUp extends React.Component {
                     <Field name="contactName" />
                     <ErrorMessage name="contactName" />
                     <br />
+                    
+                    {/*TODO: Change to PhoneInput*/}
+                    <label htmlFor="contactPhoneNumber">Phone Number</label>
+                    <Field name="contactPhoneNumber" />
+                    <ErrorMessage name="contactPhoneNumber" />
 
-                    {/*TODO: Phone Input & Address contact*/}
+                    <label htmlFor="contactPhoneType">Type</label>
+                    <Field name="contactPhoneType" as="select">                        
+                        <option defaultValue>Please Select...</option>
+                        { this.mapOptions(this.phoneTypes) }
+                    </Field>
+                    <ErrorMessage name="contactPhoneType" />
+                    <br />
+
+                    {/* TODO: Look into google places API */}
+                    <label htmlFor="contactAddress">Address</label>
+                    <Field name="contactAddress" />
+                    <ErrorMessage name="contactAddress" />
+                    <br />
 
                     {/*TODO: Section "Membership"*/}
-                    {/*TODO: Waiver and Membership agreement*/}
+
+                    {/*TODO: Get Waiver and Membership agreement from CMS*/}
+                    <label htmlFor="acceptWaiver">Liability Waiver</label>
+                    <div>
+                        Waiver Lorem ipsum
+                    </div>
+                    <Field name="acceptWaiver" type="checkbox" />
+                    <ErrorMessage name="acceptWaiver" />
+                    <br />
+
+                    <label htmlFor="acceptMembership">Membership agreement</label>
+                    <div>
+                        Membership Lorem ipsum
+                    </div>
+                    <Field name="acceptMembership" type="checkbox" />
+                    <ErrorMessage name="acceptMembership" />
+                    <br />
 
                     <button type="submit">Sign Up!</button>
                 </Form>
             </Formik>
+            </MuiPickersUtilsProvider>
         )
     }
 }
