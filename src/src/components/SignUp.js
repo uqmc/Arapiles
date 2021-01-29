@@ -11,51 +11,25 @@ import { authenticationService } from "../services/authentication.js"
 //Basic Sign Up component
 class SignUp extends React.Component {
 
+    genders = [
+        {label: "Male", value: "Male"},
+        {label: "Female", value: "Female"},
+        {label: "Not Stated", value: "Not_Stated"}
+    ]; 
+
+    studentStatuses = [
+        {label: "Not UQ", value: "Not_UQ"},
+        {label: "Domestic", value: "Domestic"},
+        {label: "International", value: "International"},
+        {label: "Exchange", value: "Exchange"},
+        {label: "Staff", value: "Staff"}
+    ];
+
     constructor(props) {
         super(props);
 
+
         this.state = {
-            genders: [
-                {label: "Male", value: "Male"},
-                {label: "Female", value: "Female"},
-                {label: "Not Stated", value: "Not_Stated"}
-            ],
-
-            studentStatuses: [
-                {label: "Not UQ", value: "Not_UQ"},
-                {label: "Domestic", value: "Domestic"},
-                {label: "International", value: "International"},
-                {label: "Exchange", value: "Exchange"},
-                {label: "Staff", value: "Staff"}
-            ],
-
-            //Register information
-            username: "",
-            email: "",
-            password: "",
-
-            //Personal information
-            nameFirst: "",
-            nameLast: "",
-            gender: "",
-            phoneNumber: "",
-            phoneType: "",
-            dateOfBirth: "",
-            address: "",
-            postcode: "",
-            studentStauts: "",
-            studentNumber: "",
-
-            //Emergency Information
-            contactName: "",
-            contactPhoneNumber: "",
-            contactPhoneType: "",
-            contactAddress: "",
-
-            //Membership Information
-            waiver: false,
-            membershipAgreement: false,
-
             error: ""
         }
     }
@@ -80,12 +54,10 @@ class SignUp extends React.Component {
     }
 
     //Function to handle login form submission
-    handleSubmit = async (event) => {
-        //Prevent default form behavior
-        event.preventDefault();
-
+    handleSubmit = async (data) => {
         //Attempt to register a new user
-        const response = await authenticationService.register(this.state["username"], this.state["email"], this.state["password"]);
+        //TODO: Add user details when registering
+        const response = await authenticationService.register(data["username"], data["email"], data["password"]);
 
         //Check register request was successful 
         if (response === true) {
@@ -106,7 +78,7 @@ class SignUp extends React.Component {
                 onSubmit={this.handleSubmit}
             >
                 <Form>
-
+                    {/*TODO: Section "Your Details" */}
                     <label htmlFor="nameFirst">First Name</label>
                     <Field name="nameFirst" />
                     <ErrorMessage name="nameFirst" />
@@ -121,7 +93,7 @@ class SignUp extends React.Component {
                     <Field name="gender" as="select">
                         <option defaultValue>Please Select...</option>
                         {
-                            this.state.genders.map(gender => {
+                            this.genders.map(gender => {
                                 return <option value={gender.value}>{gender.label}</option>
                             })
                         }
@@ -155,7 +127,7 @@ class SignUp extends React.Component {
                     <Field name="studentStatus" as="select">
                         <option defaultValue>Please Select...</option>
                         {
-                            this.state.studentStatuses.map(studentStatus => {
+                            this.studentStatuses.map(studentStatus => {
                                 return <option value={studentStatus.value}>{studentStatus.label}</option>
                             })
                         }
@@ -166,7 +138,21 @@ class SignUp extends React.Component {
                     {/*TODO: number?*/}
                     <label htmlFor="studentNumber">Student Number</label>
                     <Field name="studentNumber" />
+                    <ErrorMessage name="studentNumber" />
                     <br />
+
+                    {/*TODO: Section "Emergency Contact"*/}
+                    <label htmlFor="contactName">Contact Name</label>
+                    <Field name="contactName" />
+                    <ErrorMessage name="contactName" />
+                    <br />
+
+                    {/*TODO: Phone Input & Address contact*/}
+
+                    {/*TODO: Section "Membership"*/}
+                    {/*TODO: Waiver and Membership agreement*/}
+
+                    <button type="submit">Sign Up!</button>
                 </Form>
             </Formik>
         )
