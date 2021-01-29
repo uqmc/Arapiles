@@ -1,6 +1,7 @@
 import React from "react"
 
 import { Formik, Field, Form, ErrorMessage } from "formik"
+import * as Yup from "yup"
 
 //navigate used to redirect
 import { navigate } from "gatsby"
@@ -39,23 +40,34 @@ class SignUp extends React.Component {
         this.setState({error: error});
     }
 
-    handleValidate = (values) => {
-        const errors = {}
+    validationSchema = Yup.object().shape({
+        nameFirst: Yup.string()
+            .required("Required"),
 
-        if (!values.nameFirst) {
-            errors.nameFirst = "Required"
-        }
+        nameLast: Yup.string()
+            .required("Required"),
 
-        if (!values.nameLast) {
-            errors.nameLast = "Required"
-        }
+        //TODO: Not working for some reason?
+        gender: Yup.string()
+            .ensure()
+            .required("Required"),
 
-        return errors
-    }
+        username: Yup.string()
+            .required("Required"),
+
+        email: Yup.string()
+            .email("Invalid Email")
+            .required("Required"),
+
+        password: Yup.string()
+            .required("Required"),
+    }); 
 
     //Function to handle login form submission
     handleSubmit = async (data) => {
         //Attempt to register a new user
+        //TODO: Validation 
+
         //TODO: Add user details when registering
         const response = await authenticationService.register(data["username"], data["email"], data["password"]);
 
@@ -74,7 +86,7 @@ class SignUp extends React.Component {
                 initialValues={{
                     nameFirst: ""
                 }}
-                validate={this.handleValidate}
+                validationSchema={this.validationSchema}
                 onSubmit={this.handleSubmit}
             >
                 <Form>
