@@ -76,54 +76,75 @@ class SignUp extends React.Component {
 
         password: Yup.string()
             .required("Required"),
+
+        phoneNumber: Yup.object().shape({
+            number: Yup.string()
+                .required("Required"),
+
+            type: Yup.string()
+                .ensure()
+                .required("Required"),
+        }),
+
+        dateOfBirth: Yup.date()
+            .required("Required"),
+
+        address: Yup.object().shape({
+            streetAddress: Yup.string()
+                .required("Required"),
+
+            postcode: Yup.number()
+                .positive("Postcode must be greater than 0")
+                .integer("Postcode must be an integer")
+                .required("Required")
+        }),
+
+        studentStatus: Yup.string()
+            .ensure()
+            .required("Required"),
+
+        studentNumber: Yup.number()
+            .positive("Student Number must be positive")
+            .integer("Student Number must be an integer")
+            .required("Required"),
+
+        emergencyContact: Yup.object().shape({
+            name: Yup.string()
+                .required("Required"),
+
+            phoneNumber: Yup.object().shape({
+                number: Yup.string()
+                    .required("Required"),
+
+                type: Yup.string()
+                    .ensure()
+                    .required("Required"),
+            }),
+
+            address: Yup.object().shape({
+                streetAddress: Yup.string()
+                    .required("Required"),
+
+                postcode: Yup.number()
+                    .positive("Postcode must be greater than 0")
+                    .integer("Postcode must be an integer")
+                    .required("Required")
+            })
+        }),
+
+        agreedLiabilityWaiver: Yup.boolean()
+            .required("You must agree to the Liability Waiver"),
+
+        agreedMembershipContract: Yup.boolean()
+            .required("You must agree to the Membership Agreement")
+
     }); 
 
     //Function to handle login form submission
     handleSubmit = async (data) => {
-        //Format Form Data for backend
-        const userData = {
-            //User Login Details
-            username: data['username'],
-            email: data['email'],
-            password: data['password'],
-
-            //User Personal Information
-            nameFirst: data['nameFirst'],
-            nameLast: data['nameLast'],
-            sex: data['sex'],
-            dateOfBirth: data['dateOfBirth'],
-            phoneNumber: {
-                number: data['phoneNumber'],
-                type: data['phoneType']
-            },
-            address: {
-                streetAddress: data['address'],
-                postcode: data['postcode']
-            },
-            studentStatus: data['studentStatus'],
-            studentNumber: data['studentNumber'],
-
-            //Emergency Contact Information
-            emergencyContact: {
-                name: data['contactName'],
-                phoneNumber: {
-                    number: data['contactPhoneNumber'],
-                    type: data['contactPhoneType']
-                },
-                address: {
-                    streetAddress: data['contactAddress'],
-                    postcode: data['contactPostcode']
-                }
-            },
-
-            //Membership Data
-            agreedLiabilityWaiver: data['agreedLiabilityWaiver'],
-            agreedMembershipContract: data['agreedMembershipContract']
-        };
-
         //Attempt to register a new user
         //TODO: Add user details when registering
-        const response = await authenticationService.register(userData);
+        const response = await authenticationService.register(data);
 
         //Check register request was successful 
         if (response === true) {
@@ -181,16 +202,16 @@ class SignUp extends React.Component {
                     <br />
 
                     {/*TODO: Change to PhoneInput*/}
-                    <label htmlFor="phoneNumber">Phone Number</label>
-                    <Field name="phoneNumber" />
-                    <ErrorMessage name="phoneNumber" />
+                    <label htmlFor="phoneNumber.number">Phone Number</label>
+                    <Field name="phoneNumber.number" />
+                    <ErrorMessage name="phoneNumber.number" />
 
-                    <label htmlFor="phoneType">Type</label>
-                    <Field name="phoneType" as="select">                        
+                    <label htmlFor="phoneNumber.type">Type</label>
+                    <Field name="phoneNumber.type" as="select">                        
                         <option defaultValue>Please Select...</option>
                         { this.mapOptions(this.phoneTypes) }
                     </Field>
-                    <ErrorMessage name="phoneType" />
+                    <ErrorMessage name="phoneNumber.type" />
                     <br />
 
                     <label htmlFor="dateOfBirth">Date of Birth</label>
@@ -199,14 +220,14 @@ class SignUp extends React.Component {
                     <br />
 
                     {/* TODO: Look into google places API */}
-                    <label htmlFor="address">Address</label>
-                    <Field name="address" />
-                    <ErrorMessage name="address" />
+                    <label htmlFor="address.streetAddress">Address</label>
+                    <Field name="address.streetAddress" />
+                    <ErrorMessage name="address.streetAddress" />
                     <br />
 
-                    <label htmlFor="postcode">Postcode</label>
-                    <Field name="postcode" />
-                    <ErrorMessage name="postcode" />
+                    <label htmlFor="address.postcode">Postcode</label>
+                    <Field name="address.postcode" />
+                    <ErrorMessage name="address.postcode" />
                     <br />
 
                     <label htmlFor="studentStatus">Student Status</label>
@@ -224,47 +245,51 @@ class SignUp extends React.Component {
                     <br />
 
                     {/*TODO: Section "Emergency Contact"*/}
-                    <label htmlFor="contactName">Contact Name</label>
-                    <Field name="contactName" />
-                    <ErrorMessage name="contactName" />
+                    <label htmlFor="emergencyContact.name">Contact Name</label>
+                    <Field name="emergencyContact.name" />
+                    <ErrorMessage name="emergencyContact.name" />
                     <br />
                     
                     {/*TODO: Change to PhoneInput*/}
-                    <label htmlFor="contactPhoneNumber">Phone Number</label>
-                    <Field name="contactPhoneNumber" />
-                    <ErrorMessage name="contactPhoneNumber" />
+                    <label htmlFor="emergencyContact.phoneNumber.number">Phone Number</label>
+                    <Field name="emergencyContact.phoneNumber.number" />
+                    <ErrorMessage name="emergencyContact.phoneNumber.number" />
 
-                    <label htmlFor="contactPhoneType">Type</label>
-                    <Field name="contactPhoneType" as="select">                        
+                    <label htmlFor="emergencyContact.phoneNumber.type">Type</label>
+                    <Field name="emergencyContact.phoneNumber.type" as="select">                        
                         <option defaultValue>Please Select...</option>
                         { this.mapOptions(this.phoneTypes) }
                     </Field>
-                    <ErrorMessage name="contactPhoneType" />
+                    <ErrorMessage name="emergencyContact.phoneNumber.type" />
                     <br />
 
                     {/* TODO: Look into google places API */}
-                    <label htmlFor="contactAddress">Address</label>
-                    <Field name="contactAddress" />
-                    <ErrorMessage name="contactAddress" />
+                    <label htmlFor="emergencyContact.address.streetAddress">Address</label>
+                    <Field name="emergencyContact.address.streetAddress" />
+                    <ErrorMessage name="emergencyContact.address.streetAddress" />
                     <br />
 
+                    <label htmlFor="emergencyContact.address.postcode">Postcode</label>
+                    <Field name="emergencyContact.address.postcode" />
+                    <ErrorMessage name="emergencyContact.address.postcode" />
+                    <br />
                     {/*TODO: Section "Membership"*/}
 
                     {/*TODO: Get Waiver and Membership agreement from CMS*/}
-                    <label htmlFor="acceptWaiver">Liability Waiver</label>
+                    <label htmlFor="agreedLiabilityWaiver">Liability Waiver</label>
                     <div>
                         Waiver Lorem ipsum
                     </div>
-                    <Field name="acceptWaiver" type="checkbox" />
-                    <ErrorMessage name="acceptWaiver" />
+                    <Field name="agreedLiabilityWaiver" type="checkbox" />
+                    <ErrorMessage name="agreedLiabilityWaiver" />
                     <br />
 
-                    <label htmlFor="acceptMembership">Membership agreement</label>
+                    <label htmlFor="agreedMembershipContract">Membership agreement</label>
                     <div>
                         Membership Lorem ipsum
                     </div>
-                    <Field name="acceptMembership" type="checkbox" />
-                    <ErrorMessage name="acceptMembership" />
+                    <Field name="agreedMembershipContract" type="checkbox" />
+                    <ErrorMessage name="agreedMembershipContract" />
                     <br />
 
                     <button type="submit">Sign Up!</button>
