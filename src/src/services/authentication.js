@@ -63,12 +63,8 @@ function isLoggedIn() {
 }
 
 //Function to register a user
-async function register(username, email, password) {
-    const success = await axios.post(process.env.GATSBY_CMS_HOST + "/auth/local/register", {
-        username: username,
-        email: email,
-        password: password
-    }).then(response => {
+async function register(data) {
+    const success = await axios.post(process.env.GATSBY_CMS_HOST + "/auth/local/register", data).then(response => {
         //Extract and set current user data from response
         setCurrentUser(response.data);
 
