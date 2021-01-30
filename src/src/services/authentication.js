@@ -64,8 +64,10 @@ function isLoggedIn() {
 
 //Function to register a user
 async function register(data) {
-    const success = await axios.post(process.env.GATSBY_CMS_HOST + "/auth/local/register", data).then(response => {
+    const success = await axios.post(process.env.GATSBY_CMS_HOST + "/auth/local/register", data)
+    .then(response => {
         //Extract and set current user data from response
+        console.log(response);
         setCurrentUser(response.data);
 
         return true;
@@ -117,7 +119,7 @@ async function forgotPassword(email) {
 //Function to reset password from forgot password email.
 async function resetPassword(privateCode, password, passwordConfirmation) {
     const success = await axios.post(process.env.GATSBY_CMS_HOST + "/auth/reset-password", {
-        privateCode: privateCode,
+        code: privateCode,
         password: password,
         passwordConfirmation: passwordConfirmation
     }).then(response => {
