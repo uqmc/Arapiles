@@ -16,7 +16,7 @@ import { authenticationService } from "../services/authentication.js"
 //Basic Sign Up component
 class SignUp extends React.Component {
 
-    genders = [
+    sexes = [
         {label: "Male", value: "Male"},
         {label: "Female", value: "Female"},
         {label: "Not Stated", value: "Not_Stated"}
@@ -63,7 +63,7 @@ class SignUp extends React.Component {
             .required("Required"),
 
         //TODO: Not working for some reason?
-        gender: Yup.string()
+        sex: Yup.string()
             .ensure()
             .required("Required"),
 
@@ -80,15 +80,54 @@ class SignUp extends React.Component {
 
     //Function to handle login form submission
     handleSubmit = async (data) => {
+        //Format Form Data for backend
+        const userData = {
+            //User Login Details
+            username: data['username'],
+            email: data['email'],
+            password: data['password'],
+
+            //User Personal Information
+            nameFirst: data['nameFirst'],
+            nameLast: data['nameLast'],
+            sex: data['sex'],
+            dateOfBirth: data['dateOfBirth'],
+            phoneNumber: {
+                number: data['phoneNumber'],
+                type: data['phoneType']
+            },
+            address: {
+                streetAddress: data['address'],
+                postcode: data['postcode']
+            },
+            studentStatus: data['studentStatus'],
+            studentNumber: data['studentNumber'],
+
+            //Emergency Contact Information
+            emergencyContact: {
+                name: data['contactName'],
+                phoneNumber: {
+                    number: data['contactPhoneNumber'],
+                    type: data['contactPhoneType']
+                },
+                address: {
+                    streetAddress: data['contactAddress'],
+                    postcode: data['contactPostcode']
+                }
+            },
+
+            //Membership Data
+            agreedLiabilityWaiver: data['agreedLiabilityWaiver'],
+            agreedMembershipContract: data['agreedMembershipContract']
+        };
+
         //Attempt to register a new user
-        console.log(data);
-        return;
         //TODO: Add user details when registering
-        const response = await authenticationService.register(data["username"], data["email"], data["password"]);
+        const response = await authenticationService.register(userData);
 
         //Check register request was successful 
         if (response === true) {
-            //TODO: Redirect to check email page or display check email message.
+            //TODO: Redirect to check email page or display check email message
         } else {
             this.setError(response);
         }
@@ -118,12 +157,12 @@ class SignUp extends React.Component {
                     <ErrorMessage name="nameLast" />
                     <br />
 
-                    <label htmlFor="gender">Gender</label>
-                    <Field name="gender" as="select">
+                    <label htmlFor="sex">Sex</label>
+                    <Field name="sex" as="select">
                         <option defaultValue>Please Select...</option>
-                        { this.mapOptions(this.genders) }
+                        { this.mapOptions(this.sexes) }
                     </Field>
-                    <ErrorMessage name="gender" />
+                    <ErrorMessage name="sex" />
                     <br />
 
                     <label htmlFor="username">Username</label>
