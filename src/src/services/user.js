@@ -2,8 +2,10 @@ import axios from "axios";
 
 import { authenticationService } from "../services/authentication.js"
 
+//TODO: Improve response and error handling
+
 async function me() {
-    const response = await axios.get(process.env.GATSBY_CMS_HOST + '/users/me', {
+    const response = await axios.get(process.env.GATSBY_CMS_HOST + "/users/me", {
         headers: authenticationService.getAuthHeader()
     }).then(response => {
         return response;
@@ -36,8 +38,19 @@ async function update(id, data) {
     return response;
 }
 
+async function updateMe(data) {
+    const response = await axios.put(process.env.GATSBY_CMS_HOST + "grampians/users/me", data, {
+        headers: authenticationService.getAuthHeader()
+    }).then(response => {
+        return true;
+    }).catch(error => {
+        return false;
+    })
+}
+
 export const userService = {
     me,
     find,
-    update
+    update,
+    updateMe
 };
