@@ -1,5 +1,9 @@
 import React from "react"
 
+import { Formik, Field, Form, ErrorMessage } from "formik"
+import * as Yup from "yup"
+import { Button } from '@material-ui/core';
+
 //Authentication services, used to send forgot password request 
 import { authenticationService } from "../services/authentication.js"
 
@@ -10,61 +14,63 @@ class ForgotPassword extends React.Component {
         super(props);
 
         this.state = {
-            email: "",
-            error: "",
             success: false
         }
     }
 
-    //Function to set the error message in the form
-    setError = (error) => {
-        this.setState({
-            error: error,
-            success: false
-        });
-    }
-
-    //Function to update state when either field is changed
-    handleUpdate = (event) => {
-        this.setState({
-          [event.target.name]: event.target.value,
-      })
-    }
+    validationSchema = Yup.object().shape({
+        email: Yup.string()
+            .email("Invalid Email")
+            .required("Please type in your Email")
+    });
 
     //Function to handle forgot password form submission
-    handleSubmit = async (event) => {
-        //Prevent default form behavior
-        event.preventDefault();
-
+    handleSubmit = async (data, actions) => {
         //Attempt to send reset password email
-        const response = await authenticationService.forgotPassword(this.state["email"]);
+        const response = await authenticationService.forgotPassword(data.email);
 
         //Check if request was successful
         if (response === true) {
             this.setState({success: true});
         } else {
-            this.setError(response);
+            this.setState({success: false});
+            actions.setFieldError('general', response);
         }
+
+        actions.setSubmitting(false);
     }
 
     //Simple Form with email and submit button
     render() {
         return (
-            <>
-                <h1>Forgot Password</h1>
-                {this.state.success && <span style={{color: "green"}}>Please check your email for link to reset your password.</span>}
-                <span style={{color: "red"}}>{this.state["error"]}</span>
-                <form
-                    method="post"
-                    onSubmit={event => {
-                        this.handleSubmit(event)
-                    }}
-                >
-                    <input type="text" name="email" placeholder="Email" onChange={this.handleUpdate} />
+            <Formik
+                initialValues = {{}}
+                validationSchema={this.validationSchema}
+                onSubmit={this.handleSubmit}
+            >
+            {(formProps) => (
+                <Form>
+                    <label htmlFor="email">Email</label>
+                    <Field name="email" type="email" />
+                    <ErrorMessage name="email" />
                     <br />
-                    <input className="btn draw-border" type="submit" value = "Reset Password" />
-                </form>
-            </>
+
+                    {
+                        this.state.success
+                        ? <span style={{color: "green"}}>Please check your email for link to reset your password.</span>
+                        : !formProps.isSubmitting && <span style={{color: "red"}}>{formProps.errors.general}</span>
+                    }
+                    <br/>
+                    <Button
+                        className="btn draw-border"
+                        disabled={formProps.isSubmitting}
+                        onClick={formProps.handleSubmit}
+                    >
+                        Reset Password 
+                    </Button>
+                </Form>
+            )}
+            </Formik>
         )
     }
 }
