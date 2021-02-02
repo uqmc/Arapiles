@@ -6,6 +6,7 @@ import PrimaryLayout from "../layouts/primaryLayout";
 import Login from "../components/Login";
 
 import { authenticationService } from "../services/authentication.js"
+
 //Simple Login page
 const LOGIN = () => {
     if (authenticationService.isLoggedIn()) {
