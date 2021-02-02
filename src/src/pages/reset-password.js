@@ -12,6 +12,7 @@ const RESET_PASSWORD = () => {
 
     return (
         <PrimaryLayout>
+            <h1>Reset Password</h1>
         	<ResetPassword privateCode={privateCode} />
         </PrimaryLayout>
     );

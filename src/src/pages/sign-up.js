@@ -15,6 +15,7 @@ const SIGN_UP = () => {
 
     return (
         <PrimaryLayout>
+        	<h1>Sign Up</h1>
             <SignUp />
         </PrimaryLayout>
     );

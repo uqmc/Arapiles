@@ -14,6 +14,7 @@ const LOGIN = () => {
 
     return ( 
         <PrimaryLayout>
+        	<h1>Login</h1>
             <Login />
         </PrimaryLayout>
     );
