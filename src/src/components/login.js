@@ -53,7 +53,7 @@ class Login extends React.Component {
             >
             {(formProps) => (
                 <Form>
-                    <label htmlFor="identifier">Username</label>
+                    <label htmlFor="identifier">Username/Email</label>
                     <Field name="identifier" />
                     <ErrorMessage name="identifier" />
                     <br />
@@ -75,15 +75,15 @@ class Login extends React.Component {
                     >
                         Login!
                     </Button>
-                        <Button
-                            className="btn draw-border"
-                            disabled={formProps.isSubmitting}
-                            onClick={() => {
-                                navigate("/sign-up")
-                            }}
-                        >
-                            Sign Up!
-                        </Button>
+                    <Button
+                        className="btn draw-border"
+                        disabled={formProps.isSubmitting}
+                        onClick={() => {
+                            navigate("/sign-up")
+                        }}
+                    >
+                        Sign Up!
+                    </Button>
                 </Form>
             )}
             </Formik>
