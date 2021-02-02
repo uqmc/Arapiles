@@ -1,5 +1,9 @@
 import React from "react"
 
+import { Formik, Field, Form, ErrorMessage } from "formik"
+import * as Yup from "yup"
+import { Button, LinearProgress } from '@material-ui/core';
+
 //Authentication services, used to send reset password request
 import { authenticationService } from "../services/authentication.js"
 
@@ -10,59 +14,73 @@ class ResetPassword extends React.Component {
         super(props);
 
         this.state = {
-            password: "",
-            passwordConfirmation: "",
-            error: ""
+            success: false
         }
     }
 
-    //Function to set form error message
-    setError = (error) => {
-        this.setState({error: error});
-    }
+    validationSchema = Yup.object().shape({
+        password: Yup.string()
+            .required("Required"),
 
-    //Function to update state when either field is changed
-    handleUpdate = (event) => {
-        this.setState({
-          [event.target.name]: event.target.value,
-      })
-    }
+        passwordConfirmation: Yup.string()
+            .required("Required")
+    });
 
     //Function to handle reset password form submission
-    handleSubmit = async (event) => {
-        //Prevent default form behavior
-        event.preventDefault();
-
+    handleSubmit = async (data, actions) => {
         //Attempt to reset password 
-        const success = await authenticationService.resetPassword(this.props.privateCode, this.state["password"], this.state["passwordConfirmation"]);
+        const response = await authenticationService.resetPassword(this.props.privateCode, data.password, data.passwordConfirmation);
 
         //Check if login was successful
-        if (success === true) {
+        if (response === true) {
             //navigate("/");
+            this.setState({
+                success: true
+            })
         } else {
-            this.setError(success);
+            actions.setFieldError('general', response);
         }
+
+        actions.setSubmitting(false);
     }
 
     //Simple Form with passwords and submit button
     render() {
         return (
-            <>
-                <h1>Reset Password</h1>
-                <span style={{color: "red"}}>{this.state["error"]}</span>
-                <form
-                    method="post"
-                    onSubmit={event => {
-                        this.handleSubmit(event)
-                    }}
-                >
-                    <input type="text" name="password" placeholder="Password" onChange={this.handleUpdate} />
+            <Formik
+                initialValues = {{}}
+                validationSchema={this.validationSchema}
+                onSubmit={this.handleSubmit}
+            >
+            {(formProps) => (
+                <Form>
+                    <label htmlFor="password">Password</label>
+                    <Field name="password" type="password" />
+                    <ErrorMessage name="password" />
                     <br />
-                    <input type="text" name="passwordConfirmation" placeholder="Confirm Password" onChange={this.handleUpdate} />
+
+                    <label htmlFor="passwordConfirmation">Confirm Password</label>
+                    <Field name="passwordConfirmation" type="password" />
+                    <ErrorMessage name="passwordConfirmation" />
                     <br />
-                    <input className="btn draw-border" type="submit" value = "Reset Password" />
-                </form>
-            </>
+
+                    {
+                        this.state.success
+                        ? <span style={{color: "green"}}>Your password has been reset.</span>
+                        : <span style={{color: "red"}}>{formProps.errors.general}</span>
+                    }
+                    <br />
+
+                    <Button
+                        className="btn draw-border"
+                        disabled={formProps.isSubmitting || this.state.success}
+                        onClick={formProps.handleSubmit}
+                    >
+                        Reset Password
+                    </Button>
+                </Form>
+            )}
+            </Formik>
         )
     }
 }
