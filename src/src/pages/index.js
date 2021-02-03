@@ -5,9 +5,15 @@ import "./index.scss";
 import "./tooltip.scss";
 import "./special-button.css";
 
+import { authenticationService } from '../services/authentication.js'
+
 const Home = () => {
   // But... I don't wanna go back to the Man-Village!
   // I wanna stay in the Jungle.
+
+  function handleLogout (event) {
+      authenticationService.logout();
+  }
 
   return(
     <>
@@ -15,7 +21,10 @@ const Home = () => {
         <div className="nav-buttons">
           <Link to="/home"><button class="btn draw-border">Home</button></Link>
           <Link to="/skills-book"><button class="btn draw-border">Skills Book</button></Link>
-          <Link to="#"><button class="btn draw-border">Login / Signup</button></Link>
+          { authenticationService.isLoggedIn()
+            ? <Link to="/"><button onClick={handleLogout} class="btn draw-border">Logout</button></Link>
+            : <Link to="/login"><button class="btn draw-border">Login / Signup</button></Link>
+          }
         </div>
       </nav>
 
