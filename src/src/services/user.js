@@ -17,7 +17,7 @@ async function me() {
 }
 
 async function find(id) {
-    const repsonse = await axios.get(process.env.GATSBY_CMS_HOST + `/users/${id}`, {
+    const response = await axios.get(process.env.GATSBY_CMS_HOST + `/users/${id}`, {
         headers: authenticationService.getAuthHeader()
     }).then(response => {
         return response;
