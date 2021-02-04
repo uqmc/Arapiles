@@ -11,6 +11,8 @@ import Select from "../components/Select";
 //navigate used to redirect
 import { navigate } from "gatsby"
 
+import axios from "axios"
+
 //Authentication services for logging in
 import { authenticationService } from "../services/authentication.js"
 
@@ -24,8 +26,18 @@ class SignUp extends React.Component {
         super(props);
 
         this.state = {
+            waiver: "Loading...",
+            membership: "Loading...",
             registered: false
         }
+    }
+
+    async componentDidMount() {
+        const waiver = await axios.get(process.env.GATSBY_CMS_HOST  + "/liability-waiver");
+        this.setState({waiver: waiver['data']['content']});
+
+        const membership = await axios.get(process.env.GATSBY_CMS_HOST  + "/membership-agreement");
+        this.setState({membership: membership['data']['content']});
     }
 
     validationSchema = Yup.object().shape({
@@ -103,6 +115,8 @@ class SignUp extends React.Component {
                     .required("Required")
             })
         }),
+
+        medicalDetails: Yup.string(),
 
         agreedLiabilityWaiver: Yup.boolean()
             .required("You must agree to the Liability Waiver"),
@@ -240,12 +254,18 @@ class SignUp extends React.Component {
                         <Field name="emergencyContact.address.postcode" />
                         <ErrorMessage name="emergencyContact.address.postcode" />
                         <br />
+
+                        <label htmlFor="medicalDetails">Medical Details</label>
+                        <ErrorMessage name="medicalDetails" />
+                        <br />
+                        <Field name="medicalDetails" as="textarea" />
+                        <br />
+
                         {/*TODO: Section "Membership"*/}
 
-                        {/*TODO: Get Waiver and Membership agreement from CMS*/}
                         <label htmlFor="agreedLiabilityWaiver">Liability Waiver</label>
                         <div>
-                            Waiver Lorem ipsum
+                            { this.state.waiver }
                         </div>
                         <Field name="agreedLiabilityWaiver" type="checkbox" />
                         <ErrorMessage name="agreedLiabilityWaiver" />
@@ -253,7 +273,7 @@ class SignUp extends React.Component {
 
                         <label htmlFor="agreedMembershipContract">Membership agreement</label>
                         <div>
-                            Membership Lorem ipsum
+                            { this.state.membership }
                         </div>
                         <Field name="agreedMembershipContract" type="checkbox" />
                         <ErrorMessage name="agreedMembershipContract" />
