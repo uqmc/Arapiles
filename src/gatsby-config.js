@@ -14,15 +14,15 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
 
+    /* Get and Set Query Param
+    */
+    `gatsby-plugin-use-query-params`,
+
     /* File system object for data sourcing
        from files with GraphQL.
        Image content
        1) https://www.gatsbyjs.com/plugins/gatsby-source-filesystem/
     */
-
-    /* Get and Set Query Param
-    */
-    `gatsby-plugin-use-query-params`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
