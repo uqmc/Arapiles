@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 
 import "./index.scss";
 import "./tooltip.scss";
-import "./special-button.css";
+import "./special-button.scss";
 
 import { authenticationService } from '../services/authentication.js'
 
@@ -19,11 +19,11 @@ const Home = () => {
     <>
       <nav className="navbar">
         <div className="nav-buttons">
-          <Link to="/home"><button class="btn draw-border">Home</button></Link>
-          <Link to="/skills-book"><button class="btn draw-border">Skills Book</button></Link>
+          <Link to="/home"><button className="btn draw-border">Home</button></Link>
+          <Link to="/skills-book"><button className="btn draw-border">Skills Book</button></Link>
           { authenticationService.isLoggedIn()
-            ? <Link to="/"><button onClick={handleLogout} class="btn draw-border">Logout</button></Link>
-            : <Link to="/login"><button class="btn draw-border">Login / Signup</button></Link>
+            ? <Link to="/"><button onClick={handleLogout} className="btn draw-border">Logout</button></Link>
+            : <Link to="/login"><button className="btn draw-border">Login / Signup</button></Link>
           }
         </div>
       </nav>
