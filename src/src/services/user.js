@@ -48,7 +48,6 @@ async function find(id) {
 }
 
 async function update(id, data) {
-    console.log('update');
     const response = await axios.put(process.env.GATSBY_CMS_HOST + `/users/${id}`, data, {
         headers: authenticationService.getAuthHeader()
     }).then(response => {
@@ -61,7 +60,6 @@ async function update(id, data) {
 }
 
 async function updateMe(data) {
-    console.log('updateMe');
     const response = await axios.put(process.env.GATSBY_CMS_HOST + "/grampians/users/me", data, {
         headers: authenticationService.getAuthHeader()
     }).then(response => {
@@ -73,11 +71,24 @@ async function updateMe(data) {
     return response;
 }
 
+async function roles() {
+    const response = await axios.get(process.env.GATSBY_CMS_HOST + "/users-permissions/roles", {
+        headers: authenticationService.getAuthHeader()
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        return false;
+    });
+
+    return response;
+}
+
 export const userService = {
     me,
     find,
     update,
     updateMe,
+    roles,
     sexes,
     phoneTypes,
     studentStatuses
