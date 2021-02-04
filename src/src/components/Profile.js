@@ -18,7 +18,20 @@ class Profile extends React.Component {
 
         this.state = {
             success: false,
-            edit: false
+            edit: false,
+            roles: []
+        }
+    }
+
+    async componentDidMount() {
+        const roles = await userService.roles();
+
+        if (roles) {
+            this.setState({
+                roles: roles.data.roles.map((role) => {
+                    return {value: role.id, label: role.name}
+                })
+            });
         }
     }
 
@@ -132,6 +145,16 @@ class Profile extends React.Component {
                             {this.state.edit ? "Cancel" : "Edit"}
                         </Button>
                         <br />
+
+                        {
+                            this.props.id &&
+                            <>
+                                <label htmlFor="role">Role</label>
+                                <Select name="role" disabled={!this.state.edit} options={this.state.roles} />
+                                <ErrorMessage name="role" />
+                                <br />
+                            </>
+                        }
 
                         <label htmlFor="nameFirst">First Name</label>
                         <Field name="nameFirst" disabled={!this.state.edit} />
