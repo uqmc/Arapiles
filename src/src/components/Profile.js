@@ -87,6 +87,8 @@ class Profile extends React.Component {
                     .required("Required")
             })
         }),
+
+        medicalDetails: Yup.string(),
     });
 
     //Function to handle forgot password form submission
@@ -124,6 +126,7 @@ class Profile extends React.Component {
                             disabled={formProps.isSubmitting}
                             onClick={() => {
                                 this.setState({edit: !this.state.edit});
+                                formProps.errors.general = "";
                             }}
                         >
                             {this.state.edit ? "Cancel" : "Edit"}
@@ -207,6 +210,12 @@ class Profile extends React.Component {
                         <label htmlFor="emergencyContact.address.postcode">Postcode</label>
                         <Field name="emergencyContact.address.postcode" disabled={!this.state.edit} />
                         <ErrorMessage name="emergencyContact.address.postcode" />
+                        <br />
+                        
+                        <label htmlFor="medicalDetails">Medical Details</label>
+                        <ErrorMessage name="medicalDetails" />
+                        <br />
+                        <Field name="medicalDetails" as="textarea" />
                         <br />
 
                         {
