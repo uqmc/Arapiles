@@ -9,6 +9,9 @@ const SideNav = () => {
     //      navigated to from the dropdown directly. This will do for now.
     const [dropdownOne, setDropdownOne] = useState(localStorage.getItem("dd-one") === "true");
 
+    //TODO: Handle intra-page states by making pages members of layouts instead of the other
+    //      way around. Use this plugin: https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/
+
     useEffect(() => {
         localStorage.setItem("dd-one", dropdownOne);
     }, [dropdownOne]);
