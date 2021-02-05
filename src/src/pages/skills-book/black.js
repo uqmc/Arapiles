@@ -18,6 +18,7 @@ const BlackTapePage = () => {
 
     const htmlContent = data ? marked(data.content) : undefined;
 
+    localStorage.setItem("dd-one", "true")
     localStorage.setItem("pg-open", "black-tape");
 
     if(!htmlContent) {

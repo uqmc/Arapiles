@@ -18,6 +18,7 @@ const GreenTapePage = () => {
 
     const htmlContent = data ? marked(data.content) : undefined;
 
+    localStorage.setItem("dd-one", "true")
     localStorage.setItem("pg-open", "green-tape");
 
     if(!htmlContent) {

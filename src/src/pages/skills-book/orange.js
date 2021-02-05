@@ -18,6 +18,7 @@ const OrangeTapePage = () => {
 
     const htmlContent = data ? marked(data.content) : undefined;
 
+    localStorage.setItem("dd-one", "true")
     localStorage.setItem("pg-open", "orange-tape");
 
     if(!htmlContent) {
