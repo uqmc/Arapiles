@@ -18,6 +18,8 @@ const YellowTapePage = () => {
 
     const htmlContent = data ? marked(data.content) : undefined;
 
+    localStorage.setItem("pg-open", "yellow-tape");
+
     if(!htmlContent) {
         return(
             <PrimaryLayout>Loading...</PrimaryLayout>
@@ -25,7 +27,8 @@ const YellowTapePage = () => {
     } else {
         return(
             <PrimaryLayout>
-                <h1>Yellow tape</h1>
+                <h1>Yellow Tape</h1>
+                <div className="head-divider"></div>
                 <div
                     dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />

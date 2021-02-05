@@ -18,6 +18,8 @@ const OrangeTapePage = () => {
 
     const htmlContent = data ? marked(data.content) : undefined;
 
+    localStorage.setItem("pg-open", "orange-tape");
+
     if(!htmlContent) {
         return(
           <PrimaryLayout>Loading...</PrimaryLayout>

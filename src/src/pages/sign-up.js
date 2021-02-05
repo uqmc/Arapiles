@@ -13,6 +13,8 @@ const SIGN_UP = () => {
         navigate("/profile");   
     }
 
+    localStorage.setItem("pg-open", "signup");
+
     return (
         <PrimaryLayout>
         	<h1>Sign Up</h1>

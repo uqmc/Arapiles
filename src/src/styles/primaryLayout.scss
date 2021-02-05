@@ -1,0 +1,131 @@
+*, *:before, *:after {
+  box-sizing: border-box; 
+}
+
+:root {
+  --sidebar-width: 250px;
+  --border-width: 0.75rem;
+  --dots-gap: 10px;
+  --brand-container-height: calc(--sidebar-width * 0.4px);
+}
+
+.bg {
+  min-height: 100vh;
+  padding: var(--border-width);
+}
+
+.bg:after {
+  content: "";
+  border: var(--border-width) solid var(--egg-shell);
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 12;
+  pointer-events: none;
+}
+
+.App {
+  width: 100vw;
+  height: 100%;
+  z-index: -1;
+  background-color: var(--purple-brown);
+}
+
+/*
+Navigation sidebar
+*/
+.side-nav {
+  position: fixed;
+  width: var(--sidebar-width);
+  height: 100vh;
+  top: 0;
+  
+  padding-left: 1em;
+  padding-top: 2em;
+  padding-right: 1em;
+  
+  background: var(--purple-brown);
+}
+
+.nav-item-open {
+  color: var(--egg-shell) !important;
+}
+
+.dots:before,
+.dots:after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--sidebar-width) + var(--border-width));
+  height: 100vh;
+  opacity: .5;
+  z-index: 11;
+  background-image: linear-gradient(var(--egg-shell) 20%,transparent 0);
+  background-size: 100% var(--dots-gap);
+  background-position: 0 0;
+  animation: movebg .2s linear infinite;
+  width: 2px;
+}
+
+@keyframes movebg {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, var(--dots-gap), 0);
+  }
+}
+
+.brand-container {
+  width: 100%;
+  height: 70px;
+}
+
+.brand-image {
+  width: 100%;
+  height: 100%;
+}
+
+/*
+Page content wrapping children
+*/
+.page-content {
+  /* Set margin-left to make way for sidebar */
+  margin-left: calc(var(--sidebar-width) + 15px);
+  
+  padding-top: 1rem;
+  padding-left: 0.25rem;
+  padding-right: 1rem;
+  color: var(--egg-shell); // Body content font folour
+
+  p, h1, h2, h3, h4, li {
+    font-family: 'Trocchi', serif;
+  }
+
+  h1, h2 {
+    color: var(--dark-peach);
+  }
+
+  h1 {
+    font-size: 3em;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1.3em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+}
+
+.head-divider {
+  width: 100%;
+  height: 1px;
+  background-color: white;
+}

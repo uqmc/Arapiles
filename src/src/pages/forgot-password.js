@@ -13,6 +13,8 @@ const FORGOT_PASSWORD = () => {
         navigate("/profile");   
     }
 
+    localStorage.setItem("pg-open", "forgot-password");
+
     return (
         <PrimaryLayout>
         	<h1>Forgot Password</h1>

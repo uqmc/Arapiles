@@ -18,30 +18,33 @@ const SideNav = () => {
     };
     
     const dropMenuOne = <>
-        <ul id="drop-1">
-            <li><Link to="/skills-book">Start Here</Link></li>
-            <li><Link to="/skills-book/yellow">Yellow</Link></li>
-            <li><Link to="/skills-book/blue">Blue</Link></li>
-            <li><Link to="/skills-book/green">Green</Link></li>
-            <li><Link to="/skills-book/red">Red</Link></li>
-            <li><Link to="/skills-book/orange">Orange</Link></li>
-            <li><Link to="/skills-book/black">Black</Link></li>
-            <li><Link to="/skills-book/white">White</Link></li>
+        <ul className="sidenav-buttons" id="drop-1">
+            <li className="sidenav-button"><Link to="/skills-book" className={localStorage.getItem("pg-open") === "skills-home" ? "nav-item-open" : ""}>Start Here</Link></li>
+            <li className="sidenav-button"><Link to="/skills-book/yellow" className={localStorage.getItem("pg-open") === "yellow-tape" ? "nav-item-open" : ""}>Yellow</Link></li>
+            <li className="sidenav-button"><Link to="/skills-book/blue" className={localStorage.getItem("pg-open") === "blue-tape" ? "nav-item-open" : ""}>Blue</Link></li>
+            <li className="sidenav-button"><Link to="/skills-book/green" className={localStorage.getItem("pg-open") === "green-tape" ? "nav-item-open" : ""}>Green</Link></li>
+            <li className="sidenav-button"><Link to="/skills-book/red" className={localStorage.getItem("pg-open") === "red-tape" ? "nav-item-open" : ""}>Red</Link></li>
+            <li className="sidenav-button"><Link to="/skills-book/orange" className={localStorage.getItem("pg-open") === "orange-tape" ? "nav-item-open" : ""}>Orange</Link></li>
+            <li className="sidenav-button"><Link to="/skills-book/black" className={localStorage.getItem("pg-open") === "black-tape" ? "nav-item-open" : ""}>Black</Link></li>
+            <li className="sidenav-button"><Link to="/skills-book/white" className={localStorage.getItem("pg-open") === "white-tape" ? "nav-item-open" : ""}>White</Link></li>
         </ul>
     </>
 
     return(
         <div className="side-nav">
-            <header>UQMC</header>
-            <ul>
-                <li><Link to="/home">Home</Link></li>
-                <li><Link to="/the-team">The Team</Link></li>
-                <li><Link to="/faq">FAQ</Link></li>
-                <li onClick={toggleDropdownOne}><a href="#!">Skills Book {dropdownOne ? <i className="fas fa-angle-down"></i> : <i className="fas fa-angle-right"></i>}</a></li>
+            <div className="brand-container">
+                <img alt="UQMC Logo" className="brand-image" src="https://uqmc-assets.s3.nl-ams.scw.cloud/uqmc_fully_transparent_white.png"></img>
+            </div>
+            <ul className="sidenav-buttons">
+                <li className="sidenav-button"><Link to="/home" className={localStorage.getItem("pg-open") === "home" ? "nav-item-open" : ""}>Home</Link></li>
+                <li className="sidenav-button"><Link to="/the-team" className={localStorage.getItem("pg-open") === "the-team" ? "nav-item-open" : ""}>The Team</Link></li>
+                <li className="sidenav-button"><Link to="/faq" className={localStorage.getItem("pg-open") === "faq" ? "nav-item-open" : ""}>FAQ</Link></li>
+                <li className="sidenav-button" onClick={toggleDropdownOne}><a href="#!">Skills Book {dropdownOne ? <i className="fas fa-angle-down"></i> : <i className="fas fa-angle-right"></i>}</a></li>
                 {dropdownOne ? dropMenuOne : null}
-                <li><Link to="/blog">Blog</Link></li>
-                <li><Link to="/">Landing Page</Link></li>
+                <li className="sidenav-button"><Link to="/blog" className={localStorage.getItem("pg-open") === "blog" ? "nav-item-open" : ""}>Blog</Link></li>
+                <li className="sidenav-button"><Link to="/">Landing Page</Link></li>
             </ul>
+            <div className="dots"></div>
         </div>
     )
 }
