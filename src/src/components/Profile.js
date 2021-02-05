@@ -11,6 +11,7 @@ import Select from "../components/Select";
 import { userService } from "../services/user.js"
 
 import ResetPassword from "../components/ResetPassword";
+import Tapes from "../components/Tapes";
 
 //Basic User profile component
 class Profile extends React.Component {
@@ -278,6 +279,7 @@ class Profile extends React.Component {
                         </Form>
                     )}
                     </Formik>
+                    <Tapes />
                 </MuiPickersUtilsProvider>
             }</>)
     }
