@@ -9,6 +9,8 @@ import { authenticationService } from "../services/authentication.js"
 
 //Simple Login page
 const LOGIN = () => {
+    localStorage.setItem("pg-open", "login");
+
     if (authenticationService.isLoggedIn()) {
         navigate("/profile");   
     }

@@ -23,6 +23,8 @@ const FAQ = () => {
     getFaqData();
   }, []);
 
+  localStorage.setItem("pg-open", "faq");
+
   if (!data) {
     return (
       <PrimaryLayout>
@@ -32,11 +34,13 @@ const FAQ = () => {
   } else {
     return(
       <PrimaryLayout> 
+        <h1>FAQs</h1>
+        <div className="head-divider"></div>
         {
           data.map((faq) => {
             return(
               <>
-                <h1>{faq.question}</h1>
+                <h2>{faq.question}</h2>
                 <p>{faq.answer}</p>
               </>
             )

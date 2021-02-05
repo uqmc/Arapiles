@@ -18,6 +18,12 @@ module.exports = {
     */
     `gatsby-plugin-use-query-params`,
 
+    /* Support for React Helmet, which lets you
+       edit the head element for a given page with a
+       Helmet component.
+    */
+    `gatsby-plugin-react-helmet`,
+
     /* File system object for data sourcing
        from files with GraphQL.
        Image content

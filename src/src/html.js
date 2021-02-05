@@ -13,7 +13,7 @@ export default function HTML(props) {
         />
         {props.headComponents}
 
-        <script src="https://kit.fontawesome.com/6e5475fe59.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/6e5475fe59.js" crossOrigin="anonymous"></script>
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}

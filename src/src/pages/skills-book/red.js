@@ -18,6 +18,9 @@ const RedTapePage = () => {
 
     const htmlContent = data ? marked(data.content) : undefined;
 
+    localStorage.setItem("dd-one", "true")
+    localStorage.setItem("pg-open", "red-tape");
+
     if(!htmlContent) {
         return(
             <PrimaryLayout>Loading...</PrimaryLayout>

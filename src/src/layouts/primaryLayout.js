@@ -1,18 +1,21 @@
-import React, { useState } from "react"
+import React from "react"
 
 import SideNav from "../components/SideNav"
 
-import "./primaryLayout.scss";
-import "../pages/nav-button.scss"
+import "../styles/primaryLayout.scss";
+import "../styles/nav-button.scss"
 
 const PrimaryLayout = ({ children }) =>  {
+
   return (
     <div className="App">
-      <SideNav />
+      <div className="bg">
+        <SideNav />
 
-      <main>
-        {children}
-      </main>
+        <main className="page-content">
+          {children}
+        </main>
+      </div>
     </div>
   )
 };

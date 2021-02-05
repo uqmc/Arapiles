@@ -18,6 +18,9 @@ const WhiteTapePage = () => {
 
     const htmlContent = data ? marked(data.content) : undefined;
 
+    localStorage.setItem("dd-one", "true")
+    localStorage.setItem("pg-open", "white-tape");
+
     if(!htmlContent) {
         return(
             <PrimaryLayout>Loading...</PrimaryLayout>

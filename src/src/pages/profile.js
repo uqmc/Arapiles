@@ -38,6 +38,8 @@ const PROFILE = () => {
         getProfileData();
     }, []);
 
+    localStorage.setItem("pg-open", "profile");
+
     return (
         <PrimaryLayout>
             { render() }
