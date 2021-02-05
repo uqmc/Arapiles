@@ -10,6 +10,8 @@ import Select from "../components/Select";
 
 import { userService } from "../services/user.js"
 
+import ResetPassword from "../components/ResetPassword";
+
 //Basic User profile component
 class Profile extends React.Component {
 
@@ -19,6 +21,7 @@ class Profile extends React.Component {
         this.state = {
             success: false,
             edit: false,
+            passwordEdit: false,
             roles: []
         }
     }
@@ -125,142 +128,158 @@ class Profile extends React.Component {
 
     //Simple Form with email and submit button
     render() {
-        return (
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Formik
-                    initialValues = {this.props.data}
-                    validationSchema={this.validationSchema}
-                    onSubmit={this.handleSubmit}
-                >
-                {(formProps) => (
-                    <Form>
-                        <Button
-                            className="btn draw-border"
-                            disabled={formProps.isSubmitting}
-                            onClick={() => {
-                                this.setState({edit: !this.state.edit});
-                                formProps.errors.general = "";
-                            }}
-                        >
-                            {this.state.edit ? "Cancel" : "Edit"}
-                        </Button>
-                        <br />
-
-                        {
-                            this.props.id &&
-                            <>
-                                <label htmlFor="role">Role</label>
-                                <Select name="role" disabled={!this.state.edit} options={this.state.roles} />
-                                <ErrorMessage name="role" />
-                                <br />
-                            </>
-                        }
-
-                        <label htmlFor="nameFirst">First Name</label>
-                        <Field name="nameFirst" disabled={!this.state.edit} />
-                        <ErrorMessage name="nameFirst" />
-                        <br />
-
-                        <label htmlFor="nameLast">Last Name</label>
-                        <Field name="nameLast" disabled={!this.state.edit} />
-                        <ErrorMessage name="nameLast" />
-                        <br />
-
-                        <label htmlFor="sex">Sex</label>
-                        <Select name="sex" options={userService.sexes} disabled={!this.state.edit} />
-                        <ErrorMessage name="sex" />
-                        <br />
-
-                        {/*TODO: Change to PhoneInput*/}
-                        <label htmlFor="phoneNumber.number">Phone Number</label>
-                        <Field name="phoneNumber.number" disabled={!this.state.edit} />
-                        <ErrorMessage name="phoneNumber.number" />
-
-                        <label htmlFor="phoneNumber.type">Type</label>
-                        <Select name="phoneNumber.type" options={userService.phoneTypes} disabled={!this.state.edit} />                        
-                        <ErrorMessage name="phoneNumber.type" />
-                        <br />
-
-                        <label htmlFor="dateOfBirth">Date of Birth</label>
-                        <Field name="dateOfBirth" component={DatePicker} disabled={!this.state.edit} />
-                        <ErrorMessage name="dateOfBirth" />
-                        <br />
-
-                        {/* TODO: Look into google places API */}
-                        <label htmlFor="address.streetAddress">Address</label>
-                        <Field name="address.streetAddress" disabled={!this.state.edit} />
-                        <ErrorMessage name="address.streetAddress" />
-                        <br />
-
-                        <label htmlFor="address.postcode">Postcode</label>
-                        <Field name="address.postcode" disabled={!this.state.edit} />
-                        <ErrorMessage name="address.postcode" />
-                        <br />
-
-                        <label htmlFor="studentStatus">Student Status</label>
-                        <Select name="studentStatus" options={userService.studentStatuses} disabled={!this.state.edit} />
-                        <ErrorMessage name="studentStatus" />
-                        <br />
-
-                        {/*TODO: number?*/}
-                        <label htmlFor="studentNumber">Student Number</label>
-                        <Field name="studentNumber" disabled={!this.state.edit} />
-                        <ErrorMessage name="studentNumber" />
-                        <br />
-
-                        {/*TODO: Section "Emergency Contact"*/}
-                        <label htmlFor="emergencyContact.name">Contact Name</label>
-                        <Field name="emergencyContact.name" disabled={!this.state.edit} />
-                        <ErrorMessage name="emergencyContact.name" />
-                        <br />
-                        
-                        {/*TODO: Change to PhoneInput*/}
-                        <label htmlFor="emergencyContact.phoneNumber.number">Phone Number</label>
-                        <Field name="emergencyContact.phoneNumber.number" disabled={!this.state.edit} />
-                        <ErrorMessage name="emergencyContact.phoneNumber.number" />
-
-                        <label htmlFor="emergencyContact.phoneNumber.type">Type</label>
-                        <Select name="emergencyContact.phoneNumber.type" options={userService.phoneTypes} disabled={!this.state.edit} /> 
-                        <ErrorMessage name="emergencyContact.phoneNumber.type" />
-                        <br />
-
-                        {/* TODO: Look into google places API */}
-                        <label htmlFor="emergencyContact.address.streetAddress">Address</label>
-                        <Field name="emergencyContact.address.streetAddress" disabled={!this.state.edit} />
-                        <ErrorMessage name="emergencyContact.address.streetAddress" />
-                        <br />
-
-                        <label htmlFor="emergencyContact.address.postcode">Postcode</label>
-                        <Field name="emergencyContact.address.postcode" disabled={!this.state.edit} />
-                        <ErrorMessage name="emergencyContact.address.postcode" />
-                        <br />
-                        
-                        <label htmlFor="medicalDetails">Medical Details</label>
-                        <ErrorMessage name="medicalDetails" />
-                        <br />
-                        <Field name="medicalDetails" as="textarea" />
-                        <br />
-
-                        {
-                            this.state.success
-                            ? <span style={{color: "green"}}>Your details have been updated.</span>
-                            : !formProps.isSubmitting && <span style={{color: "red"}}>{formProps.errors.general}</span>
-                        }
-                        <br/>
-                        { this.state.edit &&
+        return (<>
+            <Button
+                className="btn draw-border"
+                onClick={()=>{
+                    this.setState({passwordEdit: !this.state.passwordEdit});
+                }}
+            >
+                {this.state.passwordEdit ? "Back" : "Change Password"}
+            </Button>
+            {
+                this.state.passwordEdit
+                ?
+                <>
+                    <br />
+                    <ResetPassword />
+                </>
+                :
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <Formik
+                        initialValues = {this.props.data}
+                        validationSchema={this.validationSchema}
+                        onSubmit={this.handleSubmit}
+                    >
+                    {(formProps) => (
+                        <Form>
                             <Button
                                 className="btn draw-border"
                                 disabled={formProps.isSubmitting}
-                                onClick={formProps.handleSubmit}
+                                onClick={() => {
+                                    this.setState({edit: !this.state.edit});
+                                    formProps.errors.general = "";
+                                }}
                             >
-                                Update   
+                                {this.state.edit ? "Cancel" : "Edit"}
                             </Button>
-                        }
-                    </Form>
-                )}
-                </Formik>
-            </MuiPickersUtilsProvider>
-        )
+                            <br />
+
+                            {
+                                this.props.id &&
+                                <>
+                                    <label htmlFor="role">Role</label>
+                                    <Select name="role" disabled={!this.state.edit} options={this.state.roles} />
+                                    <ErrorMessage name="role" />
+                                    <br />
+                                </>
+                            }
+
+                            <label htmlFor="nameFirst">First Name</label>
+                            <Field name="nameFirst" disabled={!this.state.edit} />
+                            <ErrorMessage name="nameFirst" />
+                            <br />
+
+                            <label htmlFor="nameLast">Last Name</label>
+                            <Field name="nameLast" disabled={!this.state.edit} />
+                            <ErrorMessage name="nameLast" />
+                            <br />
+
+                            <label htmlFor="sex">Sex</label>
+                            <Select name="sex" options={userService.sexes} disabled={!this.state.edit} />
+                            <ErrorMessage name="sex" />
+                            <br />
+
+                            {/*TODO: Change to PhoneInput*/}
+                            <label htmlFor="phoneNumber.number">Phone Number</label>
+                            <Field name="phoneNumber.number" disabled={!this.state.edit} />
+                            <ErrorMessage name="phoneNumber.number" />
+
+                            <label htmlFor="phoneNumber.type">Type</label>
+                            <Select name="phoneNumber.type" options={userService.phoneTypes} disabled={!this.state.edit} />                        
+                            <ErrorMessage name="phoneNumber.type" />
+                            <br />
+
+                            <label htmlFor="dateOfBirth">Date of Birth</label>
+                            <Field name="dateOfBirth" component={DatePicker} disabled={!this.state.edit} />
+                            <ErrorMessage name="dateOfBirth" />
+                            <br />
+
+                            {/* TODO: Look into google places API */}
+                            <label htmlFor="address.streetAddress">Address</label>
+                            <Field name="address.streetAddress" disabled={!this.state.edit} />
+                            <ErrorMessage name="address.streetAddress" />
+                            <br />
+
+                            <label htmlFor="address.postcode">Postcode</label>
+                            <Field name="address.postcode" disabled={!this.state.edit} />
+                            <ErrorMessage name="address.postcode" />
+                            <br />
+
+                            <label htmlFor="studentStatus">Student Status</label>
+                            <Select name="studentStatus" options={userService.studentStatuses} disabled={!this.state.edit} />
+                            <ErrorMessage name="studentStatus" />
+                            <br />
+
+                            {/*TODO: number?*/}
+                            <label htmlFor="studentNumber">Student Number</label>
+                            <Field name="studentNumber" disabled={!this.state.edit} />
+                            <ErrorMessage name="studentNumber" />
+                            <br />
+
+                            {/*TODO: Section "Emergency Contact"*/}
+                            <label htmlFor="emergencyContact.name">Contact Name</label>
+                            <Field name="emergencyContact.name" disabled={!this.state.edit} />
+                            <ErrorMessage name="emergencyContact.name" />
+                            <br />
+                            
+                            {/*TODO: Change to PhoneInput*/}
+                            <label htmlFor="emergencyContact.phoneNumber.number">Phone Number</label>
+                            <Field name="emergencyContact.phoneNumber.number" disabled={!this.state.edit} />
+                            <ErrorMessage name="emergencyContact.phoneNumber.number" />
+
+                            <label htmlFor="emergencyContact.phoneNumber.type">Type</label>
+                            <Select name="emergencyContact.phoneNumber.type" options={userService.phoneTypes} disabled={!this.state.edit} /> 
+                            <ErrorMessage name="emergencyContact.phoneNumber.type" />
+                            <br />
+
+                            {/* TODO: Look into google places API */}
+                            <label htmlFor="emergencyContact.address.streetAddress">Address</label>
+                            <Field name="emergencyContact.address.streetAddress" disabled={!this.state.edit} />
+                            <ErrorMessage name="emergencyContact.address.streetAddress" />
+                            <br />
+
+                            <label htmlFor="emergencyContact.address.postcode">Postcode</label>
+                            <Field name="emergencyContact.address.postcode" disabled={!this.state.edit} />
+                            <ErrorMessage name="emergencyContact.address.postcode" />
+                            <br />
+                            
+                            <label htmlFor="medicalDetails">Medical Details</label>
+                            <ErrorMessage name="medicalDetails" />
+                            <br />
+                            <Field name="medicalDetails" as="textarea" />
+                            <br />
+
+                            {
+                                this.state.success
+                                ? <span style={{color: "green"}}>Your details have been updated.</span>
+                                : !formProps.isSubmitting && <span style={{color: "red"}}>{formProps.errors.general}</span>
+                            }
+                            <br/>
+                            { this.state.edit &&
+                                <Button
+                                    className="btn draw-border"
+                                    disabled={formProps.isSubmitting}
+                                    onClick={formProps.handleSubmit}
+                                >
+                                    Update   
+                                </Button>
+                            }
+                        </Form>
+                    )}
+                    </Formik>
+                </MuiPickersUtilsProvider>
+            }</>)
     }
 }
 
