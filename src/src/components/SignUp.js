@@ -129,7 +129,6 @@ class SignUp extends React.Component {
     //Function to handle login form submission
     handleSubmit = async (data, actions) => {
         //Attempt to register a new user
-        //TODO: Add user details when registering
         const response = await authenticationService.register(data);
 
         //Check register request was successful 
