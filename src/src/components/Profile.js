@@ -279,7 +279,8 @@ class Profile extends React.Component {
                         </Form>
                     )}
                     </Formik>
-                    <Tapes />
+                    <h2>Tapes</h2>
+                    <Tapes tapes={this.props.data.tapes} id={this.props.id} />
                 </MuiPickersUtilsProvider>
             }</>)
     }
