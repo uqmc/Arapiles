@@ -2,52 +2,42 @@ import React from "react"
 
 import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
-import { Button, LinearProgress } from '@material-ui/core';
-import { DatePicker } from 'formik-material-ui-pickers';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+import { Button, LinearProgress } from "@material-ui/core";
+import { DatePicker } from "formik-material-ui-pickers";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
+import Select from "../components/Select";
 
 //navigate used to redirect
 import { navigate } from "gatsby"
 
+import axios from "axios"
+
 //Authentication services for logging in
 import { authenticationService } from "../services/authentication.js"
 
+//
+import { userService } from "../services/user.js";
+
 //Basic Sign Up component
 class SignUp extends React.Component {
-
-    sexes = [
-        {label: "Male", value: "Male"},
-        {label: "Female", value: "Female"},
-        {label: "Not Stated", value: "Not_Stated"}
-    ]; 
-
-    phoneTypes = [
-        {label: "Mobile", value: "Mobile"},
-        {label: "Home", value: "Home"},
-        {label: "Work", value: "Work"}
-    ];
-
-    studentStatuses = [
-        {label: "Not UQ", value: "Not_UQ"},
-        {label: "Domestic", value: "Domestic"},
-        {label: "International", value: "International"},
-        {label: "Exchange", value: "Exchange"},
-        {label: "Staff", value: "Staff"}
-    ];
 
     constructor(props) {
         super(props);
 
         this.state = {
+            waiver: "Loading...",
+            membership: "Loading...",
             registered: false
         }
     }
 
-    mapOptions = (options) => {
-        return options.map(option => {
-            return <option value={option.value}>{option.label}</option>
-        })
+    async componentDidMount() {
+        const waiver = await axios.get(process.env.GATSBY_CMS_HOST  + "/liability-waiver");
+        this.setState({waiver: waiver['data']['content']});
+
+        const membership = await axios.get(process.env.GATSBY_CMS_HOST  + "/membership-agreement");
+        this.setState({membership: membership['data']['content']});
     }
 
     validationSchema = Yup.object().shape({
@@ -126,6 +116,8 @@ class SignUp extends React.Component {
             })
         }),
 
+        medicalDetails: Yup.string(),
+
         agreedLiabilityWaiver: Yup.boolean()
             .required("You must agree to the Liability Waiver"),
 
@@ -180,10 +172,7 @@ class SignUp extends React.Component {
                         <br />
 
                         <label htmlFor="sex">Sex</label>
-                        <Field name="sex" as="select">
-                            <option defaultValue>Please Select...</option>
-                            { this.mapOptions(this.sexes) }
-                        </Field>
+                        <Select name="sex" options={userService.sexes} />
                         <ErrorMessage name="sex" />
                         <br />
 
@@ -208,10 +197,7 @@ class SignUp extends React.Component {
                         <ErrorMessage name="phoneNumber.number" />
 
                         <label htmlFor="phoneNumber.type">Type</label>
-                        <Field name="phoneNumber.type" as="select">                        
-                            <option defaultValue>Please Select...</option>
-                            { this.mapOptions(this.phoneTypes) }
-                        </Field>
+                        <Select name="phoneNumber.type" options={userService.phoneTypes} />                        
                         <ErrorMessage name="phoneNumber.type" />
                         <br />
 
@@ -232,10 +218,7 @@ class SignUp extends React.Component {
                         <br />
 
                         <label htmlFor="studentStatus">Student Status</label>
-                        <Field name="studentStatus" as="select">
-                            <option defaultValue>Please Select...</option>
-                            { this.mapOptions(this.studentStatuses) }
-                        </Field>
+                        <Select name="studentStatus" options={userService.studentStatuses} />
                         <ErrorMessage name="studentStatus" />
                         <br />
 
@@ -257,10 +240,7 @@ class SignUp extends React.Component {
                         <ErrorMessage name="emergencyContact.phoneNumber.number" />
 
                         <label htmlFor="emergencyContact.phoneNumber.type">Type</label>
-                        <Field name="emergencyContact.phoneNumber.type" as="select">                        
-                            <option defaultValue>Please Select...</option>
-                            { this.mapOptions(this.phoneTypes) }
-                        </Field>
+                        <Select name="emergencyContact.phoneNumber.type" options={userService.phoneTypes} /> 
                         <ErrorMessage name="emergencyContact.phoneNumber.type" />
                         <br />
 
@@ -274,12 +254,18 @@ class SignUp extends React.Component {
                         <Field name="emergencyContact.address.postcode" />
                         <ErrorMessage name="emergencyContact.address.postcode" />
                         <br />
+
+                        <label htmlFor="medicalDetails">Medical Details</label>
+                        <ErrorMessage name="medicalDetails" />
+                        <br />
+                        <Field name="medicalDetails" as="textarea" />
+                        <br />
+
                         {/*TODO: Section "Membership"*/}
 
-                        {/*TODO: Get Waiver and Membership agreement from CMS*/}
                         <label htmlFor="agreedLiabilityWaiver">Liability Waiver</label>
                         <div>
-                            Waiver Lorem ipsum
+                            { this.state.waiver }
                         </div>
                         <Field name="agreedLiabilityWaiver" type="checkbox" />
                         <ErrorMessage name="agreedLiabilityWaiver" />
@@ -287,7 +273,7 @@ class SignUp extends React.Component {
 
                         <label htmlFor="agreedMembershipContract">Membership agreement</label>
                         <div>
-                            Membership Lorem ipsum
+                            { this.state.membership }
                         </div>
                         <Field name="agreedMembershipContract" type="checkbox" />
                         <ErrorMessage name="agreedMembershipContract" />
