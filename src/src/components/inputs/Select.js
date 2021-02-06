@@ -5,10 +5,6 @@ import { Field } from "formik"
 //Basic Select Componnet
 class Select extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     //Simple Form with email and submit button
     render() {
         return (

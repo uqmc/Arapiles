@@ -15,10 +15,6 @@ import { authenticationService } from "../services/authentication.js"
 //Based off of: https://www.gatsbyjs.com/tutorial/authentication-tutorial/
 class Login extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     validationSchema = Yup.object().shape({
         identifier: Yup.string()
             .required("Required"),
