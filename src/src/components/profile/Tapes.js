@@ -4,7 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import { Button } from '@material-ui/core';
 
-import { userService } from "../services/user.js"
+import { userService } from "../../services/user.js"
 
 //Basic Tapes component
 class Tapes extends React.Component {
@@ -37,9 +37,7 @@ class Tapes extends React.Component {
     
     validationSchema = Yup.object().shape(this.tapeValidation);
 
-    //Function to handle forgot password form submission
     handleSubmit = async (data, actions) => {
-        //Attempt to send reset password email
         const response = await userService.update(this.props.id, {tapes: data});
 
         //Check if request was successful
