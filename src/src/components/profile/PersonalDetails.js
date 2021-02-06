@@ -7,7 +7,8 @@ import { DatePicker } from "formik-material-ui-pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import Select from "../inputs/Select";
-import Phone from "../inputs/Phone"
+import Phone from "../inputs/Phone";
+import Address from "../inputs/Address";
 
 import ResetPassword from "../ResetPassword";
 import { userService } from "../../services/user.js"
@@ -92,93 +93,86 @@ class PersonalDetails extends React.Component {
     render() {
         return (
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-               <Formik
-                   initialValues = {this.props.data}
-                   validationSchema={this.validationSchema}
-                   onSubmit={this.handleSubmit}
-               >
-               {(formProps) => (
-                   <Form>
-                       <Button
-                           className="btn draw-border"
-                           disabled={formProps.isSubmitting}
-                           onClick={() => {
-                               this.setState({edit: !this.state.edit});
-                               formProps.errors.general = "";
-                           }}
-                       >
-                           {this.state.edit ? "Cancel" : "Edit"}
-                       </Button>
-                       <br />
-
-                       <label htmlFor="nameFirst">First Name</label>
-                       <Field name="nameFirst" disabled={!this.state.edit} />
-                       <ErrorMessage name="nameFirst" />
-                       <br />
-
-                       <label htmlFor="nameLast">Last Name</label>
-                       <Field name="nameLast" disabled={!this.state.edit} />
-                       <ErrorMessage name="nameLast" />
-                       <br />
-
-                       <label htmlFor="dateOfBirth">Date of Birth</label>
-                       <Field name="dateOfBirth" component={DatePicker} disabled={!this.state.edit} />
-                       <ErrorMessage name="dateOfBirth" />
-                       <br />
-
-                       <label htmlFor="sex">Sex</label>
-                       <Select name="sex" options={userService.sexes} disabled={!this.state.edit} />
-                       <ErrorMessage name="sex" />
-                       <br />
-
-                       <Phone name="phoneNumber" label="Phone Number" disabled={!this.state.edit} />
-
-                       {/* TODO: Look into google places API */}
-                       <label htmlFor="address.streetAddress">Address</label>
-                       <Field name="address.streetAddress" disabled={!this.state.edit} />
-                       <ErrorMessage name="address.streetAddress" />
-                       <br />
-
-                       <label htmlFor="address.postcode">Postcode</label>
-                       <Field name="address.postcode" disabled={!this.state.edit} />
-                       <ErrorMessage name="address.postcode" />
-                       <br />
-
-                       <label htmlFor="studentStatus">Student Status</label>
-                       <Select name="studentStatus" options={userService.studentStatuses} disabled={!this.state.edit} />
-                       <ErrorMessage name="studentStatus" />
-                       <br />
-
-                       {/*TODO: number?*/}
-                       <label htmlFor="studentNumber">Student Number</label>
-                       <Field name="studentNumber" disabled={!this.state.edit} />
-                       <ErrorMessage name="studentNumber" />
-                       <br />
-
-                       <label htmlFor="medicalDetails">Medical Details</label>
-                       <ErrorMessage name="medicalDetails" />
-                       <br />
-                       <Field name="medicalDetails" as="textarea" disabled={!this.state.edit} />
-                       <br />
-           
-                       {
-                           this.state.success
-                           ? <span style={{color: "green"}}>Your details have been updated.</span>
-                           : !formProps.isSubmitting && <span style={{color: "red"}}>{formProps.errors.general}</span>
-                       }
-                       <br/>
-                       { this.state.edit &&
-                           <Button
-                               className="btn draw-border"
-                               disabled={formProps.isSubmitting}
-                               onClick={formProps.handleSubmit}
-                           >
-                               Update   
-                           </Button>
-                       }
-                   </Form>
-               )}
-               </Formik> 
+                <Formik
+                    initialValues = {this.props.data}
+                    validationSchema={this.validationSchema}
+                    onSubmit={this.handleSubmit}
+                >
+                {(formProps) => (
+                    <Form>
+                        <Button
+                            className="btn draw-border"
+                            disabled={formProps.isSubmitting}
+                            onClick={() => {
+                                this.setState({edit: !this.state.edit});
+                                formProps.errors.general = "";
+                            }}
+                        >
+                            {this.state.edit ? "Cancel" : "Edit"}
+                        </Button>
+                        <br />
+ 
+                        <label htmlFor="nameFirst">First Name</label>
+                        <Field name="nameFirst" disabled={!this.state.edit} />
+                        <ErrorMessage name="nameFirst" />
+                        <br />
+ 
+                        <label htmlFor="nameLast">Last Name</label>
+                        <Field name="nameLast" disabled={!this.state.edit} />
+                        <ErrorMessage name="nameLast" />
+                        <br />
+ 
+                        <label htmlFor="dateOfBirth">Date of Birth</label>
+                        <Field name="dateOfBirth" component={DatePicker} disabled={!this.state.edit} />
+                        <ErrorMessage name="dateOfBirth" />
+                        <br />
+ 
+                        <label htmlFor="sex">Sex</label>
+                        <Select name="sex" options={userService.sexes} disabled={!this.state.edit} />
+                        <ErrorMessage name="sex" />
+                        <br />
+ 
+                        <Phone name="phoneNumber" disabled={!this.state.edit} />
+ 
+                        {/* TODO: Look into google places API */}
+ 
+                        <Address name="address" disabled={!this.state.edit} />
+ 
+                        <label htmlFor="studentStatus">Student Status</label>
+                        <Select name="studentStatus" options={userService.studentStatuses} disabled={!this.state.edit} />
+                        <ErrorMessage name="studentStatus" />
+                        <br />
+ 
+                        {/*TODO: number?*/}
+                        <label htmlFor="studentNumber">Student Number</label>
+                        <Field name="studentNumber" disabled={!this.state.edit} />
+                        <ErrorMessage name="studentNumber" />
+                        <br />
+ 
+                        <label htmlFor="medicalDetails">Medical Details</label>
+                        <ErrorMessage name="medicalDetails" />
+                        <br />
+                        <Field name="medicalDetails" as="textarea" disabled={!this.state.edit} />
+                        <br />
+            
+                        {
+                            this.state.success
+                            ? <span style={{color: "green"}}>Your details have been updated.</span>
+                            : !formProps.isSubmitting && <span style={{color: "red"}}>{formProps.errors.general}</span>
+                        }
+                        <br/>
+                        { this.state.edit &&
+                            <Button
+                                className="btn draw-border"
+                                disabled={formProps.isSubmitting}
+                                onClick={formProps.handleSubmit}
+                            >
+                                Update   
+                            </Button>
+                        }
+                    </Form>
+                )}
+                </Formik> 
             </MuiPickersUtilsProvider>
         )
     }
