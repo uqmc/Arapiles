@@ -7,8 +7,8 @@ import { DatePicker } from "formik-material-ui-pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import Select from "../inputs/Select";
-import Phone from "../inputs/Phone";
-import Address from "../inputs/Address";
+import Phone, { phoneValidation } from "../inputs/Phone";
+import Address, { addressValidation } from "../inputs/Address";
 
 import ResetPassword from "../ResetPassword";
 import { userService } from "../../services/user.js"
@@ -39,24 +39,9 @@ class PersonalDetails extends React.Component {
             .ensure()
             .required("Required"),
 
-        phoneNumber: Yup.object().shape({
-            number: Yup.string()
-                .required("Required"),
+        phoneNumber: phoneValidation,
 
-            type: Yup.string()
-                .ensure()
-                .required("Required"),
-        }),
-
-        address: Yup.object().shape({
-            streetAddress: Yup.string()
-                .required("Required"),
-
-            postcode: Yup.number()
-                .positive("Postcode must be greater than 0")
-                .integer("Postcode must be an integer")
-                .required("Required")
-        }),
+        address: addressValidation,
 
         studentStatus: Yup.string()
             .ensure()

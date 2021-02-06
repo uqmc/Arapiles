@@ -7,8 +7,8 @@ import { DatePicker } from "formik-material-ui-pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import Select from "../components/inputs/Select";
-import Phone from "../components/inputs/Phone";
-import Address from "../components/inputs/Address";
+import Phone, { phoneValidation } from "../components/inputs/Phone";
+import Address, { addressValidation } from "../components/inputs/Address";
 
 //navigate used to redirect
 import { navigate } from "gatsby"
@@ -63,27 +63,12 @@ class SignUp extends React.Component {
         password: Yup.string()
             .required("Required"),
 
-        phoneNumber: Yup.object().shape({
-            number: Yup.string()
-                .required("Required"),
-
-            type: Yup.string()
-                .ensure()
-                .required("Required"),
-        }),
+        phoneNumber: phoneValidation,
 
         dateOfBirth: Yup.date()
             .required("Required"),
 
-        address: Yup.object().shape({
-            streetAddress: Yup.string()
-                .required("Required"),
-
-            postcode: Yup.number()
-                .positive("Postcode must be greater than 0")
-                .integer("Postcode must be an integer")
-                .required("Required")
-        }),
+        address: addressValidation,
 
         studentStatus: Yup.string()
             .ensure()
@@ -98,24 +83,9 @@ class SignUp extends React.Component {
             name: Yup.string()
                 .required("Required"),
 
-            phoneNumber: Yup.object().shape({
-                number: Yup.string()
-                    .required("Required"),
+            phoneNumber: phoneValidation,
 
-                type: Yup.string()
-                    .ensure()
-                    .required("Required"),
-            }),
-
-            address: Yup.object().shape({
-                streetAddress: Yup.string()
-                    .required("Required"),
-
-                postcode: Yup.number()
-                    .positive("Postcode must be greater than 0")
-                    .integer("Postcode must be an integer")
-                    .required("Required")
-            })
+            address: addressValidation
         }),
 
         medicalDetails: Yup.string(),
@@ -224,7 +194,7 @@ class SignUp extends React.Component {
                         <ErrorMessage name="emergencyContact.name" />
                         <br />
                         
-                        <Phone name="emergenctContact.phoneNumber" />
+                        <Phone name="emergencyContact.phoneNumber" />
 
                         <Address name="emergencyContact.address" />
 
