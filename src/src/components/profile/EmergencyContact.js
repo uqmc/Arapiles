@@ -53,7 +53,9 @@ class EmergencyContact extends React.Component {
     render() {
         return (
             <Formik
-                initialValues = {this.props.data}
+                initialValues = {{
+                    emergencyContact: this.props.data.emergencyContact
+                }}
                 validationSchema={this.validationSchema}
                 onSubmit={this.handleSubmit}
             >
