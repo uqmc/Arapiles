@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Formik, Field, Form, ErrorMessage } from "formik"
+import { Formik, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import { Button } from '@material-ui/core';
 import Select from "../inputs/Select";
@@ -60,10 +60,7 @@ class AccountDetails extends React.Component {
                                 .ensure("Please select a Role.")
                                 .required("Required")
                         })}
-                        onSubmit={(data, actions) => {
-                            this.handleSubmit(data, actions);
-
-                        }}
+                        onSubmit={this.handleSubmit}
                     >
                     {(formProps) => (
                         <Form>
