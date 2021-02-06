@@ -10,9 +10,6 @@ import Select from "../components/inputs/Select";
 import Phone, { phoneValidation } from "../components/inputs/Phone";
 import Address, { addressValidation } from "../components/inputs/Address";
 
-//navigate used to redirect
-import { navigate } from "gatsby"
-
 import axios from "axios"
 
 //Authentication services for logging in
