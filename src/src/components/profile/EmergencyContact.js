@@ -49,7 +49,6 @@ class EmergencyContact extends React.Component {
 
 
     handleSubmit = async (data, actions) => {
-        console.log("test");
         //Attempt to update user data
         const response = this.props.admin ? await userService.update(this.props.id, data) : await userService.updateMe(data);
 

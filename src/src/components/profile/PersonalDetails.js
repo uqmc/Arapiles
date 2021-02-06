@@ -70,9 +70,7 @@ class PersonalDetails extends React.Component {
         medicalDetails: Yup.string(),
     });
 
-
     handleSubmit = async (data, actions) => {
-        console.log("test");
         //Attempt to update user data
         const response = this.props.admin ? await userService.update(this.props.id, data) : await userService.updateMe(data);
 
@@ -133,8 +131,6 @@ class PersonalDetails extends React.Component {
                         <br />
  
                         <Phone name="phoneNumber" disabled={!this.state.edit} />
- 
-                        {/* TODO: Look into google places API */}
  
                         <Address name="address" disabled={!this.state.edit} />
  
