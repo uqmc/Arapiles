@@ -7,6 +7,8 @@ import { DatePicker } from "formik-material-ui-pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import Select from "../components/inputs/Select";
+import Phone from "../components/inputs/Phone";
+import Address from "../components/inputs/Address";
 
 //navigate used to redirect
 import { navigate } from "gatsby"
@@ -190,31 +192,14 @@ class SignUp extends React.Component {
                         <ErrorMessage name="password" />
                         <br />
 
-                        {/*TODO: Change to PhoneInput*/}
-                        <label htmlFor="phoneNumber.number">Phone Number</label>
-                        <Field name="phoneNumber.number" />
-                        <ErrorMessage name="phoneNumber.number" />
-
-                        <label htmlFor="phoneNumber.type">Type</label>
-                        <Select name="phoneNumber.type" options={userService.phoneTypes} />                        
-                        <ErrorMessage name="phoneNumber.type" />
-                        <br />
+                        <Phone name="phoneNumber" />
 
                         <label htmlFor="dateOfBirth">Date of Birth</label>
                         <Field name="dateOfBirth" component={DatePicker} />
                         <ErrorMessage name="dateOfBirth" />
                         <br />
 
-                        {/* TODO: Look into google places API */}
-                        <label htmlFor="address.streetAddress">Address</label>
-                        <Field name="address.streetAddress" />
-                        <ErrorMessage name="address.streetAddress" />
-                        <br />
-
-                        <label htmlFor="address.postcode">Postcode</label>
-                        <Field name="address.postcode" />
-                        <ErrorMessage name="address.postcode" />
-                        <br />
+                        <Address name="address" />
 
                         <label htmlFor="studentStatus">Student Status</label>
                         <Select name="studentStatus" options={userService.studentStatuses} />
@@ -227,38 +212,21 @@ class SignUp extends React.Component {
                         <ErrorMessage name="studentNumber" />
                         <br />
 
+                        <label htmlFor="medicalDetails">Medical Details</label>
+                        <ErrorMessage name="medicalDetails" />
+                        <br />
+                        <Field name="medicalDetails" as="textarea" />
+                        <br />
+
                         <h2>Emergency Contact</h2>
                         <label htmlFor="emergencyContact.name">Contact Name</label>
                         <Field name="emergencyContact.name" />
                         <ErrorMessage name="emergencyContact.name" />
                         <br />
                         
-                        {/*TODO: Change to PhoneInput*/}
-                        <label htmlFor="emergencyContact.phoneNumber.number">Phone Number</label>
-                        <Field name="emergencyContact.phoneNumber.number" />
-                        <ErrorMessage name="emergencyContact.phoneNumber.number" />
+                        <Phone name="emergenctContact.phoneNumber" />
 
-                        <label htmlFor="emergencyContact.phoneNumber.type">Type</label>
-                        <Select name="emergencyContact.phoneNumber.type" options={userService.phoneTypes} /> 
-                        <ErrorMessage name="emergencyContact.phoneNumber.type" />
-                        <br />
-
-                        {/* TODO: Look into google places API */}
-                        <label htmlFor="emergencyContact.address.streetAddress">Address</label>
-                        <Field name="emergencyContact.address.streetAddress" />
-                        <ErrorMessage name="emergencyContact.address.streetAddress" />
-                        <br />
-
-                        <label htmlFor="emergencyContact.address.postcode">Postcode</label>
-                        <Field name="emergencyContact.address.postcode" />
-                        <ErrorMessage name="emergencyContact.address.postcode" />
-                        <br />
-
-                        <label htmlFor="medicalDetails">Medical Details</label>
-                        <ErrorMessage name="medicalDetails" />
-                        <br />
-                        <Field name="medicalDetails" as="textarea" />
-                        <br />
+                        <Address name="emergencyContact.address" />
 
                         <h2>Membership</h2>
                         <label htmlFor="agreedLiabilityWaiver">Liability Waiver</label>
