@@ -1,6 +1,7 @@
 import React from "react"
 
 import { Field, ErrorMessage } from "formik"
+import * as Yup from "yup"
 
 //Basic Address Componnet
 class Address extends React.Component {
@@ -31,3 +32,13 @@ class Address extends React.Component {
 }
 
 export default Address;
+export const addressValidation = Yup.object()
+    .shape({
+        streetAddress: Yup.string()
+            .required("Required"),
+
+        postcode: Yup.number()
+            .positive("Postcode must be greater than 0")
+            .integer("Postcode must be an integer")
+            .required("Required")
+    });

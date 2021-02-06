@@ -1,6 +1,7 @@
 import React from "react"
 
 import { Field, ErrorMessage } from "formik"
+import * as Yup from "yup"
 import Select from "./Select"
 
 import { userService } from "../../services/user.js"
@@ -32,3 +33,13 @@ class Phone extends React.Component {
 }
 
 export default Phone;
+
+export const phoneValidation = Yup.object()
+    .shape({
+        number: Yup.string()
+            .required("Required"),
+
+        type: Yup.string()
+            .ensure()
+            .required("Required"),
+    });
