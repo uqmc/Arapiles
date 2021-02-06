@@ -6,7 +6,7 @@ import { Button, LinearProgress } from "@material-ui/core";
 import { DatePicker } from "formik-material-ui-pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import Select from "../components/Select";
+import Select from "../components/inputs/Select";
 
 //navigate used to redirect
 import { navigate } from "gatsby"
@@ -159,7 +159,7 @@ class SignUp extends React.Component {
                 >
                 {(formProps) => (
                     <Form>
-                        {/*TODO: Section "Your Details" */}
+                        <h2>Your Details</h2>
                         <label htmlFor="nameFirst">First Name</label>
                         <Field name="nameFirst" />
                         <ErrorMessage name="nameFirst" />
@@ -227,7 +227,7 @@ class SignUp extends React.Component {
                         <ErrorMessage name="studentNumber" />
                         <br />
 
-                        {/*TODO: Section "Emergency Contact"*/}
+                        <h2>Emergency Contact</h2>
                         <label htmlFor="emergencyContact.name">Contact Name</label>
                         <Field name="emergencyContact.name" />
                         <ErrorMessage name="emergencyContact.name" />
@@ -260,8 +260,7 @@ class SignUp extends React.Component {
                         <Field name="medicalDetails" as="textarea" />
                         <br />
 
-                        {/*TODO: Section "Membership"*/}
-
+                        <h2>Membership</h2>
                         <label htmlFor="agreedLiabilityWaiver">Liability Waiver</label>
                         <div>
                             { this.state.waiver }
