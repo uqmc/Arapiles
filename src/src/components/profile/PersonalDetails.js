@@ -10,7 +10,6 @@ import Select from "../inputs/Select";
 import Phone, { phoneValidation } from "../inputs/Phone";
 import Address, { addressValidation } from "../inputs/Address";
 
-import ResetPassword from "../ResetPassword";
 import { userService } from "../../services/user.js"
 
 //Basic Person Details component
@@ -52,7 +51,7 @@ class PersonalDetails extends React.Component {
             .integer("Student Number must be an integer")
             .required("Required"),
 
-        medicalDetails: Yup.string(),
+        medicalDetails: Yup.string()
     });
 
     handleSubmit = async (data, actions) => {
@@ -77,7 +76,23 @@ class PersonalDetails extends React.Component {
         return (
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Formik
-                    initialValues = {this.props.data}
+                    initialValues = {{
+                        nameFirst: this.props.data.nameFirst,
+                        nameLast: this.props.data.nameLast,
+                        dateOfBirth: this.props.data.dateOfBirth,
+                        sex: this.props.data.sex,
+                        phoneNumber: {
+                            number: this.props.data.phoneNumber.number,
+                            type: this.props.data.phoneNumber.type
+                        },
+                        address: {
+                            streetAddress: this.props.data.address.streetAddress,
+                            postcode: this.props.data.address.postcode
+                        },
+                        studentStatus: this.props.data.studentStatus,
+                        studentNumber: this.props.data.studentNumber,
+                        medicalDetails: this.props.data.medicalDetails
+                    }}
                     validationSchema={this.validationSchema}
                     onSubmit={this.handleSubmit}
                 >
@@ -88,7 +103,7 @@ class PersonalDetails extends React.Component {
                             disabled={formProps.isSubmitting}
                             onClick={() => {
                                 this.setState({edit: !this.state.edit});
-                                formProps.errors.general = "";
+                                delete formProps.errors.general;
                             }}
                         >
                             {this.state.edit ? "Cancel" : "Edit"}
