@@ -19,6 +19,9 @@ class Profile extends React.Component {
     constructor(props) {
         super(props);
 
+        this.admin = this.props.id ? true : false;
+        this.id = this.props.id ?? this.props.data.id;
+
         this.state = {
             success: false,
             edit: false,
@@ -28,6 +31,11 @@ class Profile extends React.Component {
     }
 
     async componentDidMount() {
+        const editPerms = await userService.update(this.id, {});
+        if (editPerms) {
+            this.admin = true;
+        }
+
         const roles = await userService.roles();
 
         if (roles) {
@@ -111,7 +119,7 @@ class Profile extends React.Component {
     //Function to handle forgot password form submission
     handleSubmit = async (data, actions) => {
         //Attempt to send reset password email
-        const response = this.props.id ? await userService.update(this.props.id, data) : await userService.updateMe(data);
+        const response = this.admin ? await userService.update(this.id, data) : await userService.updateMe(data);
 
         //Check if request was successful
         if (response === true) {
@@ -167,7 +175,7 @@ class Profile extends React.Component {
                             <br />
 
                             {
-                                this.props.id &&
+                                this.admin &&
                                 <>
                                     <label htmlFor="role">Role</label>
                                     <Select name="role" disabled={!this.state.edit} options={this.state.roles} />
@@ -280,7 +288,7 @@ class Profile extends React.Component {
                     )}
                     </Formik>
                     <h2>Tapes</h2>
-                    <Tapes tapes={this.props.data.tapes} id={this.props.id} />
+                    <Tapes tapes={this.props.data.tapes} id={this.id} admin={this.admin} />
                 </MuiPickersUtilsProvider>
             }</>)
     }

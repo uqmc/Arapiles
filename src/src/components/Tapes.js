@@ -113,12 +113,14 @@ class Tapes extends React.Component {
     render() {
         return (
             <>
-                <Button
-                    className="btn draw-border"
-                    onClick={() => {this.setState({edit: !this.state.edit})}}
-                >
-                    {this.state.edit ? "Cancel" : "Edit Tapes"}
-                </Button>
+                {this.props.admin &&
+                    <Button
+                        className="btn draw-border"
+                        onClick={() => {this.setState({edit: !this.state.edit})}}
+                    >
+                        {this.state.edit ? "Cancel" : "Edit Tapes"}
+                    </Button>
+                }
                 {this.state.edit ? this.renderForm() : this.renderList()}
             </>
         )
