@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Formik, Field, Form, ErrorMessage } from "formik"
+import { Formik, Field, Form } from "formik"
 import * as Yup from "yup"
 import { Button } from '@material-ui/core';
 
@@ -11,8 +11,6 @@ class Tapes extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.userTapes = this.props.tapes ?? {};
 
         this.tapes = [
             "blackTape",
@@ -29,9 +27,9 @@ class Tapes extends React.Component {
             this.tapeValidation[tape] = Yup.boolean()
         }
 
-
         this.state = {
-            edit: false
+            edit: false,
+            userTapes: this.props.tapes ?? {}
         }
     }
     
@@ -39,16 +37,18 @@ class Tapes extends React.Component {
 
     handleSubmit = async (data, actions) => {
         const response = await userService.update(this.props.id, {tapes: data});
+        actions.setSubmitting(false);
 
         //Check if request was successful
         if (response === true) {
-            this.userTapes = data;
-            this.setState({edit: false});
+            this.setState({
+                edit: false,
+                userTapes: data
+            });
         } else {
             actions.setFieldError('general', response);
         }
 
-        actions.setSubmitting(false);
     }
 
     camelToSentence(text) {
@@ -58,7 +58,8 @@ class Tapes extends React.Component {
     renderForm() {
         return (
             <Formik
-                initialValues={this.userTapes}
+                key="tapesFormik"
+                initialValues={this.state.userTapes}
                 validationSchema={this.validationSchema}
                 onSubmit={this.handleSubmit}
             >
@@ -66,12 +67,12 @@ class Tapes extends React.Component {
                 <Form>
                     {
                         this.tapes.map((tape) => {
-                            //Convert camelCase to Sentence Case
+                            //I have to put the elements in a React.Fragment with a key otherwise react stops working properly
                             return (
-                                <>
+                                <React.Fragment key={tape}>
                                     <label htmlFor={tape}>{this.camelToSentence(tape)}</label>
                                     <Field name={tape} type="checkbox" />
-                                </>
+                                </React.Fragment>
                             );
                         })
                     }
@@ -80,7 +81,9 @@ class Tapes extends React.Component {
                     <Button
                         className="btn draw-border"
                         disabled={formProps.isSubmitting}
-                        onClick={formProps.handleSubmit}
+                        onClick={() => {
+                            formProps.handleSubmit();
+                        }}
                     >
                         Submit 
                     </Button>
@@ -94,9 +97,10 @@ class Tapes extends React.Component {
     renderList() {
         const tapeList = 
             this.tapes.map((tape) => {
-                if (this.userTapes[tape]) {
-                    return <li>{this.camelToSentence(tape)}</li>
+                if (this.state.userTapes[tape]) {
+                    return <li key={tape}>{this.camelToSentence(tape)}</li>
                 }
+                return null;
             }).filter(x => x);
 
         return (<>
