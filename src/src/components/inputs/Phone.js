@@ -15,11 +15,10 @@ class Phone extends React.Component {
         this.typeName = this.props.name + ".type";
     }
 
-    //Simple Form with email and submit button
     render() {
         return (
             <>
-            <label htmlFor={this.numberName}>{this.props.label}</label>
+            <label htmlFor={this.numberName}>Phone Number</label>
             <Field name={this.numberName} disabled={this.props.disabled} />
             <ErrorMessage name={this.numberName} />
 
