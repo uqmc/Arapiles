@@ -1,25 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { navigate } from "gatsby"
 
-import PrimaryLayout from "../layouts/primaryLayout";
 import ForgotPassword from "../components/ForgotPassword";
 
 import { authenticationService } from "../services/authentication.js"
 
 //Basic Forgot Password page
 const FORGOT_PASSWORD = () => {
+    useEffect(() => {
+        localStorage.setItem("pg-open", "forgot-password");
+    }, []);
+
     if (authenticationService.isLoggedIn()) {
         navigate("/profile");   
     }
 
-    localStorage.setItem("pg-open", "forgot-password");
-
     return (
-        <PrimaryLayout>
+        <>
         	<h1>Forgot Password</h1>
         	<ForgotPassword />
-        </PrimaryLayout>
+        </>
     );
 };
 

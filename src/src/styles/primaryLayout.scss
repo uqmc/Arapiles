@@ -3,20 +3,26 @@
 }
 
 :root {
+  // Distances
   --sidebar-width: 250px;
   --border-width: 0.75rem;
   --dots-gap: 10px;
-  --brand-container-height: calc(--sidebar-width * 0.4px);
+
+  // Colours
+  --colour-background: #0E1428;
+  --colour-highlight: #F18805;
+  --colour-primary: #D95D39;
+  --colour-text: #EDE3E4;
 }
 
 .bg {
   min-height: 100vh;
-  padding: var(--border-width);
+  padding-top: var(--border-width);
 }
 
 .bg:after {
   content: "";
-  border: var(--border-width) solid var(--egg-shell);
+  border-top: var(--border-width) solid var(--colour-highlight);
   position: fixed;
   left: 0;
   top: 0;
@@ -30,7 +36,7 @@
   width: 100vw;
   height: 100%;
   z-index: -1;
-  background-color: var(--purple-brown);
+  background-color: var(--colour-background);
 }
 
 /*
@@ -46,7 +52,7 @@ Navigation sidebar
   padding-top: 2em;
   padding-right: 1em;
   
-  background: var(--purple-brown);
+  background: var(--colour-background);
 }
 
 .dots:before,
@@ -55,11 +61,11 @@ Navigation sidebar
   position: fixed;
   top: 0;
   bottom: 0;
-  left: calc(var(--sidebar-width) + var(--border-width));
+  left: var(--sidebar-width);
   height: 100vh;
   opacity: .5;
   z-index: 11;
-  background-image: linear-gradient(var(--egg-shell) 20%,transparent 0);
+  background-image: linear-gradient(var(--colour-highlight) 20%,transparent 0);
   background-size: 100% var(--dots-gap);
   background-position: 0 0;
   animation: movebg .2s linear infinite;
@@ -90,19 +96,18 @@ Page content wrapping children
 */
 .page-content {
   /* Set margin-left to make way for sidebar */
-  margin-left: calc(var(--sidebar-width) + 15px);
+  margin-left: calc(var(--sidebar-width) + 2em);
   
   padding-top: 1rem;
-  padding-left: 0.25rem;
   padding-right: 1rem;
-  color: var(--egg-shell); // Body content font folour
+  color: var(--colour-text); // Body content font folour
 
   p, h1, h2, h3, h4, li {
     font-family: 'Trocchi', serif;
   }
 
   h1, h2 {
-    color: var(--dark-peach);
+    color: var(--colour-primary);
   }
 
   h1 {
@@ -123,5 +128,5 @@ Page content wrapping children
 .head-divider {
   width: 100%;
   height: 1px;
-  background-color: white;
+  background-color: var(--colour-text);
 }

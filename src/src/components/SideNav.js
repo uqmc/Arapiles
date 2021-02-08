@@ -8,10 +8,7 @@ const SideNav = () => {
     //      pages that are a member of the dropdown menu by default - not just when it is 
     //      navigated to from the dropdown directly. This will do for now.
     const [dropdownOne, setDropdownOne] = useState(localStorage.getItem("dd-one") === "true");
-
-    //TODO: Handle intra-page states by making pages members of layouts instead of the other
-    //      way around. Use this plugin: https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/
-
+    
     useEffect(() => {
         localStorage.setItem("dd-one", dropdownOne);
     }, [dropdownOne]);
@@ -44,7 +41,6 @@ const SideNav = () => {
                 <li className="sidenav-button"><Link to="/faq" className={localStorage.getItem("pg-open") === "faq" ? "nav-item-open" : ""}>FAQ</Link></li>
                 <li className="sidenav-button" onClick={toggleDropdownOne}><a href="#!">Skills Book {dropdownOne ? <i className="fas fa-angle-down"></i> : <i className="fas fa-angle-right"></i>}</a></li>
                 {dropdownOne ? dropMenuOne : null}
-                <li className="sidenav-button"><Link to="/blog" className={localStorage.getItem("pg-open") === "blog" ? "nav-item-open" : ""}>Blog</Link></li>
                 <li className="sidenav-button"><Link to="/">Landing Page</Link></li>
             </ul>
             <div className="dots"></div>

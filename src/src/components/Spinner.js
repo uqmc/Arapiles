@@ -1,13 +1,16 @@
 import React from "react";
-//import {Spin} from "antd";
-//import LoadingOutlined from "@ant-design/icons/lib/icons/LoadingOutlined";
 
 const Spinner = () => {
-    //const graphic = <LoadingOutlined className="page-spinner" spin />
+    // TODO: Introduce spinner gif for content loading
     return( 
-        <></>
-        //<Spin indicator={graphic}/>
+        <p>Loading...</p>
     );
 }
+
+/*
+
+https://youtu.be/0lBjcaMokvo
+
+*/
 
 export default Spinner;

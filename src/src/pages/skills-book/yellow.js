@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios"
 import marked from "marked";
-
-import PrimaryLayout from "../../layouts/primaryLayout";
+import Spinner from "../../components/Spinner";
 
 const YellowTapePage = () => {
     const [data, setData] = useState(null);
@@ -13,27 +12,26 @@ const YellowTapePage = () => {
     }
   
     useEffect(() => {
+        localStorage.setItem("dd-one", "true");
+        localStorage.setItem("pg-open", "yellow-tape");
         getContentData();
     }, []);
 
     const htmlContent = data ? marked(data.content) : undefined;
 
-    localStorage.setItem("dd-one", "true")
-    localStorage.setItem("pg-open", "yellow-tape");
-
     if(!htmlContent) {
         return(
-            <PrimaryLayout>Loading...</PrimaryLayout>
+            <Spinner></Spinner>
         )
     } else {
         return(
-            <PrimaryLayout>
+            <>
                 <h1>Yellow Tape</h1>
                 <div className="head-divider"></div>
                 <div
                     dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />
-            </PrimaryLayout>
+            </>
         );
     }
 }

@@ -1,14 +1,15 @@
-import React from "react";
-import PrimaryLayout from "../../layouts/primaryLayout";
+import React, { useEffect } from "react";
 
 const StartHere = () => {
-    localStorage.setItem("dd-one", "true")
-    localStorage.setItem("pg-open", "skills-home");
+    useEffect(() => {
+        localStorage.setItem("dd-one", "true")
+        localStorage.setItem("pg-open", "skills-home");
+    }, []);
 
     return (
-        <PrimaryLayout> 
+        <p> 
             Skills book home
-        </PrimaryLayout>
+        </p>
     );
 };
 

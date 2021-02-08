@@ -1,13 +1,12 @@
-import React from "react";
-import PrimaryLayout from "../layouts/primaryLayout";
+import React, { useEffect } from "react";
 
 const TheTeam = () => {
-  localStorage.setItem("pg-open", "the-team");
+  useEffect(() => {
+    localStorage.setItem("pg-open", "the-team");
+  }, []);
 
   return (
-    <PrimaryLayout>
-      Execs array
-    </PrimaryLayout>
+    <p>Execs array</p>
   );
 };
 

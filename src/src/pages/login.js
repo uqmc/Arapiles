@@ -1,25 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { navigate } from "gatsby"
 
-import PrimaryLayout from "../layouts/primaryLayout";
 import Login from "../components/Login";
 
 import { authenticationService } from "../services/authentication.js"
 
 //Simple Login page
 const LOGIN = () => {
-    localStorage.setItem("pg-open", "login");
+    useEffect(() => {
+        localStorage.setItem("pg-open", "login");
+    }, []);
 
     if (authenticationService.isLoggedIn()) {
         navigate("/profile");   
     }
 
     return ( 
-        <PrimaryLayout>
-        	<h1>Login</h1>
+        <>
+            <h1>Login</h1>
             <Login />
-        </PrimaryLayout>
+        </>
     );
 };
 

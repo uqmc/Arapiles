@@ -1,13 +1,12 @@
-import React from "react";
-import PrimaryLayout from "../layouts/primaryLayout";
+import React , { useEffect }from "react";
 
 const Home = () => {
-    localStorage.setItem("pg-open", "home");
+    useEffect(() => {
+        localStorage.setItem("pg-open", "home");
+    }, []);
 
     return (
-        <PrimaryLayout> 
-            Home
-        </PrimaryLayout>
+        <p>Home</p>
     );
 };
 

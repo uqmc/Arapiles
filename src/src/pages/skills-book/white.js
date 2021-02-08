@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios"
 import marked from "marked";
 
-import PrimaryLayout from "../../layouts/primaryLayout";
+import Spinner from "../../components/Spinner";
 
 const WhiteTapePage = () => {
     const [data, setData] = useState(null);
@@ -13,26 +13,25 @@ const WhiteTapePage = () => {
     }
   
     useEffect(() => {
+        localStorage.setItem("dd-one", "true");
+        localStorage.setItem("pg-open", "white-tape");
         getContentData();
     }, []);
 
     const htmlContent = data ? marked(data.content) : undefined;
 
-    localStorage.setItem("dd-one", "true")
-    localStorage.setItem("pg-open", "white-tape");
-
     if(!htmlContent) {
         return(
-            <PrimaryLayout>Loading...</PrimaryLayout>
+            <Spinner></Spinner>
         )
     } else {
         return(
-            <PrimaryLayout>
+            <>
                 <h1>White tape</h1>
                 <div
                     dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />
-            </PrimaryLayout>
+            </>
         );
     }
 }

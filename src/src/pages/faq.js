@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import PrimaryLayout from "../layouts/primaryLayout";
 import axios from "axios"
+import Spinner from "../components/Spinner";
 
 /*
 
@@ -20,20 +20,17 @@ const FAQ = () => {
   }
 
   useEffect(() => {
+    localStorage.setItem("pg-open", "faq");
     getFaqData();
   }, []);
 
-  localStorage.setItem("pg-open", "faq");
-
   if (!data) {
     return (
-      <PrimaryLayout>
-        <p>Loading...</p>
-      </PrimaryLayout>
+      <Spinner></Spinner>
     );
   } else {
     return(
-      <PrimaryLayout> 
+      <> 
         <h1>FAQs</h1>
         <div className="head-divider"></div>
         {
@@ -46,7 +43,7 @@ const FAQ = () => {
             )
           })
         }
-      </PrimaryLayout>
+      </>
     )
   }
 };

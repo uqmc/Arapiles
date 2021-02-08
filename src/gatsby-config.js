@@ -14,6 +14,19 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
 
+    /* Forces pages to be wrapped in the Layout component instead
+       of the Layout component being wrapped in the page. This allows
+       for states to be held by the Layout between page changes.
+       By default, all pages will be members of the PrimaryLayout component.
+       Update exceptions in the PrimaryLayout component. The index page is an exception.
+    */
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/layouts/primaryLayout`),
+      },
+    },
+
     /* Get and Set Query Param
     */
     `gatsby-plugin-use-query-params`,
