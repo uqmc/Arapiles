@@ -65,7 +65,7 @@ Navigation sidebar
   height: 100vh;
   opacity: .5;
   z-index: 11;
-  background-image: linear-gradient(var(--colour-highlight) 20%,transparent 0);
+  background-image: linear-gradient(var(--colour-text) 20%,transparent 0);
   background-size: 100% var(--dots-gap);
   background-position: 0 0;
   animation: movebg .2s linear infinite;
