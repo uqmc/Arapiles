@@ -1,32 +1,26 @@
 import React, {useEffect, useState} from "react";
 import PrimaryLayout from "../layouts/primaryLayout";
 
-const Payment = () => {
-  const [stripe, setStripe] = useState(null);
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, ElementsConsumer } from "@stripe/react-stripe-js";
+import Payment from "../components/Payment";
 
-  function getStripeData() {
-    setStripe(process.env.GATSBY_STRIPE_KEY);
-  }
+const stripePromise = loadStripe(process.env.GATSBY_STRIPE_KEY);
 
-  useEffect(() => {
-    getStripeData();
-  }, []);
+const PAYMENT = () => {
+    localStorage.setItem("pg-open", "payment");
 
-  localStorage.setItem("pg-open", "payment");
-
-  if (!stripe) {
-    return (
-      <PrimaryLayout>
-        <p>Loading...</p>
-      </PrimaryLayout>
-    );
-  } else {
     return(
-      <PrimaryLayout> 
-         
-      </PrimaryLayout>
+        <PrimaryLayout> 
+            <Elements stripe={stripePromise}>
+                <ElementsConsumer>
+                    {({stripe, elements}) => (
+                        <Payment stripe={stripe} elements={elements} />
+                    )}
+                </ElementsConsumer>
+            </Elements>
+        </PrimaryLayout>
     )
-  }
 };
 
-export default Payment;
+export default PAYMENT;
