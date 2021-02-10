@@ -18,7 +18,7 @@ async function memberships() {
 }
 
 async function pay(membershipID, token) {
-    const response = await axios.get(process.env.GATSBY_CMS_HOST + "/grampians/memberships", {
+    const response = await axios.put(process.env.GATSBY_CMS_HOST + "/grampians/memberships/pay", {
         membershipID: membershipID,
         token: token
     }, {
