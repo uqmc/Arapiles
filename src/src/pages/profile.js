@@ -12,7 +12,7 @@ const PROFILE = () => {
     const [id] = useQueryParam("id", StringParam); 
     
     async function getProfileData() {
-        const response = id ? await userService.find(id) : await userService.me();
+        const response = id ? await userService.findOne(id) : await userService.me();
 
         if (response) {
             setData(response["data"]);
