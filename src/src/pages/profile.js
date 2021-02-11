@@ -4,6 +4,7 @@ import { userService } from "../services/user";
 
 import PrimaryLayout from "../layouts/primaryLayout";
 import Profile from "../components/Profile";
+import Restrict from "../components/Restrict";
 
 //Basic profile page
 const PROFILE = () => {
@@ -42,7 +43,9 @@ const PROFILE = () => {
 
     return (
         <PrimaryLayout>
-            { render() }
+            <Restrict>
+                { render() }
+            </Restrict>
         </PrimaryLayout>
     );
 };
