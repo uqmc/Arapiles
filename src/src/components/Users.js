@@ -1,5 +1,8 @@
 import React from "react"
 
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Button, LinearProgress } from "@material-ui/core";
+
 import { userService } from "../services/user.js"
 
 //Basic Users componnent
@@ -10,8 +13,8 @@ class Users extends React.Component {
 
         this.state = {
             params: {
-                pageSize: 10,
-                pageNumber: 0,
+                pageSize: 1,
+                pageNumber: 1,
                 sort: {
                     nameLast: "asc",
                     nameFirst: "asc"
@@ -20,6 +23,7 @@ class Users extends React.Component {
             },
             users: [],
             totalCount: 0,
+            maxPage: 0,
             loading: true,
             admin: true
         }
@@ -31,7 +35,7 @@ class Users extends React.Component {
 
         return {
             _limit: params.pageSize,
-            _start: params.pageNumber * params.pageSize,
+            _start: (params.pageNumber - 1) * params.pageSize,
             _sort: Object.entries(params.sort).map(p => encodeURIComponent(p[0]) + ':' + encodeURIComponent(p[1])).join(','),
             _where: {
                 _or: [
@@ -53,6 +57,8 @@ class Users extends React.Component {
             this.setState({ admin: false });
         }
 
+        this.setState({ maxPage: Math.ceil(this.state.totalCount / this.state.params.pageSize)})
+
         const users = await userService.find(queryParams);
         if (users) {
             this.setState({ users: users.data });
@@ -63,8 +69,43 @@ class Users extends React.Component {
 
     //TODO: better admin checking?
     async componentDidMount() {
-        getUsersData();
-        this.setState({ loading: false }});
+        this.getUsersData();
+        this.setState({ loading: false });
+    }
+
+    changePage(amt) {
+        this.setState({ loading: true });
+
+        const { params } = this.state;
+
+        let newPage = params.pageNumber + amt;
+        if (newPage < 1) {
+            newPage = 1;
+        } else if (newPage > this.state.maxPage) {
+            newPage = this.state.maxPage;
+        }
+
+        params.pageNumber = newPage;
+        this.setState({ params: params });
+
+        this.getUsersData()
+
+        this.setState({ loading: false });
+    }
+
+    handleSearch = async (event) => {
+        this.setState({ loading: true });
+
+        const { params } = this.state;
+
+        params.search = event.target.value
+        params.pageNumber = 1;
+
+        this.setState({ params: params });
+
+        this.getUsersData()
+
+        this.setState({ loading: false });
     }
 
     //Basic Component Renderer
@@ -77,7 +118,48 @@ class Users extends React.Component {
             if (this.state.admin) {
                 return (
                     <>
-
+                        <label htmlFor="search">Search</label>
+                        <input
+                            name="search"
+                            value={this.state.params.search}
+                            onChange={this.handleSearch}
+                            disabled={this.state.loading}
+                        />
+                        <Button
+                            className="btn draw-border"
+                            disabled={this.state.loading || this.state.params.pageNumber <= 1}
+                            onClick={() => {this.changePage(-1)}}
+                        >
+                            {"<"}
+                        </Button>
+                        <span>{this.state.params.pageNumber}/{this.state.maxPage}</span>
+                        <Button
+                            className="btn draw-border"
+                            disabled={this.state.loading || this.state.params.pageNumber >= this.state.maxPage}
+                            onClick={() => {this.changePage(1)}}
+                        >
+                            {">"}
+                        </Button>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>First Name</td>
+                                    <td>Last Name</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    this.state.users.map((user) => {
+                                        return (
+                                            <tr>
+                                                <td>{user.nameFirst}</td>
+                                                <td>{user.nameLast}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </table>
                     </>
                 )
             } else {
