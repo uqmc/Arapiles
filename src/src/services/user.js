@@ -88,9 +88,13 @@ async function updateMe(data) {
     return response;
 }
 
-async function count() {
+async function count(params) {
     const response = await axios.get(process.env.GATSBY_CMS_HOST + "/users/count", {
-        headers: authenticationService.getAuthHeader()
+        headers: authenticationService.getAuthHeader(),
+        params: params,
+        paramsSerializer: params => {
+            return qs.stringify(params)
+        }
     }).then(response => {
         return response;
     }).catch(error => {
