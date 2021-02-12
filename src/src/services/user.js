@@ -1,4 +1,5 @@
 import axios from "axios";
+import qs from "qs";
 
 import { authenticationService } from "../services/authentication.js"
 
@@ -38,7 +39,10 @@ async function me() {
 async function find(params) {
     const response = await axios.get(process.env.GATSBY_CMS_HOST + "/users/", {
         headers: authenticationService.getAuthHeader(),
-        params: params
+        params: params,
+        paramsSerializer: params => {
+            return qs.stringify(params)
+        }
     }).then(response => {
         return response;
     }).catch(error => {
@@ -84,6 +88,18 @@ async function updateMe(data) {
     return response;
 }
 
+async function count() {
+    const response = await axios.get(process.env.GATSBY_CMS_HOST + "/users/count", {
+        headers: authenticationService.getAuthHeader()
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        return false;
+    })
+
+    return response;
+}
+
 async function roles() {
     const response = await axios.get(process.env.GATSBY_CMS_HOST + "/users-permissions/roles", {
         headers: authenticationService.getAuthHeader()
@@ -101,6 +117,7 @@ export const userService = {
     find,
     update,
     updateMe,
+    count,
     roles,
     sexes,
     phoneTypes,
