@@ -118,6 +118,7 @@ async function roles() {
 
 export const userService = {
     me,
+    findOne,
     find,
     update,
     updateMe,
