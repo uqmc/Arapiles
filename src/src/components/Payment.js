@@ -19,7 +19,8 @@ class Payment extends React.Component {
         this.state = {
             memberships: [],
             validationSchema: Yup.object().shape({}),
-            success: false
+            success: false,
+            membershipError: false
         }
     }
 
@@ -39,6 +40,8 @@ class Payment extends React.Component {
                         //.oneOf(memberships.data.map((membership) => { return membership.id }), "Please select a valid membership") 
                 })
             });
+        } else {
+            this.setState({ membershipError: true });
         }
     }
 
@@ -78,6 +81,9 @@ class Payment extends React.Component {
                 >
                 {(formProps) => (
                     <Form>
+                        { this.state.membershipError && 
+                            <div style={{color: "red"}}>An error has occured. Please try refreshing or contact a system administrator.</div> 
+                        }
                         <label htmlFor="membership">Membership</label>
                         <Select name="membership" options={this.state.memberships} disabled={formProps.isSubmitting} />
                         <ErrorMessage name="membership" />
