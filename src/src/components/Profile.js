@@ -6,6 +6,7 @@ import AccountDetails from "./profile/AccountDetails";
 import PersonalDetails from "./profile/PersonalDetails";
 import EmergencyContact from "./profile/EmergencyContact"
 import Tapes from "./profile/Tapes";
+import Tests from "./profile/Tests";
 
 //Basic User profile component
 class Profile extends React.Component {
@@ -41,8 +42,10 @@ class Profile extends React.Component {
             <h2>Emergency Contact</h2>
             <EmergencyContact id={this.id} data={this.props.data} admin={this.state.admin} />
 
-            <h2>Tapes</h2>
-            <Tapes id={this.id} tapes={this.props.data.tapes} admin={this.state.admin} />
+            <h2>Competencies</h2>
+                <Tests id={this.id} data={this.props.data} admin={this.state.admin} />
+                <h3>Tapes</h3>
+                <Tapes id={this.id} tapes={this.props.data.tapes} admin={this.state.admin} />
         </>)
     }
 }
