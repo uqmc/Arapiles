@@ -30,7 +30,6 @@ class Login extends React.Component {
 
         //Check if login was successful
         if (response === true) {
-            //TODO: redirect to user profile
             navigate("/profile");
         } else {
             actions.setFieldError('general', response);

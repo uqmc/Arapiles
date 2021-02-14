@@ -102,7 +102,6 @@ class SignUp extends React.Component {
 
         //Check register request was successful 
         if (response === true) {
-            //TODO: Redirect to check email page or display check email message
             this.setState({
                 registered: true
             });

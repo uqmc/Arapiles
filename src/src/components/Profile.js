@@ -30,7 +30,6 @@ class Profile extends React.Component {
 
     //Basic Profile page
     //Note if you run into a bug where forms won't properly submit, it might be because another form on the page has an error message.
-    //TODO: Add swim test
     render() {
         return (<>
             <h2>Account Details</h2>
