@@ -24,9 +24,9 @@ async function pay(membershipID, token) {
     }, {
         headers: authenticationService.getAuthHeader()
     }).then(response => {
-        return response;
+        return true;
     }).catch(error => {
-        return false;
+        return error.response.data.message;
     })
 
     return response; 
