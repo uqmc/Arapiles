@@ -1,5 +1,7 @@
 import React from "react"
 
+import { Link } from "gatsby";
+
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { Button, LinearProgress } from "@material-ui/core";
 
@@ -13,7 +15,7 @@ class Users extends React.Component {
 
         this.state = {
             params: {
-                pageSize: 1,
+                pageSize: 10,
                 pageNumber: 1,
                 sort: {
                     nameLast: "asc",
@@ -143,8 +145,7 @@ class Users extends React.Component {
                         <table>
                             <thead>
                                 <tr>
-                                    <td>First Name</td>
-                                    <td>Last Name</td>
+                                    <td>Name</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -152,8 +153,9 @@ class Users extends React.Component {
                                     this.state.users.map((user) => {
                                         return (
                                             <tr>
-                                                <td>{user.nameFirst}</td>
-                                                <td>{user.nameLast}</td>
+                                                <Link to={`/profile?id=${user.id}`}>
+                                                    <td>{user.nameLast}, {user.nameFirst}</td>
+                                                </Link>
                                             </tr>
                                         )
                                     })
