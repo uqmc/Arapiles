@@ -1,5 +1,7 @@
 import React from "react"
 
+import { navigate } from "gatsby";
+
 import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import { Button, LinearProgress } from '@material-ui/core';
@@ -16,6 +18,8 @@ class Payment extends React.Component {
 
         this.state = {
             memberships: [],
+            validationSchema: Yup.object().shape({}),
+            success: false
         }
     }
 
@@ -28,15 +32,15 @@ class Payment extends React.Component {
                         label: membership.name,
                         value: membership.id   
                     }
+                }),
+                validationSchema: Yup.object().shape({
+                    membership: Yup.number()
+                        .typeError("Please select a membership")
+                        //.oneOf(memberships.data.map((membership) => { return membership.id }), "Please select a valid membership") 
                 })
-            }) 
+            });
         }
     }
-
-    validationSchema = Yup.object().shape({
-        membership: Yup.number()
-            .required("Requried")
-    });
 
     handleSubmit = async (data, actions) => {
         const {stripe, elements} = this.props;
@@ -44,48 +48,76 @@ class Payment extends React.Component {
         const token = await stripe.createToken(elements.getElement(CardElement));
 
         const res = await membershipService.pay(data.membership, token.token.id);
-        console.log(res);
+
+        if (res === true) {
+            this.setState({ success: true });
+        } else {
+            actions.setFieldError('general', res);
+        }
+
         actions.setSubmitting(false);
     }
 
     //Basic Component Renderer
     render() {
-        return (
-            <Formik
-                initialValues={{}}
-                validationSchema={this.validationSchema}
-                onSubmit={this.handleSubmit}
-            >
-            {(formProps) => (
-                <Form>
-                    <label htmlFor="membership">Membership</label>
-                    <Select name="membership" options={this.state.memberships} disabled={formProps.isSubmitting} />
-                    <ErrorMessage name="membership" />
-                    <br />
+        if (this.state.success) {
+            setTimeout(() => {
+                navigate("/profile");
+            }, 1000);
+            return (
+                <div>
+                    <p>Your membership payment was successful. You will be redirected to your profile.</p>
+                </div>
+            )
+        } else {
+            return (
+                <Formik
+                    initialValues={{}}
+                    validationSchema={this.state.validationSchema}
+                    onSubmit={this.handleSubmit}
+                >
+                {(formProps) => (
+                    <Form>
+                        <label htmlFor="membership">Membership</label>
+                        <Select name="membership" options={this.state.memberships} disabled={formProps.isSubmitting} />
+                        <ErrorMessage name="membership" />
+                        <br />
 
-                    <CardElement
-                        id="card"
-                        options={{
-                            iconStyle: 'solid',
-                            style: {
-                              base: {
-                                iconColor: '#c4f0ff',
-                                color: '#fff',
-                                fontSize: '16px',
-                              },
-                              invalid: {
-                                iconColor: '#FFC7EE',
-                                color: '#FFC7EE',
-                              },
-                            },
-                            hidePostalCode: true
-                        }}
-                    />
-                    <button type="submit" disabled={!this.props.stripe}>Submit</button>
-                </Form>
-            )}
-            </Formik>
-        )
+                        <CardElement
+                            id="card"
+                            options={{
+                                iconStyle: 'solid',
+                                style: {
+                                  base: {
+                                    iconColor: '#c4f0ff',
+                                    color: '#fff',
+                                    fontSize: '16px',
+                                  },
+                                  invalid: {
+                                    iconColor: '#FFC7EE',
+                                    color: '#FFC7EE',
+                                  },
+                                },
+                                hidePostalCode: true
+                            }}
+                        />
+                        {
+                            formProps.isSubmitting
+                            ? <LinearProgress />
+                            : <div style={{color: "red"}}>{formProps.errors.general}</div>
+                        }
+                        <Button
+                            className="btn draw-border"
+                            disabled={!this.props.stripe || formProps.isSubmitting}
+                            onClick={formProps.handleSubmit}
+                        >
+                            Submit
+                        </Button>
+                    </Form>
+                )}
+                </Formik>
+            )
+        }
     }
 }
 
