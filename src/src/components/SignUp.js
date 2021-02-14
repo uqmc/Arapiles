@@ -115,9 +115,11 @@ class SignUp extends React.Component {
     //Simple Sign Up form
     render() {
         if (this.state.registered) {
-            <p>
-                Please check your email to confirm your account.
-            </p>
+            return (
+                <p>
+                    Please check your email to confirm your account.
+                </p>
+            )
         } else {
             return (
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -231,7 +233,6 @@ class SignUp extends React.Component {
                     )}
                     </Formik>
                 </MuiPickersUtilsProvider>
-                )
             ) 
         }
     }
