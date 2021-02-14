@@ -4,7 +4,6 @@ import { authenticationService } from "../services/authentication.js"
 
 import { add, parse, isFuture } from "date-fns";
 
-//TODO: Improve response and error handling
 async function memberships() {
     const response = await axios.get(process.env.GATSBY_CMS_HOST + "/grampians/memberships", {
         headers: authenticationService.getAuthHeader()
