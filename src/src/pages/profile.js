@@ -15,10 +15,16 @@ const PROFILE = () => {
         const response = id ? await userService.findOne(id) : await userService.me();
 
         if (response) {
-            setData(response["data"]);
+            if (response.data) {
+                setData(response.data);
+            } else {
+                setData({
+                    error: "No user found."
+                })
+            }
         } else {
             setData({
-                error: "Error"
+                error: "You do not have permissions to access this profile."
             });
         }
     }
@@ -26,7 +32,7 @@ const PROFILE = () => {
     function render() {
         if (data) {
             if (data.error) {
-                return <span style={{color: "red"}}>{data.error}</span>;
+                return <p style={{color: "red"}}>{data.error}</p>;
             } else {
                 return <Profile data={data} id={id} />
             }
