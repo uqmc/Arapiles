@@ -24,18 +24,16 @@ class AccountDetails extends React.Component {
     }
 
     async componentDidMount() {
-        //If the user is an admin, retrieve the roles for rendering.
-        if (this.props.admin) {
-            const roles = await userService.roles();
+        //Retrieve the roles for rendering.
+        const roles = await userService.roles();
 
-            if (roles) {
-                //Format the roles for Select component options
-                this.setState({
-                    roles: roles.data.roles.map((role) => {
-                        return {value: role.id, label: role.name}
-                    })
-                });
-            }
+        if (roles) {
+            //Format the roles for Select component options
+            this.setState({
+                roles: roles.data.roles.map((role) => {
+                    return {value: role.id, label: role.name}
+                })
+            });
         }
     } 
 
@@ -78,7 +76,7 @@ class AccountDetails extends React.Component {
                     {(formProps) => (
                         <Form>
                             <label htmlFor="role">Role</label>
-                            <Select name="role" disabled={!this.state.edit} options={this.state.roles} />
+                            <Select name="role" disabled={!this.state.edit} options={this.state.roles} placeholder={false} />
                             <ErrorMessage name="role" />
 
                             <Button
@@ -94,7 +92,6 @@ class AccountDetails extends React.Component {
                             >
                                 {this.state.edit ? "Submit" : "Edit"}
                             </Button>
-
                             <br/>
                         </Form>
                     )}
