@@ -46,6 +46,11 @@ class ResetPassword extends React.Component {
             this.setState({
                 success: true
             });
+
+            if (this.props.onSuccess) {
+                this.props.onSuccess();
+            }
+
         } else {
             actions.setFieldError('general', response);
         }
