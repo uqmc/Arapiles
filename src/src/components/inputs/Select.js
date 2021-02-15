@@ -18,7 +18,7 @@ class Select extends React.Component {
     render() {
         return (
             <Field {...this.props} as="select">
-                <option defaultValue>Please Select...</option>
+                { this.props.placeholder !== false && <option defaultValue>Please Select...</option> }
                 {
                     //Map options from props to select options
                     this.props.options.map(option => {
