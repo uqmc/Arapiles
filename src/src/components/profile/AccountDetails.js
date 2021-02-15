@@ -14,37 +14,50 @@ class AccountDetails extends React.Component {
     constructor(props) {
         super(props);
 
+        //Initialize state with edit flags and roles list
         this.state = {
             edit: false,
+            editPassword: false,
+            passwordSuccess: false,
             roles: []
         }
     }
 
     async componentDidMount() {
-        const roles = await userService.roles();
+        //If the user is an admin, retrieve the roles for rendering.
+        if (this.props.admin) {
+            const roles = await userService.roles();
 
-        if (roles) {
-            this.setState({
-                roles: roles.data.roles.map((role) => {
-                    return {value: role.id, label: role.name}
-                })
-            });
+            if (roles) {
+                //Format the roles for Select component options
+                this.setState({
+                    roles: roles.data.roles.map((role) => {
+                        return {value: role.id, label: role.name}
+                    })
+                });
+            }
         }
     } 
 
+    //Handle role change submit
     handleSubmit = async (data, actions) => {
-        const response = await userService.update(this.props.id, data);
+        //Only attempt is admin flag is set.
+        if (this.props.admin) {
+            //Attempt to update user's role.
+            const response = await userService.update(this.props.id, data);
 
-        //Check if request was successful
-        if (response === true) {
-            this.setState({edit: false});
-        } else {
-            actions.setFieldError('general', response);
+            //Check if request was successful
+            if (response === true) {
+                this.setState({edit: false});
+            } else {
+                actions.setFieldError('general', response);
+            }
         }
 
         actions.setSubmitting(false);
     }
 
+    //Render Account Details
     render() {
         return (
             <>
@@ -92,16 +105,23 @@ class AccountDetails extends React.Component {
                 <Button
                     className="btn draw-border"
                     onClick={()=>{
-                        this.setState({editPassword: !this.state.editPassword});
+                        this.setState({
+                            editPassword: !this.state.editPassword,
+                            passwordSuccess: false
+                        });
                     }}
                 >
-                    {this.state.editPassword ? "Cancel" : "Change Password"}
+                    {this.state.editPassword ? (this.state.passwordSuccess ? "Close" : "Cancel") : "Change Password"}
                 </Button>
 
                 { this.state.editPassword &&
                     <>
                     <br />
-                    <ResetPassword />
+                    <ResetPassword onSuccess={() => {
+                        this.setState({
+                            passwordSuccess: true
+                        })
+                    }} />
                     </>
                 }
             </>
