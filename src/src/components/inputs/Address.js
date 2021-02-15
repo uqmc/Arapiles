@@ -9,6 +9,7 @@ class Address extends React.Component {
     constructor(props) {
         super(props);
 
+        //Construct address and postcode names
         this.addressName = this.props.name + ".streetAddress";
         this.postcodeName = this.props.name + ".postcode";
     }
@@ -32,6 +33,8 @@ class Address extends React.Component {
 }
 
 export default Address;
+
+//Basic Address Validation Object
 export const addressValidation = Yup.object()
     .shape({
         streetAddress: Yup.string()
