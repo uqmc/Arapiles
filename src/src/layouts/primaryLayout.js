@@ -1,6 +1,7 @@
-import React from "react"
+import React from "react";
 
-import SideNav from "../components/SideNav"
+import SideNav from "../components/SideNav";
+import { ContextProvider } from "../components/Context";
 
 import "../styles/primaryLayout.scss";
 import "../styles/nav-button.scss"
@@ -12,15 +13,17 @@ const PrimaryLayout = (props) =>  {
     )
   } else {
     return (
-      <div className="App">
-        <div className="bg">
-          <SideNav />
-  
-          <main className="page-content">
-            { props.children }
-          </main>
+      <ContextProvider>
+        <div className="App">
+          <div className="bg">
+            <SideNav />
+    
+            <main className="page-content">
+              { props.children }
+            </main>
+          </div>
         </div>
-      </div>
+      </ContextProvider>
     )
   }
 };
