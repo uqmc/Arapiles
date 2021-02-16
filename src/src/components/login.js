@@ -4,8 +4,8 @@ import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import { Button, LinearProgress } from '@material-ui/core';
 
-//navigate used to redirect
-import { navigate } from "gatsby"
+import { Redirect } from "@reach/router"
+import { Link } from "gatsby";
 
 //Authentication services for logging in
 import { authenticationService } from "../services/authentication.js"
@@ -14,6 +14,14 @@ import { authenticationService } from "../services/authentication.js"
 //For now just used for testing purposes.
 //Based off of: https://www.gatsbyjs.com/tutorial/authentication-tutorial/
 class Login extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            success: false
+        }
+    }
 
     validationSchema = Yup.object().shape({
         identifier: Yup.string()
@@ -30,7 +38,7 @@ class Login extends React.Component {
 
         //Check if login was successful
         if (response === true) {
-            navigate("/profile");
+            this.setState({ success: true });
         } else {
             actions.setFieldError('general', response);
         }
@@ -40,49 +48,52 @@ class Login extends React.Component {
 
     //Basic Component Renderer
     render() {
-        return (
-            <Formik
-                initialValues = {{}}
-                validationSchema={this.validationSchema}
-                onSubmit={this.handleSubmit}
-            >
-            {(formProps) => (
-                <Form>
-                    <label htmlFor="identifier">Username/Email</label>
-                    <Field name="identifier" />
-                    <ErrorMessage name="identifier" />
-                    <br />
+        if (this.state.success) {
+            return (
+                <Redirect noThrow to="/profile" />
+            )
+        } else {
+            return (
+                <Formik
+                    initialValues = {{}}
+                    validationSchema={this.validationSchema}
+                    onSubmit={this.handleSubmit}
+                >
+                {(formProps) => (
+                    <Form>
+                        <label htmlFor="identifier">Username/Email</label>
+                        <Field name="identifier" />
+                        <ErrorMessage name="identifier" />
+                        <br />
 
-                    <label htmlFor="password">Password</label>
-                    <Field name="password" type="password" />
-                    <ErrorMessage name="password" />
-                    <br />
+                        <label htmlFor="password">Password</label>
+                        <Field name="password" type="password" />
+                        <ErrorMessage name="password" />
+                        <br />
 
-                    {
-                        formProps.isSubmitting
-                        ? <LinearProgress />
-                        : <div style={{color: "red"}}>{formProps.errors.general}</div>
-                    }
-                    <Button
-                        className="btn draw-border"
-                        disabled={formProps.isSubmitting}
-                        onClick={formProps.handleSubmit}
-                    >
-                        Login!
-                    </Button>
-                    <Button
-                        className="btn draw-border"
-                        disabled={formProps.isSubmitting}
-                        onClick={() => {
-                            navigate("/sign-up")
-                        }}
-                    >
-                        Sign Up!
-                    </Button>
-                </Form>
-            )}
-            </Formik>
-        )
+                        {
+                            formProps.isSubmitting
+                            ? <LinearProgress />
+                            : <div style={{color: "red"}}>{formProps.errors.general}</div>
+                        }
+                        <Button
+                            className="btn draw-border"
+                            disabled={formProps.isSubmitting}
+                            onClick={formProps.handleSubmit}
+                        >
+                            Login!
+                        </Button>
+                        <Button
+                            className="btn draw-border"
+                            disabled={formProps.isSubmitting}
+                        >
+                            <Link to="/sign-up">Sign Up!</Link>
+                        </Button>
+                    </Form>
+                )}
+                </Formik>
+            )
+        }
     }
 }
 
