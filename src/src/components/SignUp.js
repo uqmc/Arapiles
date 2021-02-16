@@ -88,10 +88,10 @@ class SignUp extends React.Component {
         medicalDetails: Yup.string(),
 
         agreedLiabilityWaiver: Yup.boolean()
-            .required("You must agree to the Liability Waiver"),
+            .oneOf([true], "You must agree to the Liability Waiver"),
 
         agreedMembershipContract: Yup.boolean()
-            .required("You must agree to the Membership Agreement")
+            .oneOf([true], "You must agree to the Membership Agreement")
 
     }); 
 
@@ -125,7 +125,9 @@ class SignUp extends React.Component {
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <Formik
                         initialValues={{
-                            dateOfBirth: new Date()
+                            dateOfBirth: new Date(),
+                            agreedLiabilityWaiver: false,
+                            agreedMembershipContract: false
                         }}
                         validationSchema={this.validationSchema}
                         onSubmit={this.handleSubmit}
