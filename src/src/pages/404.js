@@ -5,7 +5,7 @@ const FOF = () => {
   return(
     <>
       <h1>Page not found!</h1>
-      <Link to="/home">Back To Home</Link>
+      <Link to="/dashboard">Back To Dashboard</Link>
     </>
   );
 };

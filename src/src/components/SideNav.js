@@ -30,13 +30,24 @@ const SideNav = () => {
         </ul>
     </>
 
+
+/*
+
+<ContextConsumer>
+                {({ data, set }) => (
+                    <div onClick={() => set({ menuOpen: !data.menuOpen })}>
+                        {data.menuOpen ? `Opened Menu` : `Closed Menu`}
+                    </div>
+                )}
+            </ContextConsumer>
+*/
     return(
         <div className="side-nav">
             <div className="brand-container">
                 <img alt="UQMC Logo" className="brand-image" src="https://uqmc-assets.s3.nl-ams.scw.cloud/uqmc_fully_transparent_white.png"></img>
             </div>
             <ul className="sidenav-buttons">
-                <li className="sidenav-button"><Link to="/home" className={localStorage.getItem("pg-open") === "home" ? "nav-item-open" : ""}>Home</Link></li>
+                <li className="sidenav-button"><Link to="/dashboard" className={localStorage.getItem("pg-open") === "dashboard" ? "nav-item-open" : ""}>Dashboard</Link></li>
                 <li className="sidenav-button"><Link to="/the-team" className={localStorage.getItem("pg-open") === "the-team" ? "nav-item-open" : ""}>The Team</Link></li>
                 <li className="sidenav-button"><Link to="/faq" className={localStorage.getItem("pg-open") === "faq" ? "nav-item-open" : ""}>FAQ</Link></li>
                 <li className="sidenav-button" onClick={toggleDropdownOne}><a href="#!">Skills Book {dropdownOne ? <i className="fas fa-angle-down"></i> : <i className="fas fa-angle-right"></i>}</a></li>

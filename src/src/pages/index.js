@@ -7,7 +7,7 @@ import "../styles/special-button.scss";
 
 import { authenticationService } from '../services/authentication.js'
 
-const Home = () => {
+const LandingPage = () => {
   // But... I don't wanna go back to the Man-Village!
   // I wanna stay in the Jungle.
   useEffect(() => {
@@ -22,7 +22,7 @@ const Home = () => {
     <>
       <nav className="navbar">
         <div className="navbar-buttons">
-          <Link to="/home"><button className="btn draw-border">Home</button></Link>
+          <Link to="/dashboard"><button className="btn draw-border">Dashboard</button></Link>
           <Link to="/skills-book"><button className="btn draw-border">Skills Book</button></Link>
           { authenticationService.isLoggedIn()
             ? <Link to="/"><button onClick={handleLogout} className="btn draw-border">Logout</button></Link>
@@ -96,4 +96,4 @@ const Home = () => {
 
 // CSS surely isn't the way.
 
-export default Home;
+export default LandingPage;
