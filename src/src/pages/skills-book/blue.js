@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios"
 import marked from "marked";
+
 import Spinner from "../../components/Spinner";
 
 const BlueTapePage = () => {
@@ -27,6 +28,7 @@ const BlueTapePage = () => {
         return(
             <>
                 <h1>Blue tape</h1>
+                <div className="head-divider"></div>
                 <div
                     dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />

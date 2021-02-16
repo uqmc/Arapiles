@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 
 import { navigate } from "gatsby";
 
+import Spinner from "../components/Spinner"
 import { userService } from "../services/user.js"
 import { authenticationService } from "../services/authentication.js"
 import { membershipService } from "../services/membership.js"
@@ -18,7 +19,7 @@ const Restrict = ({ children, membership }) =>  {
 
     if (authenticationService.isLoggedIn()) {
         if (!user && membership) {
-            return <p>Loading...</p>
+            return <Spinner />
         } else {
             if (!membership || membershipService.isValid(user)) {
                 return children;

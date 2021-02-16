@@ -28,6 +28,7 @@ const WhiteTapePage = () => {
         return(
             <>
                 <h1>White tape</h1>
+                <div className="head-divider"></div>
                 <div
                     dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />

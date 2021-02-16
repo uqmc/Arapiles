@@ -2,7 +2,7 @@ import React from "react"
 
 import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
-import { Button, LinearProgress } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { DatePicker } from "formik-material-ui-pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";

@@ -28,6 +28,7 @@ const RedTapePage = () => {
         return(
             <>
                 <h1>Red tape</h1>
+                <div className="head-divider"></div>
                 <div
                     dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />

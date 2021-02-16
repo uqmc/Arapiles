@@ -94,8 +94,6 @@ const Home = () => {
   );
 };
 
-// There is SURELY a better way of styling the web that
-// doesn't require using the most side-effecting, frustrating
-// piece of shit that is CSS.
+// CSS surely isn't the way.
 
 export default Home;

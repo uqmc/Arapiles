@@ -28,6 +28,7 @@ const OrangeTapePage = () => {
         return(
             <>
                 <h1>Orange tape</h1>
+                <div className="head-divider"></div>
                 <div
                     dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />

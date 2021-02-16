@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { navigate } from "gatsby";
 
@@ -18,10 +18,10 @@ const RESET_PASSWORD = () => {
     	return (<></>)
     } else {
 	    return (
-	        <PrimaryLayout>
+	        <>
 	            <h1>Reset Password</h1>
 	        	<ResetPassword privateCode={privateCode} />
-	        </PrimaryLayout>
+	        </>
 	    );
     }
 };

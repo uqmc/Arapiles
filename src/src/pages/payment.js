@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from "react";
-import PrimaryLayout from "../layouts/primaryLayout";
+import React from "react";
 
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, ElementsConsumer } from "@stripe/react-stripe-js";
@@ -12,17 +11,15 @@ const PAYMENT = () => {
     localStorage.setItem("pg-open", "payment");
 
     return(
-        <PrimaryLayout> 
-            <Restrict>
-                <Elements stripe={stripePromise}>
-                    <ElementsConsumer>
-                        {({stripe, elements}) => (
-                            <Payment stripe={stripe} elements={elements} />
-                        )}
-                    </ElementsConsumer>
-                </Elements>
-            </Restrict>
-        </PrimaryLayout>
+        <Restrict>
+            <Elements stripe={stripePromise}>
+                <ElementsConsumer>
+                    {({stripe, elements}) => (
+                        <Payment stripe={stripe} elements={elements} />
+                    )}
+                </ElementsConsumer>
+            </Elements>
+        </Restrict>
     )
 };
 

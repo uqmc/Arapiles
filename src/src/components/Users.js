@@ -6,6 +6,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { Button, LinearProgress } from "@material-ui/core";
 
 import { userService } from "../services/user.js"
+import Spinner from "./Spinner.js";
 
 //Basic Users componnent
 class Users extends React.Component {
@@ -114,7 +115,7 @@ class Users extends React.Component {
     render() {
         if (this.state.loading) {
             return (
-                <p>Loading...</p>
+                <Spinner />
             )
         } else {
             if (this.state.admin) {

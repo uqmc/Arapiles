@@ -7,9 +7,10 @@ const StartHere = () => {
     }, []);
 
     return (
-        <p> 
-            Skills book home
-        </p>
+        <> 
+            <h1>The Skills Book</h1>
+            <div className="head-divider"></div>
+        </>
     );
 };
 

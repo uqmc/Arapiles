@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios"
 import marked from "marked";
+
 import Spinner from "../../components/Spinner";
 
 const YellowTapePage = () => {
@@ -21,7 +22,7 @@ const YellowTapePage = () => {
 
     if(!htmlContent) {
         return(
-            <Spinner></Spinner>
+            <Spinner />
         )
     } else {
         return(

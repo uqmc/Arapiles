@@ -49,11 +49,9 @@ const PROFILE = () => {
     localStorage.setItem("pg-open", "profile");
 
     return (
-        <PrimaryLayout>
-            <Restrict>
-                { render() }
-            </Restrict>
-        </PrimaryLayout>
+        <Restrict>
+            { render() }
+        </Restrict>
     );
 };
 
