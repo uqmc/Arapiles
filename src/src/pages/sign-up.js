@@ -1,6 +1,6 @@
 import React from "react";
 
-import { navigate } from "gatsby"
+import { Redirect } from "@reach/router";
 
 import SignUp from "../components/SignUp";
 
@@ -9,7 +9,9 @@ import { authenticationService } from "../services/authentication.js"
 //Basic Sign Up page
 const SIGN_UP = () => {        
     if (authenticationService.isLoggedIn()) {
-        navigate("/profile");   
+        return(
+            <Redirect noThrow to="/profile" />
+        )
     }
 
     return (

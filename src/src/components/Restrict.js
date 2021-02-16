@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 
-import { navigate } from "gatsby";
+import { Redirect } from "@reach/router";
 
 import Spinner from "../components/Spinner"
 import { userService } from "../services/user.js"
@@ -9,6 +9,8 @@ import { membershipService } from "../services/membership.js"
 
 const Restrict = ({ children, membership }) =>  {
     const [user, setUser] = useState(null);
+    const [doLoginRedirect, setDoLoginRedirect] = useState(false);
+    const [doPaymentRedirect, setDoPaymentRedirect] = useState(false);
 
     async function getUserData() {
         const res = await userService.me();
@@ -16,6 +18,18 @@ const Restrict = ({ children, membership }) =>  {
     }
 
     useEffect(() => { getUserData() }, []);
+
+    if(doLoginRedirect) {
+        return(
+            <Redirect noThrow to="/login" />
+        );
+    }
+
+    if(doPaymentRedirect) {
+        return(
+            <Redirect noThrow to="/payment" />
+        );
+    }
 
     if (authenticationService.isLoggedIn()) {
         if (!user && membership) {
@@ -25,7 +39,7 @@ const Restrict = ({ children, membership }) =>  {
                 return children;
             } else {
                 setTimeout(() => {
-                    navigate("/payment");
+                    setDoPaymentRedirect(true);
                 }, 1000);
                 return (
                     <p>Invalid membership. Redirecting</p>
@@ -34,7 +48,7 @@ const Restrict = ({ children, membership }) =>  {
         }
     } else {
         setTimeout(() => {
-            navigate("/login");
+            setDoLoginRedirect(true);
         }, 1000);
         return (
             <p>Not logged in. Redirecting</p>

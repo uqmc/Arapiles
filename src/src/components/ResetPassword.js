@@ -4,7 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import { Button } from '@material-ui/core';
 
-import { navigate } from "gatsby"
+import { Link } from "gatsby"
 
 //Authentication services, used to send reset password request
 import { authenticationService } from "../services/authentication.js"
@@ -95,12 +95,7 @@ class ResetPassword extends React.Component {
 
                     {/*If successful password reset (and not logged in)*/}
                     { this.state.success && this.props.privateCode && 
-                        <Button
-                            className="btn draw-border"
-                            onClick={navigate("/login")}
-                        >
-                            Login
-                        </Button>
+                        <Link to="/login"><Button className="btn draw-border">Login</Button></Link>
                     }
                 </Form>
             )}

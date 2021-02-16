@@ -1,6 +1,6 @@
 import React from "react";
 
-import { navigate } from "gatsby"
+import { Redirect } from "@reach/router";
 
 import Login from "../components/Login";
 
@@ -9,7 +9,9 @@ import { authenticationService } from "../services/authentication.js"
 //Simple Login page
 const LOGIN = () => {
     if (authenticationService.isLoggedIn()) {
-        navigate("/profile");   
+        return(
+            <Redirect noThrow to="/profile" />
+        );
     }
 
     return ( 

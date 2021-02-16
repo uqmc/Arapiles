@@ -4,7 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import { Button, LinearProgress } from '@material-ui/core';
 
-import { Redirect } from "@reach/router"
+import { Redirect } from "@reach/router";
 import { Link } from "gatsby";
 
 //Authentication services for logging in
@@ -83,12 +83,11 @@ class Login extends React.Component {
                         >
                             Login!
                         </Button>
-                        <Button
-                            className="btn draw-border"
-                            disabled={formProps.isSubmitting}
-                        >
-                            <Link to="/sign-up">Sign Up!</Link>
-                        </Button>
+                        <Link to="/sign-up">
+                            <Button className="btn draw-border">
+                                Sign Up!
+                            </Button>
+                        </Link>
                     </Form>
                 )}
                 </Formik>

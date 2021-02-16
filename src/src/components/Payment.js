@@ -1,8 +1,8 @@
 import React from "react"
 
-import { navigate } from "gatsby";
+import { Redirect } from "@reach/router";
 
-import { Formik, Field, Form, ErrorMessage } from "formik"
+import { Formik, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import { Button, LinearProgress } from '@material-ui/core';
 import Select from "./inputs/Select";
@@ -65,7 +65,9 @@ class Payment extends React.Component {
     render() {
         if (this.state.success) {
             setTimeout(() => {
-                navigate("/profile");
+                return (
+                    <Redirect noThrow to="/profile" />
+                )
             }, 1000);
             return (
                 <div>

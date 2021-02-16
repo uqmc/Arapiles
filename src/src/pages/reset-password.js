@@ -1,6 +1,6 @@
 import React from "react";
 
-import { navigate } from "gatsby";
+import { Redirect } from "@reach/router";
 
 import { useQueryParam, StringParam } from "use-query-params";
 
@@ -12,8 +12,9 @@ const RESET_PASSWORD = () => {
     const [privateCode] = useQueryParam("code", StringParam);
 
 	if (!privateCode) {
-    	navigate("/");
-    	return (<></>)
+    	return (
+			<Redirect noThrow to="/dashboard" />
+		);
     } else {
 	    return (
 	        <>
