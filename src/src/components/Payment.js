@@ -89,24 +89,31 @@ class Payment extends React.Component {
                         <ErrorMessage name="membership" />
                         <br />
 
-                        <CardElement
-                            id="card"
-                            options={{
-                                iconStyle: 'solid',
-                                style: {
-                                  base: {
-                                    iconColor: '#c4f0ff',
-                                    color: '#fff',
-                                    fontSize: '16px',
-                                  },
-                                  invalid: {
-                                    iconColor: '#FFC7EE',
-                                    color: '#FFC7EE',
-                                  },
-                                },
-                                hidePostalCode: true
-                            }}
-                        />
+                        <div style={{width: "25%"}}>
+                            <CardElement
+                                id="card"
+                                options={{
+                                    iconStyle: 'solid',
+                                    style: {
+                                        base: {
+                                            iconColor: '#c4f0ff',
+                                            color: '#fff',
+                                            fontWeight: 500,
+                                            fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+                                            fontSize: '16px',
+                                            fontSmoothing: 'antialiased',
+                                            ':-webkit-autofill': {color: '#fce883'},
+                                            '::placeholder': {color: '#87bbfd'},
+                                        },
+                                        invalid: {
+                                          iconColor: '#ffc7ee',
+                                          color: '#ffc7ee',
+                                        },
+                                    },
+                                    hidePostalCode: true
+                                }}
+                            />
+                        </div>
                         {
                             formProps.isSubmitting
                             ? <LinearProgress />
