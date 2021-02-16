@@ -2,10 +2,15 @@ import React from "react"
 
 import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
-import { Button, LinearProgress } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+
+import { navigate } from "gatsby"
 
 //Authentication services, used to send reset password request
 import { authenticationService } from "../services/authentication.js"
+
+//User serivces, used to update password
+import { userService } from "../services/user.js"
 
 //Basic Reset password component
 class ResetPassword extends React.Component {
@@ -23,20 +28,29 @@ class ResetPassword extends React.Component {
             .required("Required"),
 
         passwordConfirmation: Yup.string()
+            .equals([Yup.ref("password"), null], "Passwords don't match")
             .required("Required")
     });
 
     //Function to handle reset password form submission
     handleSubmit = async (data, actions) => {
         //Attempt to reset password 
-        const response = await authenticationService.resetPassword(this.props.privateCode, data.password, data.passwordConfirmation);
+        const response = this.props.privateCode
+            ? await authenticationService.resetPassword(this.props.privateCode, data.password, data.passwordConfirmation)
+            : await userService.updateMe({
+                password: data.password
+            });
 
-        //Check if login was successful
+        //Check if reset was successful
         if (response === true) {
-            //navigate("/");
             this.setState({
                 success: true
-            })
+            });
+
+            if (this.props.onSuccess) {
+                this.props.onSuccess();
+            }
+
         } else {
             actions.setFieldError('general', response);
         }
@@ -73,11 +87,21 @@ class ResetPassword extends React.Component {
 
                     <Button
                         className="btn draw-border"
-                        disabled={formProps.isSubmitting || this.state.success}
+                        disabled={formProps.isSubmitting || (this.state.success && this.props.privateCode)}
                         onClick={formProps.handleSubmit}
                     >
                         Reset Password
                     </Button>
+
+                    {/*If successful password reset (and not logged in)*/}
+                    { this.state.success && this.props.privateCode && 
+                        <Button
+                            className="btn draw-border"
+                            onClick={navigate("/login")}
+                        >
+                            Login
+                        </Button>
+                    }
                 </Form>
             )}
             </Formik>

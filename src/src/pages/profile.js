@@ -4,6 +4,7 @@ import { userService } from "../services/user";
 
 import Profile from "../components/Profile";
 import Spinner from "../components/Spinner";
+import Restrict from "../components/Restrict";
 
 //Basic profile page
 const PROFILE = () => {
@@ -11,14 +12,32 @@ const PROFILE = () => {
     const [id] = useQueryParam("id", StringParam); 
     
     async function getProfileData() {
-        const response = id ? await userService.find(id) : await userService.me();
+        const response = id ? await userService.findOne(id) : await userService.me();
 
         if (response) {
-            setData(response["data"]);
+            if (response.data) {
+                setData(response.data);
+            } else {
+                setData({
+                    error: "No user found."
+                })
+            }
         } else {
             setData({
-                error: "Error"
+                error: "You do not have permissions to access this profile."
             });
+        }
+    }
+
+    function render() {
+        if (data) {
+            if (data.error) {
+                return <p style={{color: "red"}}>{data.error}</p>;
+            } else {
+                return <Profile data={data} id={id} />
+            }
+        } else {
+            return <Spinner />;
         }
     }
 
@@ -27,15 +46,15 @@ const PROFILE = () => {
         getProfileData();
     }, []);
 
-    if (data) {
-        if (data.error) {
-            return <span style={{color: "red"}}>{data.error}</span>;
-        } else {
-            return <Profile data={data} id={id} />;
-        }
-    } else {
-        return <Spinner></Spinner>;
-    }
+    localStorage.setItem("pg-open", "profile");
+
+    return (
+        <PrimaryLayout>
+            <Restrict>
+                { render() }
+            </Restrict>
+        </PrimaryLayout>
+    );
 };
 
 export default PROFILE;

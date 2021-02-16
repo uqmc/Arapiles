@@ -41,7 +41,6 @@ async function login(identifier, password) {
     }).catch(error => {
         if (error.response) { 
             //Return error message
-            //TODO: Replace this with custom messages?
             return error.response.data.message[0].messages[0].message;
         } else {
             return false;
@@ -67,35 +66,12 @@ async function register(data) {
     const success = await axios.post(process.env.GATSBY_CMS_HOST + "/auth/local/register", data)
     .then(response => {
         //Extract and set current user data from response
-        console.log(response);
         setCurrentUser(response.data);
-
         return true;
     }).catch(error => {
-        if (error.response) { 
-            console.log(error.response)
-        } 
         return false;
     });
 
-
-    return success;
-}
-
-//Function to resend Confirmation Email
-async function resendEmail(email) {
-    const success = await axios.post(process.env.GATSBY_CMS_HOST + "/auth/send-email-confirmation", {
-        email: email
-    }).then(response => {
-        console.log(response);
-
-        return true;
-    }).catch(error => {
-        if (error.response) { 
-            console.log(error.response)
-        } 
-        return false;
-    })
 
     return success;
 }
@@ -107,9 +83,6 @@ async function forgotPassword(email) {
     }).then(response => {
         return true;
     }).catch(error => {
-        if (error.response) { 
-            console.log(error.response)
-        } 
         return false;
     });
 
@@ -125,9 +98,6 @@ async function resetPassword(privateCode, password, passwordConfirmation) {
     }).then(response => {
         return true;
     }).catch(error => {
-        if (error.response) { 
-            console.log(error.response)
-        } 
         return false;
     });
 
@@ -140,7 +110,6 @@ export const authenticationService = {
     logout,
     isLoggedIn,
     register,
-    resendEmail,
     forgotPassword,
     resetPassword,
     currentUser,
