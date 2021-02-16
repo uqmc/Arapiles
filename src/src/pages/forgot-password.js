@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { navigate } from "gatsby"
 
@@ -8,10 +8,6 @@ import { authenticationService } from "../services/authentication.js"
 
 //Basic Forgot Password page
 const FORGOT_PASSWORD = () => {
-    useEffect(() => {
-        localStorage.setItem("pg-open", "forgot-password");
-    }, []);
-
     if (authenticationService.isLoggedIn()) {
         navigate("/profile");   
     }

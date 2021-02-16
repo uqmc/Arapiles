@@ -8,8 +8,6 @@ import Restrict from "../components/Restrict";
 const stripePromise = loadStripe(process.env.GATSBY_STRIPE_KEY);
 
 const PAYMENT = () => {
-    localStorage.setItem("pg-open", "payment");
-
     return(
         <Restrict>
             <Elements stripe={stripePromise}>

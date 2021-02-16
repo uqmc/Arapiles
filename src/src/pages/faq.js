@@ -20,7 +20,6 @@ const FAQ = () => {
   }
 
   useEffect(() => {
-    localStorage.setItem("pg-open", "faq");
     getFaqData();
   }, []);
 

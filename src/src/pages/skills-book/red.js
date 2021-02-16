@@ -13,8 +13,6 @@ const RedTapePage = () => {
     }
   
     useEffect(() => {
-        localStorage.setItem("dd-one", "true");
-        localStorage.setItem("pg-open", "red-tape");
         getContentData();
     }, []);
 

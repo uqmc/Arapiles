@@ -13,8 +13,6 @@ const OrangeTapePage = () => {
     }
   
     useEffect(() => {
-        localStorage.setItem("dd-one", "true");
-        localStorage.setItem("pg-open", "orange-tape");
         getContentData();
     }, []);
 

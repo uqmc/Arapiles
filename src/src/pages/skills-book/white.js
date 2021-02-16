@@ -13,8 +13,6 @@ const WhiteTapePage = () => {
     }
   
     useEffect(() => {
-        localStorage.setItem("dd-one", "true");
-        localStorage.setItem("pg-open", "white-tape");
         getContentData();
     }, []);
 

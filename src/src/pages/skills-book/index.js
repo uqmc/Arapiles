@@ -1,11 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 const StartHere = () => {
-    useEffect(() => {
-        localStorage.setItem("dd-one", "true")
-        localStorage.setItem("pg-open", "skills-home");
-    }, []);
-
     return (
         <> 
             <h1>The Skills Book</h1>

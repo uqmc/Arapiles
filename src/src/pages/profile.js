@@ -42,11 +42,8 @@ const PROFILE = () => {
     }
 
     useEffect(() => {
-        localStorage.setItem("pg-open", "profile");
         getProfileData();
     }, []);
-
-    localStorage.setItem("pg-open", "profile");
 
     return (
         <Restrict>

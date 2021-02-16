@@ -1,61 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "gatsby";
 
-const SideNav = () => {
-    //TODO: Find a better way to handle dropdown state that's DRY when multiple dropdowns
-    //      are present. Preferably one that stores state in a more Reacty way than
-    //      localStorage. Furthermore, the dropdown should be open when you go to one of the
-    //      pages that are a member of the dropdown menu by default - not just when it is 
-    //      navigated to from the dropdown directly. This will do for now.
-    const [dropdownOne, setDropdownOne] = useState(localStorage.getItem("dd-one") === "true");
-    
-    useEffect(() => {
-        localStorage.setItem("dd-one", dropdownOne);
-    }, [dropdownOne]);
+import ContextConsumer from "../components/Context";
 
-    const toggleDropdownOne = () => {
-        setDropdownOne(!dropdownOne);
-    };
+const SideNav = () => {
     
     const dropMenuOne = <>
-        <ul className="sidenav-buttons" id="drop-1">
-            <li className="sidenav-button"><Link to="/skills-book" className={localStorage.getItem("pg-open") === "skills-home" ? "nav-item-open" : ""}>Start Here</Link></li>
-            <li className="sidenav-button"><Link to="/skills-book/yellow" className={localStorage.getItem("pg-open") === "yellow-tape" ? "nav-item-open" : ""}>Yellow</Link></li>
-            <li className="sidenav-button"><Link to="/skills-book/blue" className={localStorage.getItem("pg-open") === "blue-tape" ? "nav-item-open" : ""}>Blue</Link></li>
-            <li className="sidenav-button"><Link to="/skills-book/green" className={localStorage.getItem("pg-open") === "green-tape" ? "nav-item-open" : ""}>Green</Link></li>
-            <li className="sidenav-button"><Link to="/skills-book/red" className={localStorage.getItem("pg-open") === "red-tape" ? "nav-item-open" : ""}>Red</Link></li>
-            <li className="sidenav-button"><Link to="/skills-book/orange" className={localStorage.getItem("pg-open") === "orange-tape" ? "nav-item-open" : ""}>Orange</Link></li>
-            <li className="sidenav-button"><Link to="/skills-book/black" className={localStorage.getItem("pg-open") === "black-tape" ? "nav-item-open" : ""}>Black</Link></li>
-            <li className="sidenav-button"><Link to="/skills-book/white" className={localStorage.getItem("pg-open") === "white-tape" ? "nav-item-open" : ""}>White</Link></li>
-        </ul>
+        <ContextConsumer>
+                {({ data, set }) => (
+                    <ul className="sidenav-buttons" id="drop-1">
+                        <li className="sidenav-button" onClick={() => set({ pgOpen: "skills-home" })}><Link to="/skills-book" className={data.pgOpen === "skills-home" ? "nav-item-open" : ""}>Start Here</Link></li>
+                        <li className="sidenav-button" onClick={() => set({ pgOpen: "yellow-tape" })}><Link to="/skills-book/yellow" className={data.pgOpen === "yellow-tape" ? "nav-item-open" : ""}>Yellow</Link></li>
+                        <li className="sidenav-button" onClick={() => set({ pgOpen: "blue-tape" })}><Link to="/skills-book/blue" className={data.pgOpen === "blue-tape" ? "nav-item-open" : ""}>Blue</Link></li>
+                        <li className="sidenav-button" onClick={() => set({ pgOpen: "green-tape" })}><Link to="/skills-book/green" className={data.pgOpen === "green-tape" ? "nav-item-open" : ""}>Green</Link></li>
+                        <li className="sidenav-button" onClick={() => set({ pgOpen: "red-tape" })}><Link to="/skills-book/red" className={data.pgOpen === "red-tape" ? "nav-item-open" : ""}>Red</Link></li>
+                        <li className="sidenav-button" onClick={() => set({ pgOpen: "orange-tape" })}><Link to="/skills-book/orange" className={data.pgOpen === "orange-tape" ? "nav-item-open" : ""}>Orange</Link></li>
+                        <li className="sidenav-button" onClick={() => set({ pgOpen: "black-tape" })}><Link to="/skills-book/black" className={data.pgOpen === "black-tape" ? "nav-item-open" : ""}>Black</Link></li>
+                        <li className="sidenav-button" onClick={() => set({ pgOpen: "white-tape" })}><Link to="/skills-book/white" className={data.pgOpen === "white-tape" ? "nav-item-open" : ""}>White</Link></li>
+                    </ul>
+                )}
+        </ContextConsumer>
     </>
 
-
-/*
-
-<ContextConsumer>
-                {({ data, set }) => (
-                    <div onClick={() => set({ menuOpen: !data.menuOpen })}>
-                        {data.menuOpen ? `Opened Menu` : `Closed Menu`}
-                    </div>
-                )}
-            </ContextConsumer>
-*/
     return(
-        <div className="side-nav">
-            <div className="brand-container">
-                <img alt="UQMC Logo" className="brand-image" src="https://uqmc-assets.s3.nl-ams.scw.cloud/uqmc_fully_transparent_white.png"></img>
-            </div>
-            <ul className="sidenav-buttons">
-                <li className="sidenav-button"><Link to="/dashboard" className={localStorage.getItem("pg-open") === "dashboard" ? "nav-item-open" : ""}>Dashboard</Link></li>
-                <li className="sidenav-button"><Link to="/the-team" className={localStorage.getItem("pg-open") === "the-team" ? "nav-item-open" : ""}>The Team</Link></li>
-                <li className="sidenav-button"><Link to="/faq" className={localStorage.getItem("pg-open") === "faq" ? "nav-item-open" : ""}>FAQ</Link></li>
-                <li className="sidenav-button" onClick={toggleDropdownOne}><a href="#!">Skills Book {dropdownOne ? <i className="fas fa-angle-down"></i> : <i className="fas fa-angle-right"></i>}</a></li>
-                {dropdownOne ? dropMenuOne : null}
-                <li className="sidenav-button"><Link to="/">Landing Page</Link></li>
-            </ul>
-            <div className="dots"></div>
-        </div>
+        <ContextConsumer>
+            {({ data, set }) => (
+                <div className="side-nav">
+                    <div className="brand-container">
+                        <img alt="UQMC Logo" className="brand-image" src="https://uqmc-assets.s3.nl-ams.scw.cloud/uqmc_fully_transparent_white.png"></img>
+                    </div>
+                    <ul className="sidenav-buttons">
+                        <li className="sidenav-button" onClick={() => set({ pgOpen: "dashboard" })}><Link to="/dashboard" className={data.pgOpen === "dashboard" ? "nav-item-open" : ""}>Dashboard</Link></li>
+                        <li className="sidenav-button" onClick={() => set({ pgOpen: "the-team" })}><Link to="/the-team" className={data.pgOpen === "the-team" ? "nav-item-open" : ""}>The Team</Link></li>
+                        <li className="sidenav-button" onClick={() => set({ pgOpen: "faq" })}><Link to="/faq" className={data.pgOpen === "faq" ? "nav-item-open" : ""}>FAQ</Link></li>
+
+                        <li className="sidenav-button" onClick={() => set({ ddOneOpen: !data.ddOneOpen })}><a href="#!">Skills Book {data.ddOneOpen ? <i className="fas fa-angle-down"></i> : <i className="fas fa-angle-right"></i>}</a></li>
+                        {data.ddOneOpen ? dropMenuOne : null}
+                        
+                        <li className="sidenav-button"><Link to="/">Landing Page</Link></li>
+                    </ul>
+                    <div className="dots"></div>
+                </div>
+            )}
+        </ContextConsumer>
     )
 }
 

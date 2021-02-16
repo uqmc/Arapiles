@@ -13,8 +13,6 @@ const BlackTapePage = () => {
     }
   
     useEffect(() => {
-        localStorage.setItem("dd-one", "true")
-        localStorage.setItem("pg-open", "black-tape");
         getContentData();
     }, []);
 

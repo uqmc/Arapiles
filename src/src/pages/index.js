@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "gatsby";
 
 import "../styles/index.scss"
@@ -10,9 +10,6 @@ import { authenticationService } from '../services/authentication.js'
 const LandingPage = () => {
   // But... I don't wanna go back to the Man-Village!
   // I wanna stay in the Jungle.
-  useEffect(() => {
-      localStorage.setItem("pg-open", "landing-page");
-  }, []);
 
   function handleLogout (event) {
       authenticationService.logout();

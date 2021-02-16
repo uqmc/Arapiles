@@ -13,8 +13,6 @@ const BlueTapePage = () => {
     }
   
     useEffect(() => {
-        localStorage.setItem("dd-one", "true")
-        localStorage.setItem("pg-open", "blue-tape");
         getContentData();
     }, []);
 

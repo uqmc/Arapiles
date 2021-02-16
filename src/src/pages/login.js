@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { navigate } from "gatsby"
 
@@ -8,10 +8,6 @@ import { authenticationService } from "../services/authentication.js"
 
 //Simple Login page
 const LOGIN = () => {
-    useEffect(() => {
-        localStorage.setItem("pg-open", "login");
-    }, []);
-
     if (authenticationService.isLoggedIn()) {
         navigate("/profile");   
     }

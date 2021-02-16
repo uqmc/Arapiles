@@ -1,10 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 const TheTeam = () => {
-  useEffect(() => {
-    localStorage.setItem("pg-open", "the-team");
-  }, []);
-
   return (
     <p>Execs array</p>
   );

@@ -1,10 +1,6 @@
-import React , { useEffect } from "react";
+import React from "react";
 
 const Dashboard = () => {
-    useEffect(() => {
-        localStorage.setItem("pg-open", "dashboard");
-    }, []);
-
     return (
         <>
             <p>Dashboard</p>
