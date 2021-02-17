@@ -4,12 +4,14 @@ import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import { Button, LinearProgress } from "@material-ui/core";
 import { DatePicker } from "formik-material-ui-pickers";
+import Modal from '@material-ui/core/Modal';
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import Select from "../components/inputs/Select";
 import Phone, { phoneValidation } from "../components/inputs/Phone";
 import Address, { addressValidation } from "../components/inputs/Address";
 
+import marked from "marked";
 import axios from "axios"
 
 //Authentication services for logging in
@@ -27,16 +29,21 @@ class SignUp extends React.Component {
         this.state = {
             waiver: "Loading...",
             membership: "Loading...",
+            waiverOpen: false,
+            membershipOpen: false,
+            dateOfBirth: new Date(),
+            agreedLiabilityWaiver: false,
+            agreedMembershipContract: false,
             registered: false
         }
     }
 
     async componentDidMount() {
         const waiver = await axios.get(process.env.GATSBY_CMS_HOST  + "/liability-waiver");
-        this.setState({waiver: waiver['data']['content']});
+        this.setState({waiver: marked(waiver['data']['content'])});
 
         const membership = await axios.get(process.env.GATSBY_CMS_HOST  + "/membership-agreement");
-        this.setState({membership: membership['data']['content']});
+        this.setState({membership: marked(membership['data']['content'])});
     }
 
     validationSchema = Yup.object().shape({
@@ -203,18 +210,42 @@ class SignUp extends React.Component {
 
                             <h2>Membership</h2>
                             <label htmlFor="agreedLiabilityWaiver">Liability Waiver</label>
-                            <div>
-                                { this.state.waiver }
-                            </div>
-                            <Field name="agreedLiabilityWaiver" type="checkbox" />
+                            <button type="button" onClick={() => this.setState({ waiverOpen: true })}>View Waiver</button>
+                            <Modal
+                                open={this.state.waiverOpen}
+                            >
+                                <div className="modal">
+                                    <div className="modal-header">
+                                        <button type="button" onClick={() => this.setState({ waiverOpen: false })}>Close Waiver</button>
+                                    </div>
+                                    <div dangerouslySetInnerHTML={{ __html: this.state.waiver }} />
+                                    <Field name="agreedLiabilityWaiver" type="checkbox" />
+                                    <label htmlFor="agreedLiabilityWaiver">Accept Waiver</label>
+                                    <div className="modal-header">
+                                        <button type="button" onClick={() => this.setState({ waiverOpen: false })}>Close Waiver</button>
+                                    </div>
+                                </div>
+                            </Modal>
                             <ErrorMessage name="agreedLiabilityWaiver" />
                             <br />
 
                             <label htmlFor="agreedMembershipContract">Membership agreement</label>
-                            <div>
-                                { this.state.membership }
-                            </div>
-                            <Field name="agreedMembershipContract" type="checkbox" />
+                            <button type="button" onClick={() => this.setState({ membershipOpen: true })}>View Membership Agreement</button>
+                            <Modal
+                                open={this.state.membershipOpen}
+                            >
+                                <div className="modal">
+                                    <div className="modal-header">
+                                        <button type="button" onClick={() => this.setState({ membershipOpen: false })}>Close Membership Agreement</button>
+                                    </div>
+                                    <div className="modal-text" dangerouslySetInnerHTML={{ __html: this.state.membership }} />
+                                    <Field name="agreedMembershipContract" type="checkbox" />
+                                    <label htmlFor="agreedMembershipContract">Accept Membership Agreement</label>
+                                    <div className="modal-header">
+                                        <button type="button" onClick={() => this.setState({ membershipOpen: false })}>Close Membership Agreement</button>
+                                    </div>
+                                </div>
+                            </Modal>
                             <ErrorMessage name="agreedMembershipContract" />
                             <br />
 
