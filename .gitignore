@@ -1,6 +1,8 @@
 # Secrets
 
 .env
+.env.production
+.env.development
 
 # Strapi volume
 STRAPI_APP_CONTENT/

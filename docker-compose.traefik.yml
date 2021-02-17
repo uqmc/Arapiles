@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: Dockerfile.prod
     restart: unless-stopped
-    env_file: .env
+    env_file: .env.production
     networks:
      - web
      - backend
@@ -31,7 +31,7 @@ services:
   cms:
     image: strapi/strapi
     restart: unless-stopped
-    env_file: .env
+    env_file: .env.production
     depends_on:
       - db
     networks:
@@ -53,7 +53,7 @@ services:
   backup:
     image: pants1/docker-volume-backup
     restart: on-failure
-    env_file: .env
+    env_file: .env.production
     volumes:
      - /var/lib/docker/volumes/:/HostVolumeData
     depends_on:
@@ -63,7 +63,7 @@ services:
   db:
     image: mongo
     restart: unless-stopped
-    env_file: .env
+    env_file: .env.production
     networks:
       - backend
     volumes:
