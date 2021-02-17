@@ -3,8 +3,14 @@ import { Link } from "gatsby";
 
 import ContextConsumer from "../components/Context";
 
+import { authenticationService } from '../services/authentication.js'
+
 const SideNav = () => {
     
+    function handleLogout (event) {
+        authenticationService.logout();
+    }
+
     const dropMenuOne = <>
         <ContextConsumer>
                 {({ data, set }) => (
@@ -38,6 +44,17 @@ const SideNav = () => {
                         {data.ddOneOpen ? dropMenuOne : null}
                         
                         <li className="sidenav-button"><Link to="/">Landing Page</Link></li>
+
+                        { authenticationService.isLoggedIn()
+                            ? <li className="sidenav-button" onClick={() => set({ pgOpen: "profile" })}><Link to="/profile" className={data.pgOpen === "profile" ? "nav-item-open" : ""}>Profile</Link></li>
+                            : <></>
+                        }
+
+                        { authenticationService.isLoggedIn()
+                            ? <li className="sidenav-button" onClick={handleLogout}><Link to="/">Logout</Link></li>
+                            : <li className="sidenav-button" onClick={() => set({ pgOpen: "login" })}><Link to="/login" className={data.pgOpen === "login" ? "nav-item-open" : ""}>Login / Signup</Link></li>
+                        }
+
                     </ul>
                     <div className="dots"></div>
                 </div>
