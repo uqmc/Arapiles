@@ -66,7 +66,6 @@ async function register(data) {
     const success = await axios.post(process.env.GATSBY_CMS_HOST + "/auth/local/register", data)
     .then(response => {
         //Extract and set current user data from response
-        setCurrentUser(response.data);
         return true;
     }).catch(error => {
         return false;
