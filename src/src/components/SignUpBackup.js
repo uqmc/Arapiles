@@ -31,9 +31,7 @@ class SignUp extends React.Component {
             membership: "Loading...",
             waiverOpen: false,
             membershipOpen: false,
-            dateOfBirth: new Date(),
-            agreedLiabilityWaiver: false,
-            agreedMembershipContract: false,
+            waiverChecked: false,
             registered: false
         }
     }
@@ -95,10 +93,10 @@ class SignUp extends React.Component {
         medicalDetails: Yup.string(),
 
         agreedLiabilityWaiver: Yup.boolean()
-            .oneOf([true], "You must agree to the Liability Waiver"),
+            .required("You must agree to the Liability Waiver"),
 
         agreedMembershipContract: Yup.boolean()
-            .oneOf([true], "You must agree to the Membership Agreement")
+            .required("You must agree to the Membership Agreement")
 
     }); 
 
