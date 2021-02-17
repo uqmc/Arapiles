@@ -141,7 +141,6 @@ class SignUp extends React.Component {
                     >
                     {(formProps) => (
                         <Form>
-                            {console.log(formProps)}
                             <h2>Your Details</h2>
                             <label htmlFor="nameFirst">First Name</label>
                             <Field name="nameFirst" />
