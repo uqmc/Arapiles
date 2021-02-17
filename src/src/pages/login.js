@@ -2,7 +2,7 @@ import React from "react";
 
 import { Redirect } from "@reach/router";
 
-import Login from "../components/Login";
+import Login from "../components/login";
 
 import { authenticationService } from "../services/authentication.js"
 
