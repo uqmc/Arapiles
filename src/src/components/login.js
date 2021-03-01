@@ -54,43 +54,47 @@ class Login extends React.Component {
             )
         } else {
             return (
-                <Formik
-                    initialValues = {{}}
-                    validationSchema={this.validationSchema}
-                    onSubmit={this.handleSubmit}
-                >
-                {(formProps) => (
-                    <Form>
-                        <label htmlFor="identifier">Username/Email</label>
-                        <Field name="identifier" />
-                        <ErrorMessage name="identifier" />
-                        <br />
+                <div className="form-container">
+                    <Formik
+                        initialValues = {{}}
+                        validationSchema={this.validationSchema}
+                        onSubmit={this.handleSubmit}
+                    >
+                    {(formProps) => (
+                        <Form>
+                            <label htmlFor="identifier">Username/Email</label>
+                            <Field name="identifier" className="text-field-short" />
+                            <ErrorMessage name="identifier" />
+                            <br />
 
-                        <label htmlFor="password">Password</label>
-                        <Field name="password" type="password" />
-                        <ErrorMessage name="password" />
-                        <br />
+                            <label htmlFor="password">Password</label>
+                            <Field name="password" type="password" className="text-field-short" />
+                            <ErrorMessage name="password" />
+                            <br />
 
-                        {
-                            formProps.isSubmitting
-                            ? <LinearProgress />
-                            : <div style={{color: "red"}}>{formProps.errors.general}</div>
-                        }
-                        <Button
-                            className="btn draw-border"
-                            disabled={formProps.isSubmitting}
-                            onClick={formProps.handleSubmit}
-                        >
-                            Login!
-                        </Button>
-                        <Link to="/sign-up">
-                            <Button className="btn draw-border">
-                                Sign Up!
-                            </Button>
-                        </Link>
-                    </Form>
-                )}
-                </Formik>
+                            {
+                                formProps.isSubmitting
+                                ? <LinearProgress />
+                                : <div style={{color: "red"}}>{formProps.errors.general}</div>
+                            }
+                            <div className="form-button-container">
+                                <button
+                                    className="form-button submit-button"
+                                    disabled={formProps.isSubmitting}
+                                    onClick={formProps.handleSubmit}
+                                >
+                                    Login
+                                </button>
+                                <Link to="/sign-up">
+                                    <button className="form-button">
+                                        Sign Up
+                                    </button>
+                                </Link>
+                            </div>
+                        </Form>
+                    )}
+                    </Formik>
+                </div>
             )
         }
     }

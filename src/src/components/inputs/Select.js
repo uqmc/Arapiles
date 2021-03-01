@@ -17,7 +17,7 @@ class Select extends React.Component {
     //Render a Formik Field as a select
     render() {
         return (
-            <Field {...this.props} as="select">
+            <Field {...this.props} as="select" className="dropdown-select">
                 { this.props.placeholder !== false && <option defaultValue>Please Select...</option> }
                 {
                     //Map options from props to select options

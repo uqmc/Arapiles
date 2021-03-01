@@ -19,12 +19,12 @@ class Address extends React.Component {
             <>
             {/* TODO: Look into google places API */}
             <label htmlFor={this.addressName}>Address</label>
-            <Field name={this.addressName} disabled={this.props.disabled} />
+            <Field name={this.addressName} disabled={this.props.disabled} className="text-field-short" />
             <ErrorMessage name={this.addressName} />
             <br />
 
             <label htmlFor={this.postcodeName}>Postcode</label>
-            <Field name={this.postcodeName} disabled={this.props.disabled} />
+            <Field name={this.postcodeName} disabled={this.props.disabled} className="text-field-short" />
             <ErrorMessage name={this.postcodeName} />
             <br />
             </>

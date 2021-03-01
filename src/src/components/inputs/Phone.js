@@ -22,7 +22,7 @@ class Phone extends React.Component {
         return (
             <>
                 <label htmlFor={this.numberName}>Phone Number</label>
-                <Field name={this.numberName} disabled={this.props.disabled} />
+                <Field name={this.numberName} disabled={this.props.disabled} className="text-field-short" />
                 <ErrorMessage name={this.numberName} />
 
                 <label htmlFor={this.typeName}>Type</label>

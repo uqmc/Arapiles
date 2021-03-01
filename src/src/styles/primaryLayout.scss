@@ -96,10 +96,11 @@ Page content wrapping children
 */
 .page-content {
   /* Set margin-left to make way for sidebar */
-  margin-left: calc(var(--sidebar-width) + 2em);
+  margin-left: calc(var(--sidebar-width));
   
   padding-top: 1rem;
-  padding-right: 1rem;
+  padding-right: 4rem;
+  padding-left: 4rem;
   color: var(--colour-text); // Body content font folour
 
   p, h1, h2, h3, h4, li {
@@ -155,4 +156,134 @@ Page content wrapping children
 .modal-text {
   width: 100%;
   padding: 1em 1em 1em 1em;
+}
+
+/*
+Form styles
+*/
+
+.form-container {
+  width: 70%;
+}
+
+label {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+}
+
+.label-inline {
+  display: inline;
+}
+
+.accept-terms-field-container {
+  margin: 1.5em 0 1.5em 1em;
+}
+
+.text-field-short {
+  margin-bottom: 0.5em;
+  width: 100%;
+  font-size: 17px;
+	padding: 0 50px 0 20px;
+	height: 50px;
+  border: 1px solid #333;
+
+  &:focus {
+    border-color: var(--colour-highlight);
+  }
+}
+
+.text-field-long {
+
+}
+
+.dropdown {
+
+}
+
+.MuiInputBase-root {
+  color: var(--colour-text) !important;
+  border: 1px solid var(--colour-text);
+  width: 100% !important;
+  padding-left: 1em !important;
+}
+
+.form-button-container {
+  margin-top: 1em;
+  width: 100%;
+}
+
+.form-button {
+	border: 1px solid #333;
+	border-radius: 0;
+	background-color: var(--colour-text);
+	color: var(--colour-background);
+	font-size: 17px;
+  padding: 12px 20px;
+  width: 80%;
+	&:hover {
+    background-color: var(--colour-highlight);
+    cursor: pointer;
+	}
+}
+
+.submit-button {
+
+}
+
+.special-signup-button {
+
+}
+
+/*
+Buttons
+*/
+
+.btn-regular {
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: var(--colour-text);
+  font-size: 1.3em;
+  background-color: var(--colour-highlight);
+  text-transform: capitalize;
+  padding: 0.6em 2em;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 1em 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.btn-arrow-popin {
+  transition: all 0.2s linear 0s;
+  
+  &:before {
+    content: "\f178";
+    font-family: FontAwesome;
+    font-size: 0.8em;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    height: 100%;
+    width: 40px;
+    transition: all 0.2s linear 0s;
+  }
+  
+  &:hover {
+    text-indent: -0.3em;
+    padding-right: 2.3em;
+    
+    &:before {
+      opacity: 1;
+      text-indent: -0.9em;
+    }
+  }
 }
