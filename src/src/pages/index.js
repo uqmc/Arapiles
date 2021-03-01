@@ -19,12 +19,9 @@ const LandingPage = () => {
     <>
       <nav className="navbar">
         <div className="navbar-buttons">
-          <Link to="/dashboard"><button className="btn draw-border">Dashboard</button></Link>
           <Link to="/skills-book"><button className="btn draw-border">Skills Book</button></Link>
-          { authenticationService.isLoggedIn()
-            ? <Link to="/"><button onClick={handleLogout} className="btn draw-border">Logout</button></Link>
-            : <Link to="/login"><button className="btn draw-border">Login / Signup</button></Link>
-          }
+          <Link to="/faq"><button className="btn draw-border">FAQ</button></Link>
+          <a href="https://facebook.com/groups/uqmountainclub/" target="_blank" rel="noopener noreferrer"><button className="btn draw-border">Facebook Page</button></a>
         </div>
       </nav>
 
