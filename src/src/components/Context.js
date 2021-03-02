@@ -2,7 +2,7 @@ import React from "react"
 
 const defaultContextValue = {
   data: {
-    someKey: "some value",
+    sideNavOpen: false,
     menuOpen: false
   },
   set: () => {},

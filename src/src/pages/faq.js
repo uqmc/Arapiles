@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext } from "react";
 import axios from "axios"
 import Spinner from "../components/Spinner";
+
+import ContextConsumer from "../components/Context";
 
 /*
 
@@ -12,6 +14,7 @@ We'll trek around time and space, we'll drink champagne to celebrate
 */
 
 const FAQ = () => {
+  const context = useContext(ContextConsumer);
   const [data, setData] = useState(null);
 
   async function getFaqData() {
@@ -20,6 +23,7 @@ const FAQ = () => {
   }
 
   useEffect(() => {
+    context.set({sideNavOpen: false});
     getFaqData();
   }, []);
 

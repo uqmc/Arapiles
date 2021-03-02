@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext, useEffect }  from "react";
 import { Link } from "gatsby";
 
 import ContextConsumer from "../components/Context";
 
 const SideNav = () => {
+    
+    const context = useContext(ContextConsumer);
+
+    useEffect(() => {
+        context.set({ ddOneOpen: true });
+    });
 
     const dropMenuOne = <>
         <ContextConsumer>
@@ -25,7 +31,7 @@ const SideNav = () => {
     return(
         <ContextConsumer>
             {({ data, set }) => (
-                <div className="side-nav">
+                <div className={data.sideNavOpen ? "side-nav side-nav-open" : "side-nav side-nav-closed"}>
                     <div className="brand-container">
                         <Link to="/"><img alt="UQMC Logo" className="brand-image" src="https://uqmc-assets.s3.nl-ams.scw.cloud/uqmc_fully_transparent_white.png"></img></Link>
                     </div>
