@@ -227,63 +227,35 @@ label {
 	}
 }
 
-.submit-button {
+/*---
+Stripe styling
+---*/
 
+.stripe-form-group {
+  padding: 0;
+  border-style: none;
+  background-color: #7795f8;
+  will-change: opacity, transform;
+  box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 #829fff;
+  border-radius: 4px;
+  max-width: 50vw;
 }
 
-.special-signup-button {
-
+.stripe-form-row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-left: 15px;
+  border-top: 1px solid #819efc;
 }
 
-/*
-Buttons
-*/
-
-.btn-regular {
-  text-align: center;
-  display: inline-block;
-  position: relative;
-  text-decoration: none;
-  color: var(--colour-text);
-  font-size: 1.3em;
-  background-color: var(--colour-highlight);
-  text-transform: capitalize;
-  padding: 0.6em 2em;
-  border-radius: 5px;
-  overflow: hidden;
-  margin: 1em 0;
-
-  &:hover {
-    cursor: pointer;
-  }
+.StripeElement--webkit-autofill {
+  background: transparent !important;
 }
 
-.btn-arrow-popin {
-  transition: all 0.2s linear 0s;
-  
-  &:before {
-    content: "\f178";
-    font-family: FontAwesome;
-    font-size: 0.8em;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    right: 0;
-    top: 0;
-    opacity: 0;
-    height: 100%;
-    width: 40px;
-    transition: all 0.2s linear 0s;
-  }
-  
-  &:hover {
-    text-indent: -0.3em;
-    padding-right: 2.3em;
-    
-    &:before {
-      opacity: 1;
-      text-indent: -0.9em;
-    }
-  }
+.StripeElement {
+  width: 100%;
+  padding: 11px 15px 11px 0;
 }

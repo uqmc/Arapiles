@@ -2,7 +2,6 @@ import React from "react"
 
 import { Formik, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
-import { Button } from '@material-ui/core';
 import Select from "../inputs/Select";
 
 import ResetPassword from "../ResetPassword";
@@ -79,9 +78,10 @@ class AccountDetails extends React.Component {
                             <Select name="role" disabled={!this.state.edit} options={this.state.roles} placeholder={false} />
                             <ErrorMessage name="role" />
 
-                            <Button
-                                className="btn draw-border"
+                            <button
+                                className="btn-lovely"
                                 disabled={formProps.isSubmitting}
+                                type="button"
                                 onClick={() => {
                                     if (this.state.edit) {
                                         formProps.handleSubmit()
@@ -91,7 +91,7 @@ class AccountDetails extends React.Component {
                                 }}
                             >
                                 {this.state.edit ? "Submit" : "Edit"}
-                            </Button>
+                            </button>
                             <br/>
                         </Form>
                     )}
@@ -99,8 +99,8 @@ class AccountDetails extends React.Component {
                 } 
 
                 <br/>
-                <Button
-                    className="btn draw-border"
+                <button
+                    className="btn-lovely"
                     onClick={()=>{
                         this.setState({
                             editPassword: !this.state.editPassword,
@@ -109,7 +109,7 @@ class AccountDetails extends React.Component {
                     }}
                 >
                     {this.state.editPassword ? (this.state.passwordSuccess ? "Close" : "Cancel") : "Change Password"}
-                </Button>
+                </button>
 
                 { this.state.editPassword &&
                     <>

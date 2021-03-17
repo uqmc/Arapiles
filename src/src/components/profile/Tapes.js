@@ -78,15 +78,15 @@ class Tapes extends React.Component {
                     }
                     { !formProps.isSubmitting && <span style={{color: "red"}}>{formProps.errors.general}</span> }
                     <br/>
-                    <Button
-                        className="btn draw-border"
+                    <button
+                        className="btn-lovely"
                         disabled={formProps.isSubmitting}
                         onClick={() => {
                             formProps.handleSubmit();
                         }}
                     >
                         Submit 
-                    </Button>
+                    </button>
                 </Form>
                 )
             }
@@ -116,12 +116,12 @@ class Tapes extends React.Component {
         return (
             <>
                 {this.props.admin &&
-                    <Button
-                        className="btn draw-border"
+                    <button
+                        className="btn-lovely"
                         onClick={() => {this.setState({edit: !this.state.edit})}}
                     >
                         {this.state.edit ? "Cancel" : "Edit Tapes"}
-                    </Button>
+                    </button>
                 }
                 {this.state.edit ? this.renderForm() : this.renderList()}
             </>

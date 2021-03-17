@@ -61,13 +61,13 @@ class ForgotPassword extends React.Component {
                         : !formProps.isSubmitting && <span style={{color: "red"}}>{formProps.errors.general}</span>
                     }
                     <br/>
-                    <Button
-                        className="btn draw-border"
+                    <button
+                        className="btn-lovely"
                         disabled={formProps.isSubmitting}
                         onClick={formProps.handleSubmit}
                     >
                         Reset Password 
-                    </Button>
+                    </button>
                 </Form>
             )}
             </Formik>

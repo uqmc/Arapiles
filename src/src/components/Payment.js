@@ -10,6 +10,26 @@ import Select from "./inputs/Select";
 import { membershipService } from "../services/membership.js"
 import { CardElement } from "@stripe/react-stripe-js";
 
+const CARD_OPTIONS = {
+    iconStyle: 'solid',
+    style: {
+      base: {
+        iconColor: '#c4f0ff',
+        color: '#fff',
+        fontWeight: 500,
+        fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+        fontSize: '16px',
+        fontSmoothing: 'antialiased',
+        ':-webkit-autofill': {color: '#fce883'},
+        '::placeholder': {color: '#ffffff'},
+      },
+      invalid: {
+        iconColor: '#ffc7ee',
+        color: '#ffc7ee',
+      },
+    },
+  };
+
 //Basic Login componnent
 class Payment extends React.Component {
 
@@ -86,48 +106,32 @@ class Payment extends React.Component {
                         { this.state.membershipError && 
                             <div style={{color: "red"}}>An error has occured. Please try refreshing or contact a system administrator.</div> 
                         }
-                        <label htmlFor="membership">Membership</label>
+                        <p>Membership type</p>
                         <Select name="membership" options={this.state.memberships} disabled={formProps.isSubmitting} />
                         <ErrorMessage name="membership" />
                         <br />
 
-                        <div style={{width: "25%"}}>
-                            <CardElement
-                                id="card"
-                                options={{
-                                    iconStyle: 'solid',
-                                    style: {
-                                        base: {
-                                            iconColor: '#c4f0ff',
-                                            color: '#fff',
-                                            fontWeight: 500,
-                                            fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
-                                            fontSize: '16px',
-                                            fontSmoothing: 'antialiased',
-                                            ':-webkit-autofill': {color: '#fce883'},
-                                            '::placeholder': {color: '#87bbfd'},
-                                        },
-                                        invalid: {
-                                          iconColor: '#ffc7ee',
-                                          color: '#ffc7ee',
-                                        },
-                                    },
-                                    hidePostalCode: true
-                                }}
-                            />
+                        <p>Payment details</p>
+                        <div className="stripe-form-group">
+                            <div className="stripe-form-row">
+                                <CardElement
+                                    id="card"
+                                    options={CARD_OPTIONS}
+                                />
+                            </div>
                         </div>
                         {
                             formProps.isSubmitting
                             ? <LinearProgress />
                             : <div style={{color: "red"}}>{formProps.errors.general}</div>
                         }
-                        <Button
-                            className="btn draw-border"
+                        <button
+                            className="btn-lovely"
                             disabled={!this.props.stripe || formProps.isSubmitting}
                             onClick={formProps.handleSubmit}
                         >
-                            Submit
-                        </Button>
+                            Process Payment
+                        </button>
                     </Form>
                 )}
                 </Formik>

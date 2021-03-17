@@ -5,6 +5,7 @@ import { ContextProvider } from "../components/Context";
 
 import "../styles/primaryLayout.scss";
 import "../styles/nav-button.scss"
+import "../styles/lovely-buttons.scss";
 
 const PrimaryLayout = (props) =>  {
   if(props.location.pathname === "/") {

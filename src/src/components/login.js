@@ -79,14 +79,14 @@ class Login extends React.Component {
                             }
                             <div className="form-button-container">
                                 <button
-                                    className="form-button submit-button"
+                                    className="btn-lovely"
                                     disabled={formProps.isSubmitting}
                                     onClick={formProps.handleSubmit}
                                 >
                                     Login
                                 </button>
                                 <Link to="/sign-up">
-                                    <button className="form-button">
+                                    <button className="btn-lovely">
                                         Sign Up
                                     </button>
                                 </Link>

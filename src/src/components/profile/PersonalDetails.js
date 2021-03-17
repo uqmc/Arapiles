@@ -98,16 +98,17 @@ class PersonalDetails extends React.Component {
                 >
                 {(formProps) => (
                     <Form>
-                        <Button
-                            className="btn draw-border"
+                        <button
+                            className="btn-lovely"
                             disabled={formProps.isSubmitting}
+                            type="button"
                             onClick={() => {
                                 this.setState({edit: !this.state.edit});
                                 delete formProps.errors.general;
                             }}
                         >
                             {this.state.edit ? "Cancel" : "Edit"}
-                        </Button>
+                        </button>
                         <br />
  
                         <label htmlFor="nameFirst">First Name</label>
@@ -158,13 +159,14 @@ class PersonalDetails extends React.Component {
                         }
                         <br/>
                         { this.state.edit &&
-                            <Button
-                                className="btn draw-border"
+                            <button
+                                className="btn-lovely"
                                 disabled={formProps.isSubmitting}
                                 onClick={formProps.handleSubmit}
+                                type="button"
                             >
                                 Update   
-                            </Button>
+                            </button>
                         }
                     </Form>
                 )}

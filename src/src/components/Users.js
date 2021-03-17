@@ -129,7 +129,7 @@ class Users extends React.Component {
                             disabled={this.state.loading}
                         />
                         <Button
-                            className="btn draw-border"
+                            className="btn-lovely"
                             disabled={this.state.loading || this.state.params.pageNumber <= 1}
                             onClick={() => {this.changePage(-1)}}
                         >
@@ -137,7 +137,7 @@ class Users extends React.Component {
                         </Button>
                         <span>{this.state.params.pageNumber}/{this.state.maxPage}</span>
                         <Button
-                            className="btn draw-border"
+                            className="btn-lovely"
                             disabled={this.state.loading || this.state.params.pageNumber >= this.state.maxPage}
                             onClick={() => {this.changePage(1)}}
                         >

@@ -38,12 +38,12 @@ class Tests extends React.Component {
         return (
             <>
                 {this.props.admin &&
-                    <Button
-                        className="btn draw-border"
+                    <button
+                        className="btn-lovely"
                         onClick={() => {this.setState({edit: !this.state.edit})}}
                     >
                         {this.state.edit ? "Cancel" : "Edit Tests"}
-                    </Button>
+                    </button>
                 }
                 <Formik
                     key="testsFormik"
@@ -60,15 +60,15 @@ class Tests extends React.Component {
                         { !formProps.isSubmitting && <span style={{color: "red"}}>{formProps.errors.general}</span> }
                         <br/>
                         { this.state.edit &&
-                            <Button
-                                className="btn draw-border"
+                            <button
+                                className="btn-lovely"
                                 disabled={formProps.isSubmitting}
                                 onClick={() => {
                                     formProps.handleSubmit();
                                 }}
                             >
                                 Submit 
-                            </Button>
+                            </button>
                         }
                     </Form>
                     )

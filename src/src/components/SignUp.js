@@ -34,8 +34,11 @@ class SignUp extends React.Component {
             dateOfBirth: new Date(),
             agreedLiabilityWaiver: false,
             agreedMembershipContract: false,
-            registered: false
+            registered: false,
+            signupBtnIsHovered: false
         }
+
+        this.handleSignupBtnHover = this.handleSignupBtnHover.bind(this);
     }
 
     async componentDidMount() {
@@ -44,6 +47,12 @@ class SignUp extends React.Component {
 
         const membership = await axios.get(process.env.GATSBY_CMS_HOST  + "/membership-agreement");
         this.setState({membership: marked(membership['data']['content'])});
+    }
+
+    handleSignupBtnHover(){
+        this.setState(prevState => ({
+            signupBtnIsHovered: !prevState.signupBtnIsHovered
+        }));
     }
 
     validationSchema = Yup.object().shape({
@@ -261,7 +270,7 @@ class SignUp extends React.Component {
                                 }
 
                                 <button
-                                    className="btn-regular btn-arrow-popin"
+                                    className="btn-lovely"
                                     disabled={formProps.isSubmitting}
                                     onClick={formProps.handleSubmit}
                                 >
