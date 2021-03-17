@@ -34,7 +34,6 @@
     "gatsby-remark-relative-images": "^2.0.2",
     "gatsby-source-filesystem": "^2.3.28",
     "gatsby-transformer-sharp": "^2.5.15",
-    "gsap": "file:gsap-member/npm-install-this/gsap-bonus.tgz",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
