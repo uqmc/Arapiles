@@ -55,7 +55,7 @@ class Payment extends React.Component {
                     }
                 }),
                 validationSchema: Yup.object().shape({
-                    membership: Yup.number()
+                    membership: Yup.string()
                         .typeError("Please select a membership")
                         //.oneOf(memberships.data.map((membership) => { return membership.id }), "Please select a valid membership") 
                 })
