@@ -39,6 +39,7 @@ const SideNav = () => {
                         <li className="sidenav-button" onClick={() => set({ pgOpen: "dashboard" })}><Link to="/dashboard" className={data.pgOpen === "dashboard" ? "nav-item-open" : ""}>Dashboard</Link></li>
                         <li className="sidenav-button" onClick={() => set({ pgOpen: "the-team" })}><Link to="/the-team" className={data.pgOpen === "the-team" ? "nav-item-open" : ""}>The Team</Link></li>
                         <li className="sidenav-button" onClick={() => set({ pgOpen: "faq" })}><Link to="/faq" className={data.pgOpen === "faq" ? "nav-item-open" : ""}>FAQ</Link></li>
+                        <li className="sidenav-button" onClick={() => set({ pgOpen: "payment" })}><Link to="/payment" className={data.pgOpen === "payment" ? "nav-item-open" : ""}>Payment</Link></li>
 
                         <li className="sidenav-button" onClick={() => set({ ddOneOpen: !data.ddOneOpen })}><a href="#!">Skills Book {data.ddOneOpen ? <i className="fas fa-angle-down"></i> : <i className="fas fa-angle-right"></i>}</a></li>
                         {data.ddOneOpen ? dropMenuOne : null}
