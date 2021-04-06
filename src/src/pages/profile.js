@@ -1,15 +1,16 @@
-import React, {useEffect, useState} from "react";
-import { useQueryParam, StringParam } from "use-query-params";
+import React, { useEffect, useState, useContext } from "react";
 import { userService } from "../services/user";
 
 import Profile from "../components/Profile";
 import Spinner from "../components/Spinner";
 import Restrict from "../components/Restrict";
+import ContextConsumer from "../components/Context";
 
 //Basic profile page
-const PROFILE = () => {
+const PROFILE = ({ id }) => {
+
+    const context = useContext(ContextConsumer);
     const [data, setData] = useState(null);
-    const [id] = useQueryParam("id", StringParam); 
     
     async function getProfileData() {
         const response = id ? await userService.findOne(id) : await userService.me();
@@ -42,6 +43,7 @@ const PROFILE = () => {
     }
 
     useEffect(() => {
+        context.set({sideNavOpen: false});
         getProfileData();
     }, []);
 

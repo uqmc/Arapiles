@@ -64,7 +64,7 @@ class AccountDetails extends React.Component {
                 {
                     this.props.admin &&
                     <Formik
-                        initialValues={{role: this.props.data.role.id}}
+                        initialValues={{role: this.props.data.role ? this.props.data.role.id : undefined}}
                         validationSchema={Yup.object().shape({
                             role: Yup.string()
                                 .ensure("Please select a Role.")
@@ -75,7 +75,7 @@ class AccountDetails extends React.Component {
                     {(formProps) => (
                         <Form>
                             <label htmlFor="role">Role</label>
-                            <Select name="role" disabled={!this.state.edit} options={this.state.roles} placeholder={false} />
+                            <Select name="role" disabled={!this.state.edit} options={this.state.roles} placeholder="Not Authenticated" />
                             <ErrorMessage name="role" />
 
                             <button
@@ -85,7 +85,7 @@ class AccountDetails extends React.Component {
                                 onClick={() => {
                                     if (this.state.edit) {
                                         formProps.handleSubmit()
-                                    } else {
+                                    } else { 
                                         this.setState({edit: true})
                                     }
                                 }}

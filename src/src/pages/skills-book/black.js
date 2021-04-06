@@ -1,10 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios"
 import marked from "marked";
 
 import Spinner from "../../components/Spinner";
+import ContextConsumer from "../../components/Context";
 
 const BlackTapePage = () => {
+
+    const context = useContext(ContextConsumer);
     const [data, setData] = useState(null);
 
     async function getContentData() {
@@ -13,6 +16,7 @@ const BlackTapePage = () => {
     }
   
     useEffect(() => {
+        context.set({sideNavOpen: false});
         getContentData();
     }, []);
 
@@ -20,7 +24,7 @@ const BlackTapePage = () => {
 
     if(!htmlContent) {
         return(
-          <Spinner></Spinner>
+            <Spinner />
         )
     } else {
         return(

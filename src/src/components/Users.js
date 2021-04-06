@@ -146,7 +146,10 @@ class Users extends React.Component {
                         <table>
                             <thead>
                                 <tr>
-                                    <td>Name</td>
+                                    <td></td>
+                                    <td>First Name</td>
+                                    <td>Family Name</td>
+                                    <td>Email</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -154,9 +157,10 @@ class Users extends React.Component {
                                     this.state.users.map((user) => {
                                         return (
                                             <tr>
-                                                <Link to={`/profile?id=${user.id}`}>
-                                                    <td>{user.nameLast}, {user.nameFirst}</td>
-                                                </Link>
+                                                <td><Link to={`/profile/${user.id}`}>Edit</Link></td>
+                                                <td>{user.nameFirst}</td>
+                                                <td>{user.nameLast}</td>
+                                                <td>{user.email}</td>
                                             </tr>
                                         )
                                     })

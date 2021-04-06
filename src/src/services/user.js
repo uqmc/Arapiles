@@ -116,6 +116,18 @@ async function roles() {
     return response;
 }
 
+async function destroy(id) {
+    const response = await axios.delete(process.env.GATSBY_CMS_HOST + `/users/${id}`, {
+        headers: authenticationService.getAuthHeader()
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        return false;
+    });
+
+    return response;
+}
+
 export const userService = {
     me,
     findOne,
@@ -124,6 +136,7 @@ export const userService = {
     updateMe,
     count,
     roles,
+    destroy,
     sexes,
     phoneTypes,
     studentStatuses

@@ -39,7 +39,8 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^5.2.0",
     "sass": "^1.32.3",
-    "use-query-params": "^1.1.9"
+    "use-query-params": "^1.1.9",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "marked": "^1.2.7",

@@ -56,7 +56,7 @@ const LandingPage = () => {
       <div className="section bg-two">
         <div className="section-content">
           <h2 className="section-heading">2. Who can join</h2>
-          <p>UQMC is a student orientated club with most of our trips planned around the UQ undergraduate academic year. However, you don’t need to be a student to join. As long as you are friendly and psyched to explore the outdoors you will fit right in. As a volunteer led organisation we encourage all members to follow the tradition of helping spread climbing knowledge and stoke the engine of the <a href="#!" data-tooltip="Choo choo!">Send Train</a>.</p>
+          <p>UQMC is a student orientated club with most of our trips planned around the UQ undergraduate academic year. However, you don’t need to be a student to join. As long as you are friendly and psyched to explore the outdoors you will fit right in. As a volunteer led organisation we encourage all members to follow the tradition of helping spread climbing knowledge and stoke the engine of the <div className="tooltip"><a>Send Train</a><span className="tooltip-text">Choo Choo!</span></div>.</p>
         </div>
       </div>
 
@@ -77,14 +77,6 @@ const LandingPage = () => {
         <div className="section-content">
           <h2 className="section-heading">4. 'Tapes' and competency</h2>
           <p>A system of coloured tapes is used to represent competency in different areas of climbing, and members are able to progress through the tapes as their knowledge and confidence grows. New members start out by getting their Yellow Tape, which means they can top-rope belay someone without supervision (if you don’t know what this means, don’t worry!).</p>
-        </div>
-      </div>
-
-      {/* Sixth section */}
-      <div className="section bg-two">
-        <div className="section-content">
-          <h2 className="section-heading">4. Our rich history</h2>
-          <p>Content coming soon!</p>
         </div>
       </div>
     </>
