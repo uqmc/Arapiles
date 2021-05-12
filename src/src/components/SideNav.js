@@ -57,11 +57,6 @@ const SideNav = () => {
                         }
 
                         { authenticationService.isLoggedIn()
-                            ? <li className="sidenav-button" onClick={() => set({ pgOpen: "users" })}><Link to="/users">Users Directory</Link></li>
-                            : <></>
-                        }
-
-                        { authenticationService.isLoggedIn()
                             ? <li className="sidenav-button" onClick={handleLogout}><Link to="/">Logout</Link></li>
                             : <li className="sidenav-button" onClick={() => set({ pgOpen: "login" })}><Link to="/login" className={data.pgOpen === "login" ? "nav-item-open" : ""}>Login / Signup</Link></li>
                         }
