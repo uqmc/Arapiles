@@ -52,6 +52,7 @@ class Profile extends React.Component {
                     <Tapes id={this.id} tapes={this.props.data.tapes} admin={this.state.admin} />
                 
                 <h2>Delete User</h2>
+                <p>This will only work if you are an administrator.</p>
                 <button
                     className="btn-lovely"
                     type="button"
@@ -61,7 +62,7 @@ class Profile extends React.Component {
                             isDeleted: true
                         });
                     }}>
-                    DELETE USER
+                    Delete User
                 </button>
             </>);
         }
