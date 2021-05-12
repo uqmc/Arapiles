@@ -50,20 +50,6 @@ class Profile extends React.Component {
                     <Tests id={this.id} data={this.props.data} admin={this.state.admin} />
                     <h3>Tapes</h3>
                     <Tapes id={this.id} tapes={this.props.data.tapes} admin={this.state.admin} />
-                
-                <h2>Delete User</h2>
-                <p>This will only work if you are an administrator.</p>
-                <button
-                    className="btn-lovely"
-                    type="button"
-                    onClick={() => {
-                        userService.destroy(this.id);
-                        this.setState({
-                            isDeleted: true
-                        });
-                    }}>
-                    Delete User
-                </button>
             </>);
         }
     }
