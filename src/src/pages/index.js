@@ -64,7 +64,7 @@ const LandingPage = () => {
       <div className="section bg-three">
         <div className="section-content">
           <h2 className="section-heading">3. Getting started</h2>
-          <p>To start, sign up through our <a href="https://members.uqmc.org/">membership portal</a> and start your two week free trial. Join our Facebook page for live updates and our event calendar. Then you can rock up to any event we have planned.</p>
+          <p>To start, sign up <Link to="/sign-up">here</Link> and start your two week free trial. Join our Facebook page for live updates and our event calendar. Then you can rock up to any event we have planned.</p>
           <h3>Kangaroo Point nights</h3>
           <p>For COVID-safe reasons, you must first register yourself on the Google Sheet which will be linked on the night’s Facebook event page. Our KP nights are regular - on Tuesdays and Fridays from 6pm to 8:30pm. To the right is a map of KP with where you can find us on your first night. Look out for friendly faces in UQMC Exec shirts who will tell you more.</p>
           <h3>More events</h3>
