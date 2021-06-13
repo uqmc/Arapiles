@@ -42,7 +42,7 @@ const Index = () => {
             <div className="content-container text-center">
                 <div className="content-full-width">
                     <h1><span className="highlight">Who</span> are we?</h1>
-                    <p>The UQ Mountain Club (UQMC) is a volunteer led, UQ Sports affiliated club that
+                    <p>The UQ Mountain Club (UQMC) is a volunteer led outdoor adventure club based in Brisbane, QLD, Australia. We are a UQ Sports affiliated club that
 provides a haven for climbers, hikers, and adventure-seekers of all ability levels. For 
 over half a century, the club has offered a community for people looking to push 
 their personal limits, plan epic adventures, make lasting friendships, and get outside 
