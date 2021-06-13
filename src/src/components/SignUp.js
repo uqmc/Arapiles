@@ -230,10 +230,10 @@ class SignUp extends React.Component {
                                         <div className="modal-text" dangerouslySetInnerHTML={{ __html: this.state.waiver }} />
                                         <div className="accept-terms-field-container">
                                             <Field name="agreedLiabilityWaiver" type="checkbox" />
-                                            <label htmlFor="agreedLiabilityWaiver" className="label-inline">Accept Waiver</label>
+                                            <label htmlFor="agreedLiabilityWaiver" className="label-inline"><span className="highlight">Accept Waiver</span></label>
                                         </div>
                                         <div className="modal-header">
-                                            <button type="button" onClick={() => this.setState({ waiverOpen: false })}>Close Waiver</button>
+                                            <button className="btn" type="button" onClick={() => this.setState({ waiverOpen: false })}>Close Waiver</button>
                                         </div>
                                     </div>
                                 </Modal>
@@ -252,10 +252,10 @@ class SignUp extends React.Component {
                                         <div className="modal-text" dangerouslySetInnerHTML={{ __html: this.state.membership }} />
                                         <div className="accept-terms-field-container">
                                             <Field name="agreedMembershipContract" type="checkbox" />
-                                            <label htmlFor="agreedMembershipContract" className="label-inline">Accept Membership Agreement</label>
+                                            <label htmlFor="agreedMembershipContract" className="label-inline"><span className="highlight">Accept Membership Agreement</span></label>
                                         </div>
                                         <div className="modal-header">
-                                            <button type="button" onClick={() => this.setState({ membershipOpen: false })}>Close Membership Agreement</button>
+                                            <button className="btn" type="button" onClick={() => this.setState({ membershipOpen: false })}>Close Membership Agreement</button>
                                         </div>
                                     </div>
                                 </Modal>
