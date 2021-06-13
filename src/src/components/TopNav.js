@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 
-import Hide from "../components/Hide";
+import { authenticationService } from '../services/authentication.js'
 
 const TopNav = () => {
     let navLinks = [
@@ -11,8 +11,14 @@ const TopNav = () => {
             <Link to="/events"><li>Events</li></Link>
             <Link to="/the-team"><li>The Team</li></Link>
             <Link to="/faq"><li>FAQ</li></Link>
-            <Link to="/payment"><li>Membership</li></Link>
-            <Link to="/profile"><li>Profile</li></Link>
+
+            { authenticationService.isLoggedIn()
+                ? <>
+                    <Link to="/payment"><li>Membership</li></Link>
+                    <Link to="/profile"><li>Profile</li></Link>
+                  </>
+                : <Link to="/login"><li>Login</li></Link>
+            }
         </ul>
     ];
 

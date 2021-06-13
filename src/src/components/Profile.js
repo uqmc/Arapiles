@@ -1,7 +1,9 @@
 import React from "react"
+import { Link } from "gatsby";
 import { Redirect } from "@reach/router";
 
 import { userService } from "../services/user.js"
+import { authenticationService } from "../services/authentication.js";
 
 import AccountDetails from "./profile/AccountDetails";
 import PersonalDetails from "./profile/PersonalDetails";
@@ -30,6 +32,10 @@ class Profile extends React.Component {
         }
     }
 
+    handleLogout (event) {
+        authenticationService.logout();
+    }
+
     //Basic Profile page
     //Note if you run into a bug where forms won't properly submit, it might be because another form on the page has an error message.
     render() {
@@ -39,6 +45,8 @@ class Profile extends React.Component {
             return (
                 <>
                     <h1 className="content-full-width">Profile</h1>
+                    <h2 className="content-full-width">Logout</h2>
+                    <Link to="/" onClick={this.handleLogout}><button className="btn">Logout</button></Link>
 
                     <h2 className="content-full-width">Account Details</h2>
                     <AccountDetails id={this.id} data={this.props.data} admin={this.state.admin} />

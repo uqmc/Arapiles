@@ -2,6 +2,8 @@ import React from "react";
 import { Helmet } from "react-helmet"
 import { Link } from "gatsby";
 
+import Footer from "../components/Footer";
+
 import { authenticationService } from '../services/authentication.js'
 
 const Index = () => {
@@ -73,9 +75,9 @@ to escape the monotone of a city life and experience the sublime.</p>
 
                 <div className="content-full-width">
                     <h1><span className="highlight">Getting</span> started.</h1>
-                    <p>To start, sign up through our membership portal and start your two week free trial. Join our Facebook page for live updates and our event calendar. Then you can rock up to any event we have planned.</p>
+                    <p>To start, sign up through this website and start your two week free trial. Join our Facebook page for live updates and our event calendar. Then, you can rock up to any event we have planned.</p>
                     <h2>Kangaroo point nights</h2>
-                    <p>For COVID-safe reasons, you must first register yourself on the Google Sheet which will be linked on the night’s Facebook event page. Our KP nights are regular - on Tuesdays and Fridays from 6pm to 8:30pm. To the right is a map of KP with where you can find us on your first night. Look out for friendly faces in UQMC Exec shirts who will tell you more.</p>
+                    <p>For COVID-safe reasons, you must first register yourself on the Google Sheet which will be linked on the night’s Facebook event page. Our KP nights are regular - on Tuesdays and Thursdays from 6pm to 8:30pm. We gather somewhere at the bottom of the cliff where the ropes have been setup to climb. We're hard to miss, look out for friendly faces in UQMC Exec shirts who will tell you more.</p>
                     <h2>More events</h2>
                     <p>Events are planned by the Exec Team and then added as an event to the Facebook page. Further information can be found in the description of the event such as signup sheet URLs, when, where, carpooling, and what you will need to bring. To learn about new events as they arrive, follow the Facebook page. If you have any questions, post on the group, event page, or contact one of the activity leaders.</p>
                 </div>
@@ -85,6 +87,7 @@ to escape the monotone of a city life and experience the sublime.</p>
                     <p>A system of coloured tapes is used to represent competency in different areas of climbing, and members are able to progress through the tapes as their knowledge and confidence grows. New members start out by getting their Yellow Tape, which means they can top-rope belay someone without supervision (if you don’t know what this means, don’t worry!).</p>
                 </div>
             </div>
+            <Footer />
         </>
     );
 }
