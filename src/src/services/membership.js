@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { authenticationService } from "../services/authentication.js"
 
-import { add, parse, isFuture } from "date-fns";
+import { differenceInDays, add, parse, isFuture } from "date-fns";
 
 async function memberships() {
     const response = await axios.get(process.env.GATSBY_CMS_HOST + "/grampians/memberships")
@@ -30,6 +30,12 @@ async function pay(membershipID, token) {
     return response; 
 }
 
+function daysLeft(user) {
+    const currentMembershipStartDate = parse(user.currentMembershipStartDate, 'yyyy-MM-dd', new Date());
+    const currentMembershipEndDate = add(currentMembershipStartDate, { days: user.currentMembershipLength });
+    return parseInt(differenceInDays(currentMembershipEndDate, new Date()));
+}
+
 function isValid(user) {
     const currentMembershipStartDate = parse(user.currentMembershipStartDate, 'yyyy-MM-dd', new Date());
     const currentMembershipEndDate = add(currentMembershipStartDate, { days: user.currentMembershipLength });
@@ -39,5 +45,6 @@ function isValid(user) {
 export const membershipService = {
     memberships,
     pay,
-    isValid
+    isValid,
+    daysLeft,
 };

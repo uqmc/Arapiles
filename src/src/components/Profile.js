@@ -36,21 +36,30 @@ class Profile extends React.Component {
         if(this.state.isDeleted) {
             return <Redirect noThrow to="/users" />;
         } else {
-            return (<>
-                <h2>Account Details</h2>
-                <AccountDetails id={this.id} data={this.props.data} admin={this.state.admin} />
-    
-                <h2>Personal Details</h2>            
-                <PersonalDetails id={this.id} data={this.props.data} admin={this.state.admin} />
-    
-                <h2>Emergency Contact</h2>
-                <EmergencyContact id={this.id} data={this.props.data} admin={this.state.admin} />
-    
-                <h2>Competencies</h2>
-                    <Tests id={this.id} data={this.props.data} admin={this.state.admin} />
-                    <h3>Tapes</h3>
-                    <Tapes id={this.id} tapes={this.props.data.tapes} admin={this.state.admin} />
-            </>);
+            return (
+                <>
+                    <h1 className="content-full-width">Profile</h1>
+
+                    <h2 className="content-full-width">Account Details</h2>
+                    <AccountDetails id={this.id} data={this.props.data} admin={this.state.admin} />
+        
+                    <h2 className="content-full-width">Personal Details</h2>            
+                    <PersonalDetails id={this.id} data={this.props.data} admin={this.state.admin} />
+        
+                    <h2 className="content-full-width">Emergency Contact</h2>
+                    <EmergencyContact id={this.id} data={this.props.data} admin={this.state.admin} />
+        
+                    <h2 className="content-full-width">Competencies</h2>
+                    <div className="col-1">
+                        <h3>Certifications</h3>
+                        <Tests id={this.id} data={this.props.data} admin={this.state.admin} />
+                    </div>
+                    <div className="col-2">
+                        <h3>Tapes</h3>
+                        <Tapes id={this.id} tapes={this.props.data.tapes} admin={this.state.admin} />
+                    </div>
+                </>
+            );
         }
     }
 }

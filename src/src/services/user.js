@@ -139,5 +139,5 @@ export const userService = {
     destroy,
     sexes,
     phoneTypes,
-    studentStatuses
+    studentStatuses,
 };

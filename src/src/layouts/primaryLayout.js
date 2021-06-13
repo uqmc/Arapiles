@@ -1,12 +1,9 @@
 import React from "react";
 
-import SideNav from "../components/SideNav";
-import Hamburger from "../components/Hamburger"
+import TopNav from "../components/TopNav";
 import { ContextProvider } from "../components/Context";
 
-import "../styles/primaryLayout.scss";
-import "../styles/nav-button.scss"
-import "../styles/lovely-buttons.scss";
+import "../styles/staging.scss";
 
 const PrimaryLayout = (props) =>  {
   if(props.location.pathname === "/") {
@@ -16,15 +13,9 @@ const PrimaryLayout = (props) =>  {
   } else {
     return (
       <ContextProvider>
-        <div className="App">
-          <div className="bg">
-            <SideNav />
-    
-            <main className="page-content">
-              <Hamburger />
-              { props.children }
-            </main>
-          </div>
+        <div className="app">
+            <TopNav />
+            { props.children }
         </div>
       </ContextProvider>
     )

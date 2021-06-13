@@ -1,21 +1,16 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
+import { Helmet } from "react-helmet";
 
-import ContextConsumer from "../../components/Context";
+import TapePage from "../../layouts/tapePage";
 
-const StartHere = () => {
-
-    const context = useContext(ContextConsumer);
-
-    useEffect(() => {
-        context.set({sideNavOpen: false});
-    }, []);
+const SkillsBookHome = () => {
 
     return (
-        <> 
+        <TapePage> 
+            <Helmet title="UQMC | Skills Home" />
             <h1>The Skills Book</h1>
-            <div className="head-divider"></div>
-        </>
+        </TapePage>
     );
 };
 
-export default StartHere;
+export default SkillsBookHome;

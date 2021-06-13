@@ -269,7 +269,7 @@ class SignUp extends React.Component {
                                 }
 
                                 <button
-                                    className="btn-lovely"
+                                    className="btn"
                                     disabled={formProps.isSubmitting}
                                     onClick={formProps.handleSubmit}
                                 >

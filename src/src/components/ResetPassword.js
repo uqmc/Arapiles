@@ -86,7 +86,7 @@ class ResetPassword extends React.Component {
                     <br />
 
                     <button
-                        className="btn-lovely"
+                        className="btn"
                         disabled={formProps.isSubmitting || (this.state.success && this.props.privateCode)}
                         onClick={formProps.handleSubmit}
                     >
@@ -95,7 +95,7 @@ class ResetPassword extends React.Component {
 
                     {/*If successful password reset (and not logged in)*/}
                     { this.state.success && this.props.privateCode && 
-                        <Link to="/login"><button className="btn-lovely">Login</button></Link>
+                        <Link to="/login"><button className="btn">Login</button></Link>
                     }
                 </Form>
             )}

@@ -58,69 +58,72 @@ class AccountDetails extends React.Component {
     render() {
         return (
             <>
-                <p>Username: {this.props.data.username}</p>
-                <p>Email: {this.props.data.email}</p>
+                <div>
+                    <p>Username: {this.props.data.username}</p>
+                    <p>Email: {this.props.data.email}</p>
+                </div>
 
-                {
-                    this.props.admin &&
-                    <Formik
-                        initialValues={{role: this.props.data.role ? this.props.data.role.id : undefined}}
-                        validationSchema={Yup.object().shape({
-                            role: Yup.string()
-                                .ensure("Please select a Role.")
-                                .required("Required")
-                        })}
-                        onSubmit={this.handleSubmit}
+                <div>
+                    {
+                        this.props.admin &&
+                        <Formik
+                            initialValues={{role: this.props.data.role ? this.props.data.role.id : undefined}}
+                            validationSchema={Yup.object().shape({
+                                role: Yup.string()
+                                    .ensure("Please select a Role.")
+                                    .required("Required")
+                            })}
+                            onSubmit={this.handleSubmit}
+                        >
+                        {(formProps) => (
+                            <Form>
+                                <label htmlFor="role">Role</label>
+                                <Select name="role" disabled={!this.state.edit} options={this.state.roles} placeholder="Not Authenticated" />
+                                <ErrorMessage name="role" />
+
+                                <button
+                                    className="btn"
+                                    disabled={formProps.isSubmitting}
+                                    type="button"
+                                    onClick={() => {
+                                        if (this.state.edit) {
+                                            formProps.handleSubmit()
+                                        } else { 
+                                            this.setState({edit: true})
+                                        }
+                                    }}
+                                >
+                                    {this.state.edit ? "Submit" : "Edit"}
+                                </button>
+                                <br/>
+                            </Form>
+                        )}
+                        </Formik>
+                    } 
+
+                    <button
+                        className="btn"
+                        onClick={()=>{
+                            this.setState({
+                                editPassword: !this.state.editPassword,
+                                passwordSuccess: false
+                            });
+                        }}
                     >
-                    {(formProps) => (
-                        <Form>
-                            <label htmlFor="role">Role</label>
-                            <Select name="role" disabled={!this.state.edit} options={this.state.roles} placeholder="Not Authenticated" />
-                            <ErrorMessage name="role" />
+                        {this.state.editPassword ? (this.state.passwordSuccess ? "Close" : "Cancel") : "Change Password"}
+                    </button>
 
-                            <button
-                                className="btn-lovely"
-                                disabled={formProps.isSubmitting}
-                                type="button"
-                                onClick={() => {
-                                    if (this.state.edit) {
-                                        formProps.handleSubmit()
-                                    } else { 
-                                        this.setState({edit: true})
-                                    }
-                                }}
-                            >
-                                {this.state.edit ? "Submit" : "Edit"}
-                            </button>
-                            <br/>
-                        </Form>
-                    )}
-                    </Formik>
-                } 
-
-                <br/>
-                <button
-                    className="btn-lovely"
-                    onClick={()=>{
-                        this.setState({
-                            editPassword: !this.state.editPassword,
-                            passwordSuccess: false
-                        });
-                    }}
-                >
-                    {this.state.editPassword ? (this.state.passwordSuccess ? "Close" : "Cancel") : "Change Password"}
-                </button>
-
-                { this.state.editPassword &&
-                    <>
-                    <br />
-                    <ResetPassword onSuccess={() => {
-                        this.setState({
-                            passwordSuccess: true
-                        })
-                    }} />
-                    </>
-                }
+                    { this.state.editPassword &&
+                        <>
+                        <br />
+                        <ResetPassword onSuccess={() => {
+                            this.setState({
+                                passwordSuccess: true
+                            })
+                        }} />
+                        </>
+                    }
+                </div>
             </>
         )
     }

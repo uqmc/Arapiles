@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import axios from "axios"
 
 import Spinner from "../components/Spinner";
-import ContextConsumer from "../components/Context";
 
 /*
 
@@ -15,7 +15,6 @@ We'll trek around time and space, we'll drink champagne to celebrate
 
 const FAQ = () => {
 
-  const context = useContext(ContextConsumer);
   const [data, setData] = useState(null);
 
   async function getFaqData() {
@@ -24,19 +23,22 @@ const FAQ = () => {
   }
 
   useEffect(() => {
-    context.set({sideNavOpen: false});
     getFaqData();
   }, []);
 
   if (!data) {
     return (
-      <Spinner></Spinner>
+      <main className="content-container">
+        <Helmet title="UQMC | FAQ" />
+        <Spinner />
+      </main>
     );
   } else {
     return(
-      <> 
-        <h1>FAQs</h1>
-        <div className="head-divider"></div>
+      <main className="content-container">
+        <Helmet title="UQMC | FAQ" />
+        <h1 className="content-full-width">FAQs</h1>
+
         {
           data.map((faq) => {
             return(
@@ -47,7 +49,7 @@ const FAQ = () => {
             )
           })
         }
-      </>
+      </main>
     )
   }
 };

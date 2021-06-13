@@ -1,15 +1,14 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet"
 import { userService } from "../services/user";
 
 import Profile from "../components/Profile";
 import Spinner from "../components/Spinner";
 import Restrict from "../components/Restrict";
-import ContextConsumer from "../components/Context";
 
 //Basic profile page
 const PROFILE = ({ id }) => {
 
-    const context = useContext(ContextConsumer);
     const [data, setData] = useState(null);
     
     async function getProfileData() {
@@ -43,13 +42,15 @@ const PROFILE = ({ id }) => {
     }
 
     useEffect(() => {
-        context.set({sideNavOpen: false});
         getProfileData();
     }, []);
 
     return (
         <Restrict>
-            { render() }
+            <Helmet title="UQMC | Profile" />
+            <main className="content-container">
+                { render() }
+            </main>
         </Restrict>
     );
 };

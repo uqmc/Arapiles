@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import axios from "axios"
 import marked from "marked";
 
 import Spinner from "../../components/Spinner";
-import ContextConsumer from "../../components/Context";
+import TapePage from "../../layouts/tapePage";
 
 const WhiteTapePage = () => {
 
-    const context = useContext(ContextConsumer);
     const [data, setData] = useState(null);
 
     async function getContentData() {
@@ -16,7 +16,6 @@ const WhiteTapePage = () => {
     }
   
     useEffect(() => {
-        context.set({sideNavOpen: false});
         getContentData();
     }, []);
 
@@ -24,17 +23,20 @@ const WhiteTapePage = () => {
 
     if(!htmlContent) {
         return(
-            <Spinner></Spinner>
+            <TapePage>
+                <Helmet title="UQMC | White Tape" />
+                <Spinner />
+            </TapePage>
         )
     } else {
         return(
-            <>
+            <TapePage>
+                <Helmet title="UQMC | White Tape" />
                 <h1>White tape</h1>
-                <div className="head-divider"></div>
-                <div
+                <div className="tape-content"
                     dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />
-            </>
+            </TapePage>
         );
     }
 }

@@ -103,35 +103,37 @@ class Payment extends React.Component {
                 >
                 {(formProps) => (
                     <Form>
-                        { this.state.membershipError && 
-                            <div style={{color: "red"}}>An error has occured. Please try refreshing or contact a system administrator.</div> 
-                        }
-                        <p>Membership type</p>
-                        <Select name="membership" options={this.state.memberships} disabled={formProps.isSubmitting} />
-                        <ErrorMessage name="membership" />
-                        <br />
+                        <div className="box-wrapper">
+                            { this.state.membershipError && 
+                                <div style={{color: "red"}}>An error has occured. Please try refreshing or contact a system administrator.</div> 
+                            }
+                            <p>Membership type</p>
+                            <Select name="membership" options={this.state.memberships} disabled={formProps.isSubmitting} />
+                            <ErrorMessage name="membership" />
+                            <br />
 
-                        <p>Payment details</p>
-                        <div className="stripe-form-group">
-                            <div className="stripe-form-row">
-                                <CardElement
-                                    id="card"
-                                    options={CARD_OPTIONS}
-                                />
+                            <p>Payment details</p>
+                            <div className="stripe-form-group">
+                                <div className="stripe-form-row">
+                                    <CardElement
+                                        id="card"
+                                        options={CARD_OPTIONS}
+                                    />
+                                </div>
                             </div>
+                            {
+                                formProps.isSubmitting
+                                ? <LinearProgress />
+                                : <div style={{color: "red"}}>{formProps.errors.general}</div>
+                            }
+                            <button
+                                className="btn"
+                                disabled={!this.props.stripe || formProps.isSubmitting}
+                                onClick={formProps.handleSubmit}
+                            >
+                                Process Payment
+                            </button>
                         </div>
-                        {
-                            formProps.isSubmitting
-                            ? <LinearProgress />
-                            : <div style={{color: "red"}}>{formProps.errors.general}</div>
-                        }
-                        <button
-                            className="btn-lovely"
-                            disabled={!this.props.stripe || formProps.isSubmitting}
-                            onClick={formProps.handleSubmit}
-                        >
-                            Process Payment
-                        </button>
                     </Form>
                 )}
                 </Formik>

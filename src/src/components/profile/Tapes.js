@@ -79,7 +79,7 @@ class Tapes extends React.Component {
                     { !formProps.isSubmitting && <span style={{color: "red"}}>{formProps.errors.general}</span> }
                     <br/>
                     <button
-                        className="btn-lovely"
+                        className="btn"
                         disabled={formProps.isSubmitting}
                         onClick={() => {
                             formProps.handleSubmit();
@@ -117,7 +117,7 @@ class Tapes extends React.Component {
             <>
                 {this.props.admin &&
                     <button
-                        className="btn-lovely"
+                        className="btn"
                         onClick={() => {this.setState({edit: !this.state.edit})}}
                     >
                         {this.state.edit ? "Cancel" : "Edit Tapes"}

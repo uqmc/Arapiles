@@ -2,8 +2,7 @@ import React from "react"
 
 const defaultContextValue = {
   data: {
-    pgOpen: "", /* Currently open page's key in primaryLayout */
-    sideNavOpen: false, /* In mobile view, if sidenav is open or closed */
+    someData: "Some Default Value",
   },
   set: () => {},
 }

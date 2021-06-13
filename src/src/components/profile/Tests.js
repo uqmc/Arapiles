@@ -39,7 +39,7 @@ class Tests extends React.Component {
             <>
                 {this.props.admin &&
                     <button
-                        className="btn-lovely"
+                        className="btn"
                         onClick={() => {this.setState({edit: !this.state.edit})}}
                     >
                         {this.state.edit ? "Cancel" : "Edit Tests"}
@@ -61,7 +61,7 @@ class Tests extends React.Component {
                         <br/>
                         { this.state.edit &&
                             <button
-                                className="btn-lovely"
+                                className="btn"
                                 disabled={formProps.isSubmitting}
                                 onClick={() => {
                                     formProps.handleSubmit();

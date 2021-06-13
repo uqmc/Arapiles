@@ -99,7 +99,7 @@ class PersonalDetails extends React.Component {
                 {(formProps) => (
                     <Form>
                         <button
-                            className="btn-lovely"
+                            className="btn"
                             disabled={formProps.isSubmitting}
                             type="button"
                             onClick={() => {
@@ -160,7 +160,7 @@ class PersonalDetails extends React.Component {
                         <br/>
                         { this.state.edit &&
                             <button
-                                className="btn-lovely"
+                                className="btn"
                                 disabled={formProps.isSubmitting}
                                 onClick={formProps.handleSubmit}
                                 type="button"

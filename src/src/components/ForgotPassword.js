@@ -62,7 +62,7 @@ class ForgotPassword extends React.Component {
                     }
                     <br/>
                     <button
-                        className="btn-lovely"
+                        className="btn"
                         disabled={formProps.isSubmitting}
                         onClick={formProps.handleSubmit}
                     >

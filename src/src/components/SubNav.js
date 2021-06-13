@@ -3,33 +3,21 @@ import { Link } from "gatsby";
 
 import ContextConsumer from "../components/Context";
 
-import { authenticationService } from '../services/authentication.js'
-
-const SideNav = () => {
-
-    function handleLogout (event) {
-        authenticationService.logout();
-    }
-
-    const dropMenuOne = <>
-        <ContextConsumer>
-                {({ data, set }) => (
-                    <ul className="sidenav-buttons" id="drop-1">
-                        <li className="sidenav-button" onClick={() => set({ pgOpen: "skills-home" })}><Link to="/skills-book" className={data.pgOpen === "skills-home" ? "nav-item-open" : ""}>Start Here</Link></li>
-                        <li className="sidenav-button" onClick={() => set({ pgOpen: "yellow-tape" })}><Link to="/skills-book/yellow" className={data.pgOpen === "yellow-tape" ? "nav-item-open" : ""}>Yellow</Link></li>
-                        <li className="sidenav-button" onClick={() => set({ pgOpen: "blue-tape" })}><Link to="/skills-book/blue" className={data.pgOpen === "blue-tape" ? "nav-item-open" : ""}>Blue</Link></li>
-                        <li className="sidenav-button" onClick={() => set({ pgOpen: "green-tape" })}><Link to="/skills-book/green" className={data.pgOpen === "green-tape" ? "nav-item-open" : ""}>Green</Link></li>
-                        <li className="sidenav-button" onClick={() => set({ pgOpen: "red-tape" })}><Link to="/skills-book/red" className={data.pgOpen === "red-tape" ? "nav-item-open" : ""}>Red</Link></li>
-                        <li className="sidenav-button" onClick={() => set({ pgOpen: "orange-tape" })}><Link to="/skills-book/orange" className={data.pgOpen === "orange-tape" ? "nav-item-open" : ""}>Orange</Link></li>
-                        <li className="sidenav-button" onClick={() => set({ pgOpen: "black-tape" })}><Link to="/skills-book/black" className={data.pgOpen === "black-tape" ? "nav-item-open" : ""}>Black</Link></li>
-                        <li className="sidenav-button" onClick={() => set({ pgOpen: "white-tape" })}><Link to="/skills-book/white" className={data.pgOpen === "white-tape" ? "nav-item-open" : ""}>White</Link></li>
-                    </ul>
-                )}
-        </ContextConsumer>
-    </>
-
+const SubNav = ({ navOptions }) => {
     return(
-        <ContextConsumer>
+        <>
+            <div className="subnav-container content-full-width">
+                <ul className="subnav-links">
+                    { navOptions.map((option) => {
+                        return(
+                            <Link to={option.to}><li>{option.label}</li></Link>
+                        )
+                    })
+                    }
+                </ul>
+            </div>
+        </>
+        /*{ <ContextConsumer>
             {({ data, set }) => (
                 <div className={data.sideNavOpen ? "side-nav side-nav-open" : "side-nav side-nav-closed"}>
                     <div className="brand-container">
@@ -64,8 +52,8 @@ const SideNav = () => {
                     <div className="dots"></div>
                 </div>
             )}
-        </ContextConsumer>
+        </ContextConsumer> }*/
     )
 }
 
-export default SideNav;
+export default SubNav;
