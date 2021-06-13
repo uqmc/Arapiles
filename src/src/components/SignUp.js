@@ -137,7 +137,7 @@ class SignUp extends React.Component {
             )
         } else {
             return (
-                <div className="form-container">
+                <div className="content-full-width form-container">
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <Formik
                             initialValues={{

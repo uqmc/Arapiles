@@ -54,7 +54,7 @@ class Login extends React.Component {
             )
         } else {
             return (
-                <div className="form-container">
+                <div className="content-full-width form-container">
                     <Formik
                         initialValues = {{}}
                         validationSchema={this.validationSchema}

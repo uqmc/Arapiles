@@ -15,10 +15,10 @@ const LOGIN = () => {
     }
 
     return ( 
-        <>
+        <main className="content-container">
             <h1>Login</h1>
             <Login />
-        </>
+        </main>
     );
 };
 

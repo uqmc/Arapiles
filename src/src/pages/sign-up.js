@@ -15,10 +15,10 @@ const SIGN_UP = () => {
     }
 
     return (
-        <>
+        <main className="content-container">
         	<h1>Sign Up</h1>
             <SignUp />
-        </>
+        </main>
     );
 };
 

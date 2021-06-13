@@ -50,11 +50,11 @@ class Profile extends React.Component {
                     <EmergencyContact id={this.id} data={this.props.data} admin={this.state.admin} />
         
                     <h2 className="content-full-width">Competencies</h2>
-                    <div className="col-1">
+                    <div>
                         <h3>Certifications</h3>
                         <Tests id={this.id} data={this.props.data} admin={this.state.admin} />
                     </div>
-                    <div className="col-2">
+                    <div>
                         <h3>Tapes</h3>
                         <Tapes id={this.id} tapes={this.props.data.tapes} admin={this.state.admin} />
                     </div>
