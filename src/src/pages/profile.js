@@ -7,25 +7,19 @@ import Spinner from "../components/Spinner";
 import Restrict from "../components/Restrict";
 
 //Basic profile page
-const PROFILE = ({ id }) => {
-
+const PROFILE = () => {
     const [data, setData] = useState(null);
     
     async function getProfileData() {
-        const response = id ? await userService.findOne(id) : await userService.me();
+        const response = await userService.me();
 
-        if (response) {
-            if (response.data) {
-                setData(response.data);
-            } else {
-                setData({
-                    error: "No user found."
-                })
-            }
+        if (response.data) {
+            setData(response.data);
         } else {
+            console.dir(response);
             setData({
-                error: "You do not have permissions to access this profile."
-            });
+                error: "Something went wrong."
+            })
         }
     }
 
@@ -34,7 +28,7 @@ const PROFILE = ({ id }) => {
             if (data.error) {
                 return <p style={{color: "red"}}>{data.error}</p>;
             } else {
-                return <Profile data={data} id={id} />
+                return <Profile data={data} />
             }
         } else {
             return <Spinner />;

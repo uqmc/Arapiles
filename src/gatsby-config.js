@@ -5,6 +5,16 @@
 
 module.exports = {
   plugins: [
+
+    /* Resolve client paths (paths with slugs)
+    */
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [
+        `/blog/*`
+      ]},
+    },
+
     /* SCSS transpiler and integration
     */
     `gatsby-plugin-sass`,

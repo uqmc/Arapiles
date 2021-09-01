@@ -4,7 +4,7 @@ import TopNav from "../components/TopNav";
 import Footer from "../components/Footer";
 import { ContextProvider } from "../components/Context";
 
-import "../styles/staging.scss";
+import "../styles/index.scss";
 
 const PrimaryLayout = (props) =>  {
   if(props.location.pathname === "/") {

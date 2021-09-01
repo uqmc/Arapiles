@@ -9,6 +9,7 @@ const TopNav = () => {
             {/* <Link to="/dashboard"><li>Dashboard</li></Link> */}
             <Link to="/skills-book"><li>Skills Book</li></Link>
             <Link to="/events"><li>Events</li></Link>
+            <Link to="/blog"><li>Blog</li></Link>
             <Link to="/the-team"><li>The Team</li></Link>
             <Link to="/faq"><li>FAQ</li></Link>
 
