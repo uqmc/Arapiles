@@ -63,7 +63,7 @@ const Blog = (props) => {
                     <ul className="blog-posts">
                         {
                             posts.map((post) => {
-                                return(<li><a href={`/blog/${post.id}`}><span className="highlight">{post.dateWritten}</span><br />{post.title}</a></li>);
+                                return(<li><a href={`/blog/${post.id}`}><span className="highlight">{post.dateWritten}</span><br />{post.title} | {post.authors}</a></li>);
                             })
                         }
                     </ul>
@@ -85,6 +85,7 @@ const Blog = (props) => {
                 <div className="content-full-width">
                     <a href="/blog">&#60; All Posts</a>
                     <h1>{data.title}</h1>
+                    <span>By: {data.authors}</span>
                 </div>
                 <div className="blog-content content-full-width"
                     dangerouslySetInnerHTML={{ __html: htmlContent }}
