@@ -16,9 +16,8 @@ const PROFILE = () => {
         if (response.data) {
             setData(response.data);
         } else {
-            console.dir(response);
             setData({
-                error: "Something went wrong."
+                error: "Something went wrong fetching your user data. This is likely a KNOWN bug that's affecting some users (who knows why, hey, websites suck?). If you're seeing this, please send a screenshot of this page to uqmountainclub@gmail.com and we'll get it fixed for you ASAP."
             })
         }
     }

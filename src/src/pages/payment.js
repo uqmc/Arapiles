@@ -24,11 +24,11 @@ const PAYMENT = () => {
     }, []);
 
     function getDaysLeft() {
-        const daysLeft = user == null ? "" : membershipService.daysLeft(user);
-        if (daysLeft < 1) {
-            return "EXPIRED";
+        if (user == null) {
+            return "USER_ERROR"
+        } else {
+            return membershipService.daysLeft(user);
         }
-        return daysLeft;
     }
 
     return(
@@ -41,23 +41,35 @@ const PAYMENT = () => {
 
                     <h2>Current Membership</h2>
                     {
-                        getDaysLeft() === "EXPIRED"
-                            ? <span className="expired">Your membership has expired. Please renew it before participating in club activities.</span>
-                            : <p>Days left on current membership: {getDaysLeft()}</p>
+                        getDaysLeft() === "USER_ERROR"
+                            ? <span className="expired">There was an error fetching your user data. This is a known bug affecting some users. Please send a screenshot of this page to uqmountainclub@gmail.com and we'll get it fixed for you.</span>
+                            : (
+                                getDaysLeft() < 1
+                                ? <span className="expired">Your membership has expired. Please renew it before participating in club activities.</span>
+                                : <p>Days left on current membership: {getDaysLeft()}</p>
+                            )
 
                     }
 
                     <h2>Purchase Membership</h2>
-                    <p>The below card details form uses Stripe in order to receive and process your payment. 
-                        The 'membership type' you select indicates how much money will be charged to the card details you enter.
-                        Your UQMC account will be issued the length of membership corresponding to this membership type.</p>
-                    <Elements stripe={stripePromise}>
-                        <ElementsConsumer>
-                            {({stripe, elements}) => (
-                                <Payment stripe={stripe} elements={elements} />
-                            )}
-                        </ElementsConsumer>
-                    </Elements>
+                    {
+                        getDaysLeft() === "USER_ERROR"
+                        ? <span className="expired">There was an error fetching your user data. This is a known bug affecting some users. Please send a screenshot of this page to uqmountainclub@gmail.com and we'll get it fixed for you.</span>
+                        : 
+                        <>
+                            <p>The below card details form uses Stripe in order to receive and process your payment. 
+                                The 'membership type' you select indicates how much money will be charged to the card details you enter.
+                                Your UQMC account will be issued the length of membership corresponding to this membership type.</p>
+                            <Elements stripe={stripePromise}>
+                                <ElementsConsumer>
+                                    {({stripe, elements}) => (
+                                        <Payment stripe={stripe} elements={elements} />
+                                    )}
+                                </ElementsConsumer>
+                            </Elements>
+                        </>
+                    }
+
                     <p>If you do not wish to use our online form to make the payment, you may make a bank transfer to the following details:
                         <p className="mono">
                             Holder...: UQ Mountain Club<br />
