@@ -294,6 +294,12 @@ body {
     }
 }
 
+.landing-image-full {
+    width: 80%;
+    grid-column: 1/3;
+    margin: 0 auto;
+}
+
 h1 {
     @include font-semibold();
     color: $heading-color;
