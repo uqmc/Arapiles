@@ -41,8 +41,9 @@
 
 $background-color: #111111;
 $heading-color: #fff;
+$faint-color: rgba(255, 255, 255, 0.466);
 $font-color: rgba(255, 255, 255, 0.712);
-$link-color: rgba(255,255,255,0.6);
+$link-color: rgba(255, 255, 255, 0.918);
 $highlight-color: #EF734C;
 $danger-color: #df3d3d;
 
@@ -54,6 +55,12 @@ body {
 
     background-color: $background-color;
     color: $font-color;
+}
+
+.app {
+    display:flex; 
+    flex-direction:column; 
+    min-height: 100vh;
 }
 
 .content-container {
@@ -101,6 +108,32 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+}
+
+.footer {
+    height: 10em;
+    padding: 3em 0;
+
+    width: clamp(45ch, 70%, 90ch);
+    margin: auto auto 0 auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+
+    hr {
+        width: 100%;
+    }
+}
+
+.footer-text {
+    color: $faint-color;
+    width: auto;
+
+    a {
+        color: inherit;
+    }
 }
 
 .subnav-container {
@@ -462,5 +495,11 @@ Blog styles
 
     hr {
         margin: 10px 0 10px 0;
+    }
+
+    img {
+        width: 70%;
+        display: block;
+        margin: 0 auto;
     }
 }
