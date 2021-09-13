@@ -6,6 +6,12 @@ import Spinner from "../components/Spinner";
 
 const TheTeam = () => {
 
+  /*
+  He felt that his whole life was some kind of dream
+  and he sometimes wondered whose it was and whether
+  they were enjoying it.
+  */
+
   const [data, setData] = useState(null);
 
   async function getExecData() {
