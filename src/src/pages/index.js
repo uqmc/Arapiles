@@ -23,7 +23,7 @@ const Index = () => {
                         <img src="logo.png"></img>
                     </Link>
                     <ul id="landing-nav-items">
-                        <Link to="/skills-book"><li>Skills</li></Link>
+                        <Link to="/skills-book"><li>Learn More</li></Link>
                         <Link to="/events"><li>Events</li></Link>
                         { authenticationService.isLoggedIn()
                             ? <Link to="/" onClick={handleLogout}><li id="landing-nav-login">Logout</li></Link>

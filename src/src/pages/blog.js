@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import marked from "marked";
+import { FaAngleDoubleLeft } from 'react-icons/fa';
 
 import Spinner from "../components/Spinner";
 
@@ -82,8 +83,8 @@ const Blog = (props) => {
         return(
             <main className="content-container">
                 <Helmet title={"UQMC | " + data.title} />
-                <div className="content-full-width">
-                    <a href="/blog">&#60; All Posts</a>
+                <div className="content-full-width blog-header">
+                    <a href="/blog"><FaAngleDoubleLeft /> All Posts</a>
                     <h1>{data.title}</h1>
                     <span>By: {data.authors}</span>
                 </div>
