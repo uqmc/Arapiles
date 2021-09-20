@@ -4,6 +4,8 @@ import { Link } from "gatsby";
 
 const Events = () => {
 
+  // Failure is the greatest gift a climber can receive
+
   return(
     <>
       <Helmet title="UQMC | Events" />
