@@ -49,19 +49,19 @@ their personal limits, plan epic adventures, make lasting friendships, and get o
 to escape the monotone of a city life and experience the sublime.</p>
                 </div>
 
-                <div className="media-container">
+                <div className="media-container landing-image">
                     <img src="https://cms.uqmc.org/uploads/kp_df99609ad7.jpg"></img>
                 </div>
                 <div className="text-center vertical-center-self">
                     <p>Two nights a week we climb at the iconic Kangaroo Point Cliffs, with routes setup for both newbies and experienced climbers. Come along, learn how to climb, and meet the club’s welcoming members.</p>
                 </div>
-                <div className="media-container">
+                <div className="media-container landing-image">
                     <img src="https://uqmc-cms-media.s3.nl-ams.scw.cloud/20210709_165122_97be4bb980.jpg"></img>
                 </div>
                 <div className="text-center vertical-center-self">
                     <p>Every weekend, we host a climbing and a hiking trip outside of Brisbane. We will take you to some of the most gorgeous mountains and trails in South-East Queensland. These trips are at no extra cost besides being a member! Is this real life?</p>
                 </div>
-                <div className="media-container">
+                <div className="media-container landing-image">
                     <img src="https://uqmc-cms-media.s3.nl-ams.scw.cloud/medium_1095842_R1_19_5_A_21d61beb3d.png"></img>
                 </div>
                 <div className="text-center vertical-center-self">
