@@ -59,6 +59,27 @@ services:
     depends_on:
      - db
 
+  # Web GUI for MongoDB
+  db-viewer:
+    image: mongo-express
+    depends_on:
+      - db
+    restart: unless-stopped
+    env_file: .env.production
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@db:27017/
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.db-viewer-web.rule=Host(`db.uqmc.org`)"
+      - "traefik.http.routers.db-viewer-web.entrypoints=web"
+      - "traefik.http.routers.db-viewer-web.middlewares=redirect@file"
+      - "traefik.http.routers.db-viewer-secured.rule=Host(`db.uqmc.org`)"
+      - "traefik.http.routers.db-viewer-secured.entrypoints=web-secured"
+      - "traefik.http.routers.db-viewer-secured.tls.certresolver=mytlschallenge"
+      - "traefik.http.services.db-viewer.loadbalancer.server.port=8081"
+
   # Database
   db:
     image: mongo
@@ -68,7 +89,7 @@ services:
       - backend
     volumes:
       - db-data:/data/db
-
+  
 volumes:
   # Database persistance
   db-data:
