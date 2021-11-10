@@ -66,6 +66,8 @@ services:
       - db
     restart: unless-stopped
     env_file: .env.production
+    networks:
+     - backend
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.db-viewer-web.rule=Host(`db.uqmc.org`)"
