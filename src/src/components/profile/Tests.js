@@ -16,7 +16,7 @@ class Tests extends React.Component {
             edit: false,
         }
     }
-    
+    //Swim test completed: to be filled out by Exec
     validationSchema = Yup.object().shape({
         swimTestCompleted: Yup.boolean()
     });
@@ -77,6 +77,74 @@ class Tests extends React.Component {
             </>
         )
     }
+
+
+
+    //COVID-19 Dining-In Cert
+    validationSchema = Yup.object().shape({
+        CovidDiningInCompleted: Yup.boolean()
+    });
+
+    handleSubmit = async (data, actions) => {
+        const response = await userService.update(this.props.id, data);
+        actions.setSubmitting(false);
+
+        //Check if request was successful
+        if (response === true) {
+            this.setState({ edit: false });
+        } else {
+            actions.setFieldError('general', response);
+        }
+
+    }
+
+    render() {
+        return (
+            <>
+                {this.props.admin &&
+                    <button
+                        className="btn"
+                        onClick={() => {this.setState({edit: !this.state.edit})}}
+                    >
+                        {this.state.edit ? "Cancel" : "Edit Tests"}
+                    </button>
+                }
+                <Formik
+                    key="testsFormik"
+                    initialValues={{
+                        CovidDiningInCompleted: this.props.data.CovidDiningInCompleted
+                    }}
+                    validationSchema={this.validationSchema}
+                    onSubmit={this.handleSubmit}
+                >
+                {(formProps) => (
+                    <Form>
+                        <label htmlFor="CovidDiningInCompleted">COVID Dining In Cert Completed?</label>
+                        <Field name="CovidDiningInCompleted" type="checkbox" disabled={!this.state.edit} />
+                        { !formProps.isSubmitting && <span style={{color: "red"}}>{formProps.errors.general}</span> }
+                        <br/>
+                        { this.state.edit &&
+                            <button
+                                className="btn"
+                                disabled={formProps.isSubmitting}
+                                onClick={() => {
+                                    formProps.handleSubmit();
+                                }}
+                            >
+                                Submit 
+                            </button>
+                        }
+                    </Form>
+                    )
+                }
+                </Formik>
+            </>
+        )
+    }
+
+
+
+
 }
 
 export default Tests;
