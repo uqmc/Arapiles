@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import marked from "marked";
 import { FaAngleDoubleLeft } from 'react-icons/fa';
+import { FiClock, FiCoffee, FiPenTool } from "react-icons/fi";
 
 import Spinner from "../components/Spinner";
 
@@ -60,7 +61,19 @@ const Blog = (props) => {
             <main className="content-container">
                 <Helmet title="UQMC | Blog" />
                 <div className="content-full-width">
-                    <h1>Blog Posts</h1>
+                    <h1>Latest Post</h1>
+                    <div className="blog-featured-container">
+                        {
+                            <a href={`/blog/${posts[0].id}`}>
+                                {posts[0]?.bannerImage ? <img className="media-container blog-index-banner" src={posts[0].bannerImage.url}></img> : <></>}
+                                <div className="blog-featured-text">
+                                    <p className="blog-featured-title">{posts[0].title}</p>
+                                    <p className="blog-featured-byline highlight"><FiClock /> {posts[0].dateWritten} <br /> <FiPenTool /> {posts[0].authors } <br /> <FiCoffee /> {posts[0].timeToRead} minute read time</p>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                    <h1>All Posts</h1>
                     <ul className="blog-posts">
                         {
                             posts.map((post) => {
@@ -86,7 +99,8 @@ const Blog = (props) => {
                 <div className="content-full-width blog-header">
                     <a href="/blog"><FaAngleDoubleLeft /> All Posts</a>
                     <h1>{data.title}</h1>
-                    <span>By: {data.authors}</span>
+                    <span className="blog-post-byline"><FiClock /> {data.dateWritten}   <FiPenTool /> {data.authors}   {data?.timeToRead ? <span> <FiCoffee /> Read time: {data.timeToRead} minutes</span> : <></>}</span>
+                    {data?.bannerImage ? <img src={data.bannerImage.url}></img> : <></>}
                 </div>
                 <div className="blog-content content-full-width"
                     dangerouslySetInnerHTML={{ __html: htmlContent }}

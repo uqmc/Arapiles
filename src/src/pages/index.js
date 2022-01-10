@@ -23,7 +23,7 @@ const Index = () => {
                         <img src="logo.png"></img>
                     </Link>
                     <ul id="landing-nav-items">
-                        <Link to="/skills-book"><li>Learn More</li></Link>
+                        <Link to="/faq"><li>Learn More</li></Link>
                         <Link to="/events"><li>Events</li></Link>
                         { authenticationService.isLoggedIn()
                             ? <Link to="/" onClick={handleLogout}><li id="landing-nav-login">Logout</li></Link>
@@ -87,7 +87,7 @@ to escape the monotone of a city life and experience the sublime.</p>
                 </div>
 
                 <div className="media-container landing-image-full">
-                    <img src="https://uqmc-cms-media.s3.nl-ams.scw.cloud/Bluies_2018_Girls_becd44e0ac.jpg"></img>
+                    <img src="https://uqmc-cms-media.s3.nl-ams.scw.cloud/jump_group_e408e57ca0.jpg"></img>
                 </div>
 
                 <div className="content-full-width">
