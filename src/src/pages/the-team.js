@@ -47,7 +47,7 @@ const TheTeam = () => {
                   <div className="exec-profile-left">
                     <h2>{exec.name} - {exec.role}</h2>
                     <div className="media-container">
-                      <img src={process.env.GATSBY_CMS_HOST + exec.pfp.formats.small.url}></img>
+                      <img src={exec.pfp.formats.small.url}></img>
                     </div>
                   </div>
                   <p className="vertical-center-self">{exec.bio}</p>
